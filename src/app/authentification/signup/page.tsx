@@ -1,32 +1,56 @@
-"useClient";
-import { Button, Input, Stack } from "@mui/material";
+"use client";
 import React from "react";
-import { Controller, useForm } from "react-hook-form";
+import { Button, Stack, TextField } from "@mui/material";
+import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
-const SignUp = () => {
-  const { control, handleSubmit } = useForm({
+//Types
+type Type_data = {
+  firstName: string;
+  lastName: string;
+};
+
+//Validation schema
+const Schema_SignUp = yup.object().shape({
+  firstName: yup.string().required(),
+  lastName: yup.string().required(),
+});
+
+const SignUpForm = () => {
+  const { handleSubmit, control } = useForm<Type_data>({
     defaultValues: {
       firstName: "",
+      lastName: "",
     },
+    resolver: yupResolver(Schema_SignUp),
   });
-
-  const onSubmit = () => console.log("Submitting");
+  const onSubmit: SubmitHandler<Type_data> = (data) => console.log(data);
 
   return (
-    <>
-      <Stack>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Controller
-            name="firstName"
-            control={control}
-            render={({ field }) => <Input {...field} />}
-          />
-
-          <Button type="submit"> Sign up</Button>
-        </form>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Stack direction={"row"} spacing={2}>
+        <Controller
+          control={control}
+          name="firstName"
+          rules={{ required: true }}
+          render={({ field }) => (
+            <TextField {...field} label="First name" variant="outlined" />
+          )}
+        />
+        <Controller
+          control={control}
+          name="lastName"
+          rules={{ required: true }}
+          render={({ field }) => (
+            <TextField {...field} label="Last name" variant="outlined" />
+          )}
+        />
       </Stack>
-    </>
+
+      <Button type="submit">Sign up</Button>
+    </form>
   );
 };
 
-export default SignUp;
+export default SignUpForm;
