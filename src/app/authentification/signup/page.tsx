@@ -1,10 +1,16 @@
-import SignUpForm from "../../../components/SignUp/SignUpForm";
+import { Box } from "@mui/material";
+import SignUpForm from "../components/SignUpForm";
 
 const SignUp = () => {
   return (
-    <div>
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="90vh"
+    >
       <SignUpForm />
-    </div>
+    </Box>
   );
 };
 

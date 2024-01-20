@@ -3,51 +3,27 @@ import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import {
   TextField,
-  Button,
   Container,
   Grid,
   InputAdornment,
   IconButton,
 } from "@mui/material";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { yupResolver } from "@hookform/resolvers/yup";
 
-//types
-type Type_data = {
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-};
-
-//Validation schema
-const Schema_SignUp = Yup.object().shape({
-  firstName: Yup.string().required("First name is required"),
-  lastName: Yup.string().required("Last name is required"),
-  phoneNumber: Yup.string().required("Phone number is required"),
-  email: Yup.string().email("Invalid email").required("Email is required"),
-  password: Yup.string()
-    .required("Password is required")
-    .min(8, "Password must be at least 8 characters"),
-  confirmPassword: Yup.string()
-    .oneOf([Yup.ref("password")], "Passwords must match")
-    .required("Confirm password is required"),
-});
+import { ActionButton } from "@/components/buttons/ActionButton";
+import { Schema_SignUp } from "@/assets/schemas";
+import { Type_SignUp_Data } from "@/types";
 
 const SignUpForm = () => {
-  //handling the form using react-hook-form
   const {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<Type_data>({
+  } = useForm<Type_SignUp_Data>({
     resolver: yupResolver(Schema_SignUp),
   });
 
-  //handling password and confirm password inputs
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (
@@ -56,8 +32,7 @@ const SignUpForm = () => {
     event.preventDefault();
   };
 
-  //handling submit
-  const onSubmit = async (data: Type_data) => {
+  const onSubmit = async (data: Type_SignUp_Data) => {
     try {
       alert("Submitted");
       console.log(data);
@@ -194,9 +169,14 @@ const SignUpForm = () => {
             />
           </Grid>
         </Grid>
-        <Button type="submit" variant="contained" fullWidth sx={{ mt: 3 }}>
+        <ActionButton
+          type="submit"
+          variant="contained"
+          fullWidth
+          sx={{ mt: 3 }}
+        >
           Sign Up
-        </Button>
+        </ActionButton>
       </form>
     </Container>
   );
