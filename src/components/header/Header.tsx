@@ -26,23 +26,28 @@ export default function Header({ switchTheme }: { switchTheme: any }) {
             <MenuIcon />
           </IconButton>
         </Grid>
-
-        {/* <FormControlLabel
-            control={
-              <Switch
-                onChange={switchTheme}
-                name="switchTheme"
-                color="primary"
-              />
-            }
-            label="Change theme"
-          /> */}
-        <ActionButton
-          variant="contained"
-          onClick={() => router.push("/authentification/signup")}
+        <Grid
+          xs={6}
+          rowSpacing={1}
+          container
+          direction={"row"}
+          alignItems={"center"}
+          justifyContent={"flex-end"}
+          gap={1}
         >
-          Sign up
-        </ActionButton>
+          <ActionButton
+            variant="contained"
+            onClick={() => router.push("/authentification/login")}
+          >
+            Login
+          </ActionButton>
+          <ActionButton
+            variant="contained"
+            onClick={() => router.push("/authentification/signup")}
+          >
+            Sign up
+          </ActionButton>
+        </Grid>
       </Grid>
     </Grid>
   );
