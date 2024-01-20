@@ -1,20 +1,18 @@
 "useClient";
 import { FormControlLabel, Grid, IconButton, Switch } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 
 import { ActionButton } from "../buttons/ActionButton";
 
 export default function Header({ switchTheme }: { switchTheme: any }) {
-  const pathName = usePathname();
   const router = useRouter();
   return (
     <Grid className="public-header" sx={{ p: 2 }}>
       <Grid
         container
         direction="row"
-        justifyContent={pathName === "/" ? "center" : "space-between"}
+        justifyContent={"space-between"}
         alignItems={"center"}
       >
         <Grid lg={6}>
@@ -23,7 +21,7 @@ export default function Header({ switchTheme }: { switchTheme: any }) {
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2 }}
+            sx={{ mr: 2, color: "#FDDFD9" }}
           >
             <MenuIcon />
           </IconButton>
