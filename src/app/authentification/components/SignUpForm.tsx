@@ -12,7 +12,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { ActionButton } from "@/components/buttons/ActionButton";
-import { Schema_SignUp } from "@/assets/schemas";
+import { Schema_SignUp } from "@/schemas";
 import { Type_SignUp_Data } from "@/types";
 
 const SignUpForm = () => {
@@ -134,6 +134,8 @@ const SignUpForm = () => {
                     ),
                   }}
                   autoComplete="on"
+                  error={!!errors.password}
+                  helperText={errors.password?.message}
                   fullWidth
                 />
               )}
@@ -162,6 +164,8 @@ const SignUpForm = () => {
                       </InputAdornment>
                     ),
                   }}
+                  error={!!errors.confirmPassword}
+                  helperText={errors.confirmPassword?.message}
                   autoComplete="on"
                   fullWidth
                 />
