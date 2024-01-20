@@ -10,7 +10,7 @@ export default function Header({ switchTheme }: { switchTheme: any }) {
   const pathName = usePathname();
   const router = useRouter();
   return (
-    <Grid sx={{ p: 2 }}>
+    <Grid className="public-header" sx={{ p: 2 }}>
       <Grid
         container
         direction="row"
@@ -28,15 +28,8 @@ export default function Header({ switchTheme }: { switchTheme: any }) {
             <MenuIcon />
           </IconButton>
         </Grid>
-        <Grid
-          xs={6}
-          rowSpacing={1}
-          container
-          direction={"row"}
-          alignItems="center"
-          justifyContent={"flex-end"}
-        >
-          <FormControlLabel
+
+        {/* <FormControlLabel
             control={
               <Switch
                 onChange={switchTheme}
@@ -45,14 +38,13 @@ export default function Header({ switchTheme }: { switchTheme: any }) {
               />
             }
             label="Change theme"
-          />
-          <ActionButton
-            variant="contained"
-            onClick={() => router.push("/authentification/signup")}
-          >
-            Sign up
-          </ActionButton>
-        </Grid>
+          /> */}
+        <ActionButton
+          variant="contained"
+          onClick={() => router.push("/authentification/signup")}
+        >
+          Sign up
+        </ActionButton>
       </Grid>
     </Grid>
   );
