@@ -5,7 +5,7 @@ export const COLORS = {
     burgundi: "#490318",
     pink: "#F7195C",
     oldPink: "#958A8E",
-    neutral: "D6C5CB",
+    neutral: "#EBD0D9",
 
     // action buttons
     borderButton: '#FDDFD9',
