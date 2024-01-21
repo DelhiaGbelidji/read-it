@@ -1,5 +1,5 @@
 "use client";
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
 import { useState } from "react";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 
@@ -8,7 +8,10 @@ import "./globals.css";
 import HeaderNotLogged from "@/components/headers/HeaderNotLogged";
 import HeaderLogged from "@/components/headers/HeaderLogged";
 
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export default function RootLayout({
   children,
@@ -27,7 +30,7 @@ export default function RootLayout({
       <ThemeProvider theme={isDark ? darkTheme : ligthTeme}>
         <CssBaseline />
 
-        <body className={inter.className}>
+        <body className={roboto.className}>
           {!isLogged ? (
             <HeaderNotLogged switchTheme={switchTheme} />
           ) : (
