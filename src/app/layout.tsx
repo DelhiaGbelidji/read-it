@@ -1,12 +1,12 @@
 "use client";
-import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { useState } from "react";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 
 import { ligthTeme, darkTheme } from "./theme/theme";
 import "./globals.css";
-import Header from "@/components/headers/Header";
+import HeaderNotLogged from "@/components/headers/HeaderNotLogged";
+import HeaderLogged from "@/components/headers/HeaderLogged";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,6 +15,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const [isLogged, setIsLogged] = useState(false); //pour tester les deux layouts différents, passer isLogged à true
   const [isDark, setIsDark] = useState(false);
 
   const switchTheme = () => {
@@ -27,8 +28,11 @@ export default function RootLayout({
         <CssBaseline />
 
         <body className={inter.className}>
-          <Header switchTheme={switchTheme} />
-          <footer></footer>
+          {!isLogged ? (
+            <HeaderNotLogged switchTheme={switchTheme} />
+          ) : (
+            <HeaderLogged switchTheme={switchTheme} />
+          )}
           {children}
         </body>
       </ThemeProvider>
