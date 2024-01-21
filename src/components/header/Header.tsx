@@ -43,12 +43,12 @@ export default function Header({switchTheme}: {switchTheme: () => void}) {
           />
           <ActionButton
             variant='contained'
-            onClick={() => router.push('/authentification/login')}>
+            onClick={() => router.push('/auth/login')}>
             Login
           </ActionButton>
           <ActionButton
             variant='contained'
-            onClick={() => router.push('/authentification/signup')}>
+            onClick={() => router.push('/auth/signup')}>
             Sign up
           </ActionButton>
         </Grid>

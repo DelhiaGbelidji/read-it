@@ -47,7 +47,7 @@ const SignUpForm = () => {
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
             <Controller
-              name='firstName'
+              name='firstname'
               control={control}
               render={({field}) => (
                 <TextField
@@ -55,8 +55,8 @@ const SignUpForm = () => {
                   label='First Name'
                   variant='outlined'
                   fullWidth
-                  error={!!errors.firstName}
-                  helperText={errors.firstName?.message}
+                  error={!!errors.firstname}
+                  helperText={errors.firstname?.message}
                 />
               )}
             />
@@ -64,7 +64,7 @@ const SignUpForm = () => {
 
           <Grid item xs={12} sm={6}>
             <Controller
-              name='lastName'
+              name='lastname'
               control={control}
               render={({field}) => (
                 <TextField
@@ -72,15 +72,15 @@ const SignUpForm = () => {
                   label='Last Name'
                   variant='outlined'
                   fullWidth
-                  error={!!errors.lastName}
-                  helperText={errors.lastName?.message}
+                  error={!!errors.lastname}
+                  helperText={errors.lastname?.message}
                 />
               )}
             />
           </Grid>
           <Grid item xs={12}>
             <Controller
-              name='phoneNumber'
+              name='phone_number'
               control={control}
               render={({field}) => (
                 <TextField
@@ -88,8 +88,8 @@ const SignUpForm = () => {
                   label='Phone Number'
                   variant='outlined'
                   fullWidth
-                  error={!!errors.phoneNumber}
-                  helperText={errors.phoneNumber?.message}
+                  error={!!errors.phone_number}
+                  helperText={errors.phone_number?.message}
                 />
               )}
             />
