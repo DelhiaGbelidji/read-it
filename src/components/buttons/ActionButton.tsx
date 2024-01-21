@@ -2,10 +2,9 @@ import { Button, styled } from "@mui/material";
 
 import { COLORS } from "@/assets/colors";
 
-export const ActionButton = styled(Button)(({ theme }: any) => ({
+export const ActionButton = styled(Button)(() => ({
   fontSize: "14px",
   lineHeight: "16px",
-  padding: theme.spacing(2, 3),
   backgroundColor: COLORS.backgroundButton,
   color: COLORS.white,
   borderRadius: "50px",

@@ -1,11 +1,11 @@
-"useClient";
+"use client";
 import { FormControlLabel, Grid, IconButton, Switch } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useRouter } from "next/navigation";
 
 import { ActionButton } from "../buttons/ActionButton";
 
-export default function Header({ switchTheme }: { switchTheme: any }) {
+export default function Header({ switchTheme }: { switchTheme: () => void }) {
   const router = useRouter();
   return (
     <Grid className="public-header" sx={{ p: 2 }}>
@@ -15,7 +15,7 @@ export default function Header({ switchTheme }: { switchTheme: any }) {
         justifyContent={"space-between"}
         alignItems={"center"}
       >
-        <Grid lg={6}>
+        <Grid item lg={6}>
           <IconButton
             size="large"
             edge="start"
@@ -27,14 +27,23 @@ export default function Header({ switchTheme }: { switchTheme: any }) {
           </IconButton>
         </Grid>
         <Grid
+          item
           xs={6}
-          rowSpacing={1}
+          justifyContent={"flex-end"}
           container
           direction={"row"}
           alignItems={"center"}
-          justifyContent={"flex-end"}
-          gap={1}
         >
+          <FormControlLabel
+            control={
+              <Switch
+                onChange={switchTheme}
+                name="switchTheme"
+                color="primary"
+              />
+            }
+            label="Change theme"
+          />
           <ActionButton
             variant="contained"
             onClick={() => router.push("/authentification/login")}
