@@ -1,21 +1,71 @@
 import { COLORS } from "@/assets/colors";
-import { Container, Grid } from "@mui/material";
+import { Button, Container, Grid, Stack, Typography } from "@mui/material";
 
 // TODO: créer l'ui pour la landing page not logged
 const Landing = () => {
   return (
     <>
       <Container>
-        Colors palette
-        <Grid sx={{ backgroundColor: COLORS.black, color: COLORS.white }}>
-          Work in progress
-        </Grid>
-        <Grid sx={{ backgroundColor: COLORS.burgundi, color: COLORS.white }}>
-          Work in progress
-        </Grid>
-        <Grid sx={{ backgroundColor: COLORS.pink }}> Work in progress</Grid>
-        <Grid sx={{ backgroundColor: COLORS.oldPink }}> Work in progress</Grid>
-        <Grid sx={{ backgroundColor: COLORS.neutral }}> Work in progress</Grid>
+        <Typography> Colors palette</Typography>
+        <Stack direction={"row"} gap={1}>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: COLORS.black,
+              "&.MuiButtonBase-root:hover": {
+                bgcolor: COLORS.hoverButton,
+              },
+            }}
+          >
+            Work in progress
+          </Button>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: COLORS.burgundi,
+              "&.MuiButtonBase-root:hover": {
+                bgcolor: COLORS.hoverButton,
+              },
+            }}
+          >
+            Work in progress
+          </Button>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: COLORS.pink,
+              "&.MuiButtonBase-root:hover": {
+                bgcolor: COLORS.hoverButton,
+              },
+            }}
+          >
+            Work in progress
+          </Button>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: COLORS.grey,
+              color: COLORS.black,
+              "&.MuiButtonBase-root:hover": {
+                bgcolor: COLORS.hoverButton,
+              },
+            }}
+          >
+            Work in progress
+          </Button>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: COLORS.lightPink,
+              color: COLORS.black,
+              "&.MuiButtonBase-root:hover": {
+                bgcolor: COLORS.hoverButton,
+              },
+            }}
+          >
+            Work in progress
+          </Button>
+        </Stack>
       </Container>
     </>
   );

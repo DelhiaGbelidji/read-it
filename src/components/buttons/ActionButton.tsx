@@ -11,6 +11,7 @@ export const ActionButton = styled(Button)(() => ({
   boxShadow: "0px 2px 4px rgba(25, 49, 84, 0.15)",
   "&:hover:not(.Mui-disabled), &.Mui-focused": {
     backgroundColor: COLORS.hoverButton,
+    color: COLORS.black,
     boxShadow: "0px 2px 4px rgba(25, 49, 84, 0.15)",
   },
   "&.Mui-disabled": {
@@ -29,6 +30,7 @@ export const ActionButtonOutlined = styled(Button)(() => ({
   boxShadow: "0px 2px 4px rgba(25, 49, 84, 0.15)",
   "&:hover:not(.Mui-disabled), &.Mui-focused": {
     backgroundColor: COLORS.outlinedHoverButton,
+    color: COLORS.black,
     boxShadow: "0px 2px 4px rgba(25, 49, 84, 0.15)",
     border: `1px solid ${COLORS.white}`,
   },
