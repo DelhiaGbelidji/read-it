@@ -1,5 +1,6 @@
 "use client";
-import { FormControlLabel, Grid } from "@mui/material";
+import { FormControlLabel, Grid, Stack } from "@mui/material";
+import ContrastIcon from "@mui/icons-material/Contrast";
 import HandymanIcon from "@mui/icons-material/Handyman";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -82,13 +83,14 @@ const HeaderNotLogged = ({ switchTheme }: Type_Props_HeaderNotLogged) => {
         >
           <FormControlLabel
             control={
-              <Styled_Switch
-                onChange={switchTheme}
-                name="switchTheme"
-                color="primary"
-              />
+              <Styled_Switch onChange={switchTheme} name="switchTheme" />
             }
-            label="Change theme"
+            label={
+              <Stack>
+                <ContrastIcon />
+              </Stack>
+            }
+            labelPlacement="start"
           />
           {displayButtons()}
         </Grid>

@@ -1,9 +1,8 @@
 "use client";
 import { Roboto } from "next/font/google";
 import { useState } from "react";
-import { ThemeProvider, CssBaseline } from "@mui/material";
 
-import { ligthTeme, darkTheme } from "./theme/theme";
+import ThemeRegistry from "@/theme/ThemeRegistery";
 import "./globals.css";
 import HeaderNotLogged from "@/components/headers/HeaderNotLogged";
 import HeaderLogged from "@/components/headers/HeaderLogged";
@@ -19,17 +18,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const [isLogged, setIsLogged] = useState(false); //pour tester les deux layouts différents, passer isLogged à true
-  const [isDark, setIsDark] = useState(false);
+  const [mode, setMode] = useState("light");
 
   const switchTheme = () => {
-    setIsDark(!isDark);
+    setMode((prevMode: string) => (prevMode === "light" ? "dark" : "light"));
   };
 
   return (
     <html lang="en">
-      <ThemeProvider theme={isDark ? darkTheme : ligthTeme}>
-        <CssBaseline />
-
+      <ThemeRegistry mode={mode}>
         <body className={roboto.className}>
           {!isLogged ? (
             <HeaderNotLogged switchTheme={switchTheme} />
@@ -38,7 +35,7 @@ export default function RootLayout({
           )}
           {children}
         </body>
-      </ThemeProvider>
+      </ThemeRegistry>
     </html>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 import { Avatar, FormControlLabel, Grid } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import ContrastIcon from "@mui/icons-material/Contrast";
 
 import { Styled_IconButton } from "../buttons/IconButton.style";
 import { Styled_Switch } from "../switch/Switch.style";
@@ -37,13 +38,10 @@ const HeaderLogged = ({ switchTheme }: Type_Props_HeaderLogged) => {
         >
           <FormControlLabel
             control={
-              <Styled_Switch
-                onChange={switchTheme}
-                name="switchTheme"
-                color="primary"
-              />
+              <Styled_Switch onChange={switchTheme} name="switchTheme" />
             }
-            label="Change theme"
+            label={<ContrastIcon />}
+            labelPlacement="start"
           />
           <Avatar sx={{ bgcolor: COLORS.black }}>DG</Avatar>
         </Grid>

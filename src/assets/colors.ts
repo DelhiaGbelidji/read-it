@@ -13,5 +13,4 @@ export const COLORS = {
     disabledTextButton : '#667A97',
     hoverButton: "#F7EBEC",
     outlinedHoverButton: "#C2C2C2",
-
 };
