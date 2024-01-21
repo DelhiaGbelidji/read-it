@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
-import SignUpForm from "./SignUpForm";
+import LoginForm from "./LoginForm";
 
-const SignUp = () => {
+const Login = () => {
   return (
     <Box
       display="flex"
@@ -9,9 +9,9 @@ const SignUp = () => {
       alignItems="center"
       minHeight="90vh"
     >
-      <SignUpForm />
+      <LoginForm />
     </Box>
   );
 };
 
-export default SignUp;
+export default Login;

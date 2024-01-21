@@ -46,6 +46,12 @@ export default function Header({ switchTheme }: { switchTheme: () => void }) {
           />
           <ActionButton
             variant="contained"
+            onClick={() => router.push("/authentification/login")}
+          >
+            Login
+          </ActionButton>
+          <ActionButton
+            variant="contained"
             onClick={() => router.push("/authentification/signup")}
           >
             Sign up
