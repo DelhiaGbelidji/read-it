@@ -20,5 +20,5 @@ a {
   background: linear-gradient(360deg, hsla(10, 82%, 65%, 1) 0%, hsla(10, 90%, 92%, 1) 100%);
   background: -moz-linear-gradient(360deg, hsla(10, 82%, 65%, 1) 0%, hsla(10, 90%, 92%, 1) 100%);
   background: -webkit-linear-gradient(360deg, hsla(10, 82%, 65%, 1) 0%, hsla(10, 90%, 92%, 1) 100%);
-  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#EF745C", endColorstr="#FDDFD9", GradientType=1 );
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#EF745C", endColorstr="#FDDFD9", GradientType=1);
 }
