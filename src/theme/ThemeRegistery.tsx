@@ -33,7 +33,7 @@ export const ThemeRegistry = ({
       divider: COLORS.grey,
       text: {
         primary: COLORS.black,
-        secondary: COLORS.white,
+        secondary: COLORS.grey,
       },
     },
   });
