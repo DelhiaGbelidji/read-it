@@ -22,7 +22,7 @@ export default function RootLayout({
 }) {
   const [isDark, setIsDark] = useState(false);
 
-  const switchTheme: any = () => {
+  const switchTheme = () => {
     setIsDark(!isDark);
   };
 
