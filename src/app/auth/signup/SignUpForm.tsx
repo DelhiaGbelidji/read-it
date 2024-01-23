@@ -142,7 +142,7 @@ const SignUpForm = () => {
           </Grid>
           <Grid item xs={12}>
             <Controller
-              name='confirmPassword'
+              name='confirm_password'
               control={control}
               render={({field}) => (
                 <TextField
@@ -162,8 +162,8 @@ const SignUpForm = () => {
                       </InputAdornment>
                     ),
                   }}
-                  error={!!errors.confirmPassword}
-                  helperText={errors.confirmPassword?.message}
+                  error={!!errors.confirm_password}
+                  helperText={errors.confirm_password?.message}
                   autoComplete='on'
                   fullWidth
                 />

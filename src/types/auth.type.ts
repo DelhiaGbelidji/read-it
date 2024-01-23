@@ -4,7 +4,7 @@ export type Type_SignUp_Data = {
   phone_number: string
   email: string
   password: string
-  confirmPassword: string
+  confirm_password: string
 }
 
 export type Type_Login_Data = {

@@ -1,16 +1,9 @@
-import register from './controllers/register'
+import {signup} from '@/controllers'
 
-export const dynamic = 'force-dynamic' //
-export async function Post(request: Request) {
-  // register(request)
-  console.log('request', request)
-  const res = await request.json()
-
-  console.log('res', res)
-
+export async function GET(request: Request) {
   return new Response('Hello world')
 }
 
-export async function Get(request: Request) {
-  return new Response('Hello world')
+export async function POST(request: Request) {
+  signup(request)
 }
