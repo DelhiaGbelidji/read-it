@@ -9,15 +9,18 @@ const Landing = () => {
     <>
       <Container>
         <Typography> Colors palette</Typography>
-        <Stack direction={"row"}>
+        <Grid>
           <Image
             alt="palette-color"
             src={paletteColor}
             width={750}
             height={500}
+            placeholder="blur"
+            blurDataURL={"@/assets/read-it-palette-color.png"}
           ></Image>
-        </Stack>
-        <Stack direction={"row"} gap={1}>
+        </Grid>
+
+        <Grid>
           <Button
             variant="contained"
             sx={{
@@ -75,7 +78,7 @@ const Landing = () => {
           >
             Work in progress
           </Button>
-        </Stack>
+        </Grid>
       </Container>
     </>
   );

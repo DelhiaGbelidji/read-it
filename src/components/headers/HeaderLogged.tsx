@@ -7,8 +7,11 @@ import { Styled_IconButton } from "../buttons/IconButton.style";
 import { Styled_Switch } from "../switch/Switch.style";
 import { Type_Props_HeaderLogged } from "@/types/public.type";
 import { COLORS } from "@/assets/colors";
+import { useRouter } from "next/navigation";
 
 const HeaderLogged = ({ toggleTheme }: Type_Props_HeaderLogged) => {
+  const router = useRouter();
+
   return (
     <Grid sx={{ p: 2 }}>
       <Grid
@@ -43,7 +46,12 @@ const HeaderLogged = ({ toggleTheme }: Type_Props_HeaderLogged) => {
             label={<ContrastIcon />}
             labelPlacement="start"
           />
-          <Avatar sx={{ bgcolor: COLORS.black }}>DG</Avatar>
+          <Avatar
+            sx={{ bgcolor: COLORS.black }}
+            onClick={() => router.push("/profile")}
+          >
+            DG
+          </Avatar>
         </Grid>
       </Grid>
     </Grid>
