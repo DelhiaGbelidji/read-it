@@ -1,3 +1,10 @@
+"use client";
+import Landing from "@/components/landing/Landing";
+
 export default function Home() {
-  return <div>Read it</div>;
+  return (
+    <main>
+      <Landing />
+    </main>
+  );
 }

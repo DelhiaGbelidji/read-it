@@ -13,7 +13,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { ActionButton } from "@/components/buttons/ActionButton";
 import { Schema_SignUp } from "@/schemas";
-import { Type_SignUp_Data } from "@/types/auth.type";
+import { Type_SignUp_Data } from "@/types";
 
 const SignUpForm = () => {
   const {

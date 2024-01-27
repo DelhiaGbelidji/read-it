@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import SignUpForm from "./SignUpForm";
+import SignUpForm from "@/components/auth/SignUpForm";
 
 const SignUp = () => {
   return (
