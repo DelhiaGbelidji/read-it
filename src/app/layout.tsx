@@ -1,16 +1,32 @@
 "use client";
 import { Roboto } from "next/font/google";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import ThemeRegistry from "@/theme/ThemeRegistery";
 import "./globals.css";
 import HeaderNotLogged from "@/components/headers/HeaderNotLogged";
 import HeaderLogged from "@/components/headers/HeaderLogged";
+import { ThemeProvider, createTheme } from "@mui/material";
 
 const roboto = Roboto({
   weight: "400",
   subsets: ["latin"],
 });
+
+const lightTheme = createTheme({
+  palette: {
+    mode: "light",
+  },
+});
+
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
+
+function getActiveTheme(themeMode: "light" | "dark") {
+  return themeMode === "light" ? lightTheme : darkTheme;
+}
 
 export default function RootLayout({
   children,
@@ -18,24 +34,30 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const [isLogged, setIsLogged] = useState(false); //pour tester les deux layouts différents, passer isLogged à true
-  const [mode, setMode] = useState("light");
-
-  const switchTheme = () => {
-    setMode((prevMode: string) => (prevMode === "light" ? "dark" : "light"));
+  const [activeTheme, setActiveTheme] = useState(lightTheme);
+  const [selectedTheme, setSelectedTheme] = useState<"light" | "dark">("light");
+  const toggleTheme = () => {
+    const desiredTheme = selectedTheme === "light" ? "dark" : "light";
+    setSelectedTheme(desiredTheme);
+    setActiveTheme(desiredTheme === "light" ? lightTheme : darkTheme);
   };
+
+  useEffect(() => {
+    setActiveTheme(getActiveTheme(selectedTheme));
+  }, [selectedTheme]);
 
   return (
     <html lang="en">
-      <ThemeRegistry mode={mode}>
+      <ThemeProvider theme={activeTheme}>
         <body className={roboto.className}>
           {!isLogged ? (
-            <HeaderNotLogged switchTheme={switchTheme} />
+            <HeaderNotLogged toggleTheme={toggleTheme} />
           ) : (
-            <HeaderLogged switchTheme={switchTheme} />
+            <HeaderLogged toggleTheme={toggleTheme} />
           )}
           {children}
         </body>
-      </ThemeRegistry>
+      </ThemeProvider>
     </html>
   );
 }

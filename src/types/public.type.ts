@@ -1,7 +1,7 @@
 export type Type_Props_HeaderNotLogged = {
-    switchTheme? : () => void
+    toggleTheme? : () => void
 }
 
 export type Type_Props_HeaderLogged = {
-    switchTheme? : () => void
+    toggleTheme? : () => void
 }

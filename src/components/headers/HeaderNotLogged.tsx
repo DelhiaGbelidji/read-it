@@ -9,7 +9,7 @@ import { Styled_IconButton } from "../buttons/IconButton.style";
 import { Styled_Switch } from "../switch/Switch.style";
 import { Type_Props_HeaderNotLogged } from "@/types/public.type";
 
-const HeaderNotLogged = ({ switchTheme }: Type_Props_HeaderNotLogged) => {
+const HeaderNotLogged = ({ toggleTheme }: Type_Props_HeaderNotLogged) => {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -83,7 +83,7 @@ const HeaderNotLogged = ({ switchTheme }: Type_Props_HeaderNotLogged) => {
         >
           <FormControlLabel
             control={
-              <Styled_Switch onChange={switchTheme} name="switchTheme" />
+              <Styled_Switch onChange={toggleTheme} name="toggleTheme" />
             }
             label={
               <Stack>

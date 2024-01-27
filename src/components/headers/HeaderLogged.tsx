@@ -8,7 +8,7 @@ import { Styled_Switch } from "../switch/Switch.style";
 import { Type_Props_HeaderLogged } from "@/types/public.type";
 import { COLORS } from "@/assets/colors";
 
-const HeaderLogged = ({ switchTheme }: Type_Props_HeaderLogged) => {
+const HeaderLogged = ({ toggleTheme }: Type_Props_HeaderLogged) => {
   return (
     <Grid sx={{ p: 2 }}>
       <Grid
@@ -38,7 +38,7 @@ const HeaderLogged = ({ switchTheme }: Type_Props_HeaderLogged) => {
         >
           <FormControlLabel
             control={
-              <Styled_Switch onChange={switchTheme} name="switchTheme" />
+              <Styled_Switch onChange={toggleTheme} name="toggleTheme" />
             }
             label={<ContrastIcon />}
             labelPlacement="start"
