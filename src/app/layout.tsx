@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import "./globals.css";
 import HeaderNotLogged from "@/components/headers/HeaderNotLogged";
 import HeaderLogged from "@/components/headers/HeaderLogged";
-import { ThemeProvider, createTheme } from "@mui/material";
+import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 
 const roboto = Roboto({
   weight: "400",
@@ -49,6 +49,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ThemeProvider theme={activeTheme}>
+        <CssBaseline />
         <body className={roboto.className}>
           {!isLogged ? (
             <HeaderNotLogged toggleTheme={toggleTheme} />
