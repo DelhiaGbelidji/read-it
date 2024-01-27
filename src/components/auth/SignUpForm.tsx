@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import {useForm, Controller} from 'react-hook-form'
 import {
   TextField,
@@ -14,6 +14,8 @@ import {yupResolver} from '@hookform/resolvers/yup'
 import {ActionButton} from '@/components/buttons/ActionButton'
 import {Schema_SignUp} from '@/schemas'
 import {Type_SignUp_Data} from '@/types'
+import { useRouter } from 'next/navigation'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
 const SignUpForm = () => {
   const {
@@ -31,11 +33,25 @@ const SignUpForm = () => {
   ) => {
     event.preventDefault()
   }
+  const [email, setEmail]= useState("")
+  const [password, setPassword]= useState("")
 
-  const onSubmit = async (data: Type_SignUp_Data) => {
+  const router = useRouter()
+  const supabase = createClientComponentClient()
+
+   const onSubmit = async (data: Type_SignUp_Data) => {
+    setEmail(data.email)
+    setPassword(data.password)
+    
     try {
-      alert('Submitted')
-      console.log(data)
+      await supabase.auth.signUp({
+         email,
+         password,
+        options: {
+          emailRedirectTo: `${location.origin}/auth/callback`
+      }
+    })
+    router.refresh()
     } catch {
       console.error('error')
     }
@@ -47,7 +63,7 @@ const SignUpForm = () => {
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
             <Controller
-              name='firstName'
+              name='firstname'
               control={control}
               render={({field}) => (
                 <TextField
@@ -55,8 +71,8 @@ const SignUpForm = () => {
                   label='First Name'
                   variant='outlined'
                   fullWidth
-                  error={!!errors.firstName}
-                  helperText={errors.firstName?.message}
+                  error={!!errors.firstname}
+                  helperText={errors.firstname?.message}
                 />
               )}
             />
@@ -64,7 +80,7 @@ const SignUpForm = () => {
 
           <Grid item xs={12} sm={6}>
             <Controller
-              name='lastName'
+              name='lastname'
               control={control}
               render={({field}) => (
                 <TextField
@@ -72,15 +88,15 @@ const SignUpForm = () => {
                   label='Last Name'
                   variant='outlined'
                   fullWidth
-                  error={!!errors.lastName}
-                  helperText={errors.lastName?.message}
+                  error={!!errors.lastname}
+                  helperText={errors.lastname?.message}
                 />
               )}
             />
           </Grid>
           <Grid item xs={12}>
             <Controller
-              name='phoneNumber'
+              name='phone_number'
               control={control}
               render={({field}) => (
                 <TextField
@@ -88,8 +104,8 @@ const SignUpForm = () => {
                   label='Phone Number'
                   variant='outlined'
                   fullWidth
-                  error={!!errors.phoneNumber}
-                  helperText={errors.phoneNumber?.message}
+                  error={!!errors.phone_number}
+                  helperText={errors.phone_number?.message}
                 />
               )}
             />
@@ -142,7 +158,7 @@ const SignUpForm = () => {
           </Grid>
           <Grid item xs={12}>
             <Controller
-              name='confirmPassword'
+              name='confirm_password'
               control={control}
               render={({field}) => (
                 <TextField
@@ -162,8 +178,8 @@ const SignUpForm = () => {
                       </InputAdornment>
                     ),
                   }}
-                  error={!!errors.confirmPassword}
-                  helperText={errors.confirmPassword?.message}
+                  error={!!errors.confirm_password}
+                  helperText={errors.confirm_password?.message}
                   autoComplete='on'
                   fullWidth
                 />

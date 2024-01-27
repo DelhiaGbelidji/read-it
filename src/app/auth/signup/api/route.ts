@@ -1,4 +1,4 @@
-import {signup} from '@/controllers'
+import {signup} from '../../../../../supabase/.temp/controllers'
 
 export async function GET(request: Request) {
   return new Response('Hello world')

@@ -1,5 +1,5 @@
 import {Box} from '@mui/material'
-import LoginForm from './LoginForm'
+import LoginForm from '@/components/auth/LoginForm'
 
 const Login = () => {
   return (
