@@ -1,57 +1,16 @@
 "use client";
-import { FormControlLabel, Grid, Stack } from "@mui/material";
+import { FormControlLabel, Grid, IconButton, Stack } from "@mui/material";
 import ContrastIcon from "@mui/icons-material/Contrast";
 import HandymanIcon from "@mui/icons-material/Handyman";
-import { usePathname, useRouter } from "next/navigation";
 
-import { ActionButton, ActionButtonOutlined } from "../buttons/ActionButton";
 import { Styled_IconButton } from "../buttons/IconButton.style";
 import { Styled_Switch } from "../switch/Switch.style";
 import { Type_Props_HeaderNotLogged } from "@/types/public.type";
+import { usePathname, useRouter } from "next/navigation";
+import AuthButtons from "./AuthButtons";
 
 const HeaderNotLogged = ({ toggleTheme }: Type_Props_HeaderNotLogged) => {
   const router = useRouter();
-  const pathname = usePathname();
-
-  function displayButtons() {
-    if (pathname === "/authentification/login") {
-      return (
-        <ActionButton
-          variant="contained"
-          onClick={() => router.push("/authentification/signup")}
-        >
-          Sign up
-        </ActionButton>
-      );
-    }
-    if (pathname === "/authentification/signup") {
-      return (
-        <ActionButtonOutlined
-          variant="outlined"
-          onClick={() => router.push("/authentification/login")}
-        >
-          Login
-        </ActionButtonOutlined>
-      );
-    }
-
-    return (
-      <>
-        <ActionButtonOutlined
-          variant="outlined"
-          onClick={() => router.push("/authentification/login")}
-        >
-          Login
-        </ActionButtonOutlined>
-        <ActionButton
-          variant="contained"
-          onClick={() => router.push("/authentification/signup")}
-        >
-          Sign up
-        </ActionButton>
-      </>
-    );
-  }
 
   return (
     <Grid sx={{ p: 2 }}>
@@ -74,25 +33,17 @@ const HeaderNotLogged = ({ toggleTheme }: Type_Props_HeaderNotLogged) => {
         </Grid>
         <Grid
           item
-          xs={6}
-          justifyContent={"flex-end"}
+          xs={3}
+          justifyContent={"flex-start"}
           container
           direction={"row"}
           alignItems={"center"}
-          gap={1}
+          gap={2}
         >
-          <FormControlLabel
-            control={
-              <Styled_Switch onChange={toggleTheme} name="toggleTheme" />
-            }
-            label={
-              <Stack>
-                <ContrastIcon />
-              </Stack>
-            }
-            labelPlacement="start"
-          />
-          {displayButtons()}
+          <IconButton onClick={toggleTheme} name="toggleTheme">
+            <ContrastIcon />
+          </IconButton>
+          <AuthButtons />
         </Grid>
       </Grid>
     </Grid>
