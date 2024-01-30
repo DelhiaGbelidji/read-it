@@ -11,3 +11,7 @@ export type Type_Login_Data = {
   email: string
   password: string
 }
+
+export type Type_ConfirmEmail = {
+  email: string
+}

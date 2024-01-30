@@ -14,8 +14,7 @@ import {yupResolver} from '@hookform/resolvers/yup'
 import {ActionButton} from '@/components/buttons/ActionButton'
 import {Schema_Login} from '@/schemas'
 import {Type_Login_Data} from '@/types'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import { useRouter } from 'next/navigation'
+import {createClientComponentClient} from '@supabase/auth-helpers-nextjs'
 
 const LoginForm = () => {
   const {
@@ -34,18 +33,14 @@ const LoginForm = () => {
     event.preventDefault()
   }
 
-  const router = useRouter()
   const supabase = createClientComponentClient()
 
-   const onSubmit = async (data: Type_Login_Data) => {
+  const onSubmit = async (data: Type_Login_Data) => {
     try {
-
       await supabase.auth.signInWithPassword({
-         email: data.email,
-         password: data.password,
-      
-    })
-    router.refresh()
+        email: data.email,
+        password: data.password,
+      })
     } catch {
       console.error('error')
     }

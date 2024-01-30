@@ -23,7 +23,7 @@ const HeaderNotLogged = ({toggleTheme}: Type_Props_HeaderNotLogged) => {
         </ActionButton>
       )
     }
-    if (pathname === '/a/signup') {
+    if (pathname === '/auth/signup') {
       return (
         <ActionButtonOutlined
           variant='outlined'

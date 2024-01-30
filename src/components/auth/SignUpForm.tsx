@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import {useForm, Controller} from 'react-hook-form'
 import {
   TextField,
@@ -14,8 +14,8 @@ import {yupResolver} from '@hookform/resolvers/yup'
 import {ActionButton} from '@/components/buttons/ActionButton'
 import {Schema_SignUp} from '@/schemas'
 import {Type_SignUp_Data} from '@/types'
-import { useRouter } from 'next/navigation'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import {useRouter} from 'next/navigation'
+import {createClientComponentClient} from '@supabase/auth-helpers-nextjs'
 
 const SignUpForm = () => {
   const {
@@ -33,25 +33,25 @@ const SignUpForm = () => {
   ) => {
     event.preventDefault()
   }
-  const [email, setEmail]= useState("")
-  const [password, setPassword]= useState("")
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const router = useRouter()
   const supabase = createClientComponentClient()
 
-   const onSubmit = async (data: Type_SignUp_Data) => {
+  const onSubmit = async (data: Type_SignUp_Data) => {
     setEmail(data.email)
     setPassword(data.password)
-    
+
     try {
       await supabase.auth.signUp({
-         email,
-         password,
+        email,
+        password,
         options: {
-          emailRedirectTo: `${location.origin}/auth/callback`
-      }
-    })
-    router.refresh()
+          emailRedirectTo: `${location.origin}/auth/callback`,
+        },
+      })
+      router.push('/')
     } catch {
       console.error('error')
     }
