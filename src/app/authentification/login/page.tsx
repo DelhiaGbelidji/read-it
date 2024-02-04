@@ -22,8 +22,8 @@ const Login = () => {
             fontSize={33}
             sx={{fontWeight: 700}} 
           >
-            Good to See You Again !<br />
-            Let’s Continue the Journey.
+            Good to see you again !<br />
+            Let’s continue the journey.
           </Typography>
         <LoginForm />
       </Stack>
