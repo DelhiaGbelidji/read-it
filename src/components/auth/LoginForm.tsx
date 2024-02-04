@@ -97,7 +97,7 @@ const LoginForm = () => {
           type="submit"
           variant="contained"
           fullWidth
-          sx={{ mt: 3 }}
+          sx={{ mt: 3, py: 2}}
         >
           Login
         </ActionButton>
