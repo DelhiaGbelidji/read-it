@@ -1,5 +1,5 @@
 'use client'
-import React, {useState} from 'react'
+import React from 'react'
 import {useForm, Controller} from 'react-hook-form'
 import {
   TextField,
@@ -13,16 +13,15 @@ import {yupResolver} from '@hookform/resolvers/yup'
 
 import {ActionButton} from '@/components/buttons/ActionButton'
 import {Schema_SignUp} from '@/schemas'
-import {Type_SignUp_Data} from '@/types'
+import {Type_Props_SignUpForm, Type_SignUp_FormData} from '@/types'
 import {useRouter} from 'next/navigation'
-import {createClientComponentClient} from '@supabase/auth-helpers-nextjs'
 
-const SignUpForm = () => {
+const SignUpForm = ({email, setEmail, setEmailSent}: Type_Props_SignUpForm) => {
   const {
     handleSubmit,
     control,
     formState: {errors},
-  } = useForm<Type_SignUp_Data>({
+  } = useForm<Type_SignUp_FormData>({
     resolver: yupResolver(Schema_SignUp),
   })
 
@@ -33,33 +32,32 @@ const SignUpForm = () => {
   ) => {
     event.preventDefault()
   }
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
 
   const router = useRouter()
-  const supabase = createClientComponentClient()
 
-  const onSubmit = async (data: Type_SignUp_Data) => {
-    setEmail(data.email)
-    setPassword(data.password)
+  const registerUser = async (e: any) => {
+    e.preventDefault()
+    const res = await fetch(`/api/signUpUser`, {
+      body: JSON.stringify({
+        firstname: e.target.firstname.value,
+        lastname: e.target.lastname.value,
+        email: e.target.email.value,
+        password: e.target.password.value,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+    })
 
-    try {
-      await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          emailRedirectTo: `${location.origin}/auth/callback`,
-        },
-      })
-      router.push('/')
-    } catch {
-      console.error('error')
-    }
+    const {user} = await res.json()
+    setEmailSent(prev => !prev)
+    if (user) router.push(`/signup`)
   }
 
   return (
     <Container component='main' maxWidth='xs'>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(registerUser)}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
             <Controller
@@ -94,22 +92,7 @@ const SignUpForm = () => {
               )}
             />
           </Grid>
-          <Grid item xs={12}>
-            <Controller
-              name='phone_number'
-              control={control}
-              render={({field}) => (
-                <TextField
-                  {...field}
-                  label='Phone Number'
-                  variant='outlined'
-                  fullWidth
-                  error={!!errors.phone_number}
-                  helperText={errors.phone_number?.message}
-                />
-              )}
-            />
-          </Grid>
+
           <Grid item xs={12}>
             <Controller
               name='email'

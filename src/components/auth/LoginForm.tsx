@@ -13,7 +13,7 @@ import {yupResolver} from '@hookform/resolvers/yup'
 
 import {ActionButton} from '@/components/buttons/ActionButton'
 import {Schema_Login} from '@/schemas'
-import {Type_Login_Data} from '@/types'
+import {Type_Login_FormData} from '@/types'
 import {createClientComponentClient} from '@supabase/auth-helpers-nextjs'
 
 const LoginForm = () => {
@@ -21,7 +21,7 @@ const LoginForm = () => {
     handleSubmit,
     control,
     formState: {errors},
-  } = useForm<Type_Login_Data>({
+  } = useForm<Type_Login_FormData>({
     resolver: yupResolver(Schema_Login),
   })
 
@@ -35,7 +35,7 @@ const LoginForm = () => {
 
   const supabase = createClientComponentClient()
 
-  const onSubmit = async (data: Type_Login_Data) => {
+  const onSubmit = async (data: Type_Login_FormData) => {
     try {
       await supabase.auth.signInWithPassword({
         email: data.email,
