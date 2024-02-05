@@ -183,7 +183,7 @@ const SignUpForm = () => {
           variant='contained'
           fullWidth
           sx={{mt: 3, py: 3}}>
-          Sign Up
+          Sign up
         </ActionButton>
       </form>
     </Container>
