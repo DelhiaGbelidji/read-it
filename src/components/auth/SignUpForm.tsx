@@ -178,7 +178,11 @@ const SignUpForm = () => {
             />
           </Grid>
         </Grid>
-        <ActionButton type='submit' variant='contained' fullWidth sx={{mt: 3}}>
+        <ActionButton
+          type='submit'
+          variant='contained'
+          fullWidth
+          sx={{mt: 3, py: 3}}>
           Sign Up
         </ActionButton>
       </form>
