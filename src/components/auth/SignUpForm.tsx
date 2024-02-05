@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, {useState} from 'react'
 import {useForm, Controller} from 'react-hook-form'
 import {
   TextField,
@@ -13,18 +13,11 @@ import {yupResolver} from '@hookform/resolvers/yup'
 
 import {ActionButton} from '@/components/buttons/ActionButton'
 import {Schema_SignUp} from '@/schemas'
-import {Type_Props_SignUpForm, Type_SignUp_FormData} from '@/types'
+import {Type_SignUp_FormData} from '@/types'
 import {useRouter} from 'next/navigation'
 
-const SignUpForm = ({email, setEmail, setEmailSent}: Type_Props_SignUpForm) => {
-  const {
-    handleSubmit,
-    control,
-    formState: {errors},
-  } = useForm<Type_SignUp_FormData>({
-    resolver: yupResolver(Schema_SignUp),
-  })
-
+const SignUpForm = () => {
+  //Show/hide password
   const [showPassword, setShowPassword] = React.useState(false)
   const handleClickShowPassword = () => setShowPassword(show => !show)
   const handleMouseDownPassword = (
@@ -33,31 +26,39 @@ const SignUpForm = ({email, setEmail, setEmailSent}: Type_Props_SignUpForm) => {
     event.preventDefault()
   }
 
+  //Form handler
+  const {
+    handleSubmit,
+    control,
+    formState: {errors},
+    reset,
+  } = useForm<Type_SignUp_FormData>({
+    resolver: yupResolver(Schema_SignUp),
+  })
+
   const router = useRouter()
 
-  const registerUser = async (e: any) => {
-    e.preventDefault()
-    const res = await fetch(`/api/signUpUser`, {
-      body: JSON.stringify({
-        firstname: e.target.firstname.value,
-        lastname: e.target.lastname.value,
-        email: e.target.email.value,
-        password: e.target.password.value,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-    })
-
-    const {user} = await res.json()
-    setEmailSent(prev => !prev)
-    if (user) router.push(`/signup`)
+  const onSubmit = async (data: Type_SignUp_FormData) => {
+    try {
+      const res = await fetch(`/auth/api/signup`, {
+        body: JSON.stringify({
+          firstname: data.firstname,
+          lastname: data.lastname,
+          email: data.email,
+          password: data.password,
+        }),
+        method: 'POST',
+      })
+      const {user} = await res.json()
+      if (user) router.push(`/welcome?email${user.email}`)
+    } catch {
+      console.error('error')
+    }
   }
 
   return (
     <Container component='main' maxWidth='xs'>
-      <form onSubmit={handleSubmit(registerUser)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
             <Controller
@@ -66,7 +67,7 @@ const SignUpForm = ({email, setEmail, setEmailSent}: Type_Props_SignUpForm) => {
               render={({field}) => (
                 <TextField
                   {...field}
-                  label='First Name'
+                  label='First name'
                   variant='outlined'
                   fullWidth
                   error={!!errors.firstname}
@@ -83,7 +84,7 @@ const SignUpForm = ({email, setEmail, setEmailSent}: Type_Props_SignUpForm) => {
               render={({field}) => (
                 <TextField
                   {...field}
-                  label='Last Name'
+                  label='Last name'
                   variant='outlined'
                   fullWidth
                   error={!!errors.lastname}

@@ -1,9 +1,10 @@
 
 import { supabase } from "@/supabase";
+import { Type_SignUp_FormData } from "@/types";
 import { NextApiRequest, NextApiResponse } from "next";
 
-export async function signUpUser(req: NextApiRequest, res: NextApiResponse){
-  const { firstname, lastname, email, password } = req.body;
+export async function registerUser(req: NextApiRequest, res: NextApiResponse){
+  const { firstname, lastname, email, password } : Type_SignUp_FormData = req.body;
     
   if (!email || !password) {
       return res.status(400).json({ error: "Email and password are required." });
