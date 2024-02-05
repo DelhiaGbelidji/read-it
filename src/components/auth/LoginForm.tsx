@@ -97,7 +97,12 @@ const LoginForm = () => {
             />
           </Grid>
         </Grid>
-        <ActionButton type='submit' variant='contained' fullWidth sx={{mt: 3}}>
+        <ActionButton
+          type="submit"
+          variant="contained"
+          fullWidth
+          sx={{ mt: 3, py: 2}}
+        >
           Login
         </ActionButton>
       </form>

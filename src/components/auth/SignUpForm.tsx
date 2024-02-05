@@ -182,7 +182,7 @@ const SignUpForm = () => {
           type='submit'
           variant='contained'
           fullWidth
-          sx={{mt: 3, py: 3}}>
+          sx={{mt: 3, py: 2}}>
           Sign up
         </ActionButton>
       </form>

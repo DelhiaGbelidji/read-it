@@ -1,7 +1,7 @@
-import {Box, Typography} from '@mui/material'
-import LoginForm from '@/components/auth/LoginForm'
-import Stack from '@mui/material/Stack'
-import '@fontsource/roboto/500.css'
+import { Box, Typography } from "@mui/material";
+import LoginForm from "@/components/auth/LoginForm";
+import Stack from '@mui/material/Stack';
+import '@fontsource/roboto/500.css';
 
 const Login = () => {
   return (
@@ -21,4 +21,3 @@ const Login = () => {
   )
 }
 
-export default Login
