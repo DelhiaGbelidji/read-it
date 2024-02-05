@@ -31,7 +31,6 @@ const SignUpForm = () => {
     handleSubmit,
     control,
     formState: {errors},
-    reset,
   } = useForm<Type_SignUp_FormData>({
     resolver: yupResolver(Schema_SignUp),
   })
@@ -40,18 +39,24 @@ const SignUpForm = () => {
 
   const onSubmit = async (data: Type_SignUp_FormData) => {
     try {
-      const res = await fetch(`/auth/signup/api`, {
+      const res = await fetch('/api/auth/signup', {
         body: JSON.stringify({
           firstname: data.firstname,
           lastname: data.lastname,
           email: data.email,
           password: data.password,
         }),
-        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          method: 'POST',
+        },
       })
       console.log({res})
+
       const {user} = await res.json()
+
       console.log({user})
+
       if (user) router.push(`/welcome?email${user.email}`)
     } catch {
       console.error('error')
