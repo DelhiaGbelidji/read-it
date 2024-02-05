@@ -40,7 +40,7 @@ const SignUpForm = () => {
 
   const onSubmit = async (data: Type_SignUp_FormData) => {
     try {
-      const res = await fetch(`/auth/api/signup`, {
+      const res = await fetch(`/auth/signup/api`, {
         body: JSON.stringify({
           firstname: data.firstname,
           lastname: data.lastname,
@@ -49,7 +49,9 @@ const SignUpForm = () => {
         }),
         method: 'POST',
       })
+      console.log({res})
       const {user} = await res.json()
+      console.log({user})
       if (user) router.push(`/welcome?email${user.email}`)
     } catch {
       console.error('error')
