@@ -6,7 +6,7 @@ import ContrastIcon from "@mui/icons-material/Contrast";
 import { Styled_IconButton } from "../buttons/IconButton.style";
 import { Styled_Switch } from "../switch/Switch.style";
 import { Type_Props_HeaderLogged } from "@/types/public.type";
-import { COLORS } from "@/assets/colors";
+import { COLORS } from "../../../public/assets/colors";
 import { useRouter } from "next/navigation";
 
 const HeaderLogged = ({ toggleTheme }: Type_Props_HeaderLogged) => {

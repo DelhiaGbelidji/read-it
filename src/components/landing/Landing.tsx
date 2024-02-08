@@ -1,83 +1,56 @@
-import { COLORS } from "@/assets/colors";
-import { Button, Container, Grid, Stack, Typography } from "@mui/material";
+import { Button, Container, Grid, Stack, Typography,  } from "@mui/material";
 import Image from "next/image";
-import paletteColor from "@/assets/read-it-palette-color.png";
+import {ActionButton, ActionButtonOutlined} from '../buttons/ActionButton';
+
 
 // TODO: créer l'ui pour la landing page not logged
 const Landing = () => {
   return (
     <>
-      <Container>
-        <Typography> Colors palette</Typography>
-        <Grid>
-          <Image
-            alt="palette-color"
-            src={paletteColor}
-            width={750}
-            height={500}
-            placeholder="blur"
-            blurDataURL={"@/assets/read-it-palette-color.png"}
-          ></Image>
-        </Grid>
-
-        <Grid>
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: COLORS.black,
-              "&.MuiButtonBase-root:hover": {
-                bgcolor: COLORS.hoverButton,
-              },
-            }}
+      <Container sx={{ mt: 4 }}>
+        <Grid 
+        display="flex"
+        direction="row"
+        justifyContent="space-around"
+        alignItems="flex-start"
+        height={900}
+        >
+          <Grid
+          position="relative"
+          width={500}
+          height={700}
           >
-            Work in progress
-          </Button>
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: COLORS.burgundi,
-              "&.MuiButtonBase-root:hover": {
-                bgcolor: COLORS.hoverButton,
-              },
-            }}
+            <Image
+            src={"/assets/livres-scaled.jpg"}
+            alt="Books"
+            layout="fill"
+            objectFit="cover"
+            />
+          </Grid>
+          <Grid
+          width={500}
           >
-            Work in progress
-          </Button>
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: COLORS.pink,
-              "&.MuiButtonBase-root:hover": {
-                bgcolor: COLORS.hoverButton,
-              },
-            }}
-          >
-            Work in progress
-          </Button>
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: COLORS.grey,
-              color: COLORS.black,
-              "&.MuiButtonBase-root:hover": {
-                bgcolor: COLORS.hoverButton,
-              },
-            }}
-          >
-            Work in progress
-          </Button>
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: COLORS.lightPink,
-              color: COLORS.black,
-              "&.MuiButtonBase-root:hover": {
-                bgcolor: COLORS.hoverButton,
-              },
-            }}
-          >
-            Work in progress
-          </Button>
+            <Typography 
+            fontSize={48}
+            >
+              Reading embraces all differences ! 
+            </Typography>
+            <Typography 
+            fontSize={20}
+            sx={{ mt: 10 }}
+            >
+              Chez READ-it, nous croyons au pouvoir des mots pour inspirer, connecter et émouvoir. Notre mission est de créer une passerelle entre les amoureux de la lecture et les auteurs talentueux. Nous sommes bien plus qu'une simple plateforme de publication de manuscrits. Nous sommes un espace où les rêves prennent vie et où les histoires prennent leur envol.
+            </Typography>
+            <Stack 
+            display="flex"
+            flexDirection="row"
+            justifyContent="space-around"
+            sx={{ mt: 8 }}
+            >
+              <ActionButton />
+              <ActionButtonOutlined />
+            </Stack>
+          </Grid>
         </Grid>
       </Container>
     </>
