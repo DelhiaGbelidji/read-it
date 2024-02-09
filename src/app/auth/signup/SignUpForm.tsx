@@ -12,13 +12,16 @@ import {Visibility, VisibilityOff} from '@mui/icons-material'
 import {yupResolver} from '@hookform/resolvers/yup'
 
 import {ActionButton} from '@/components/buttons/ActionButton'
-import {Schema_SignUp} from '@/schemas'
-import {Type_SignUp_FormData} from '@/types'
+import {Schema_SignUp} from '@/utils/schemas'
+import {Type_SignUp_FormData} from '@/utils/types'
 import {useRouter} from 'next/navigation'
+import {register} from './actions'
 
 const SignUpForm = () => {
+  const router = useRouter()
+
   //Show/hide password
-  const [showPassword, setShowPassword] = React.useState(false)
+  const [showPassword, setShowPassword] = useState(false)
   const handleClickShowPassword = () => setShowPassword(show => !show)
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>,
@@ -32,34 +35,22 @@ const SignUpForm = () => {
     control,
     formState: {errors},
   } = useForm<Type_SignUp_FormData>({
+    defaultValues: {
+      firstname: '',
+      lastname: '',
+      email: '',
+      password: '',
+      confirm_password: '',
+    },
     resolver: yupResolver(Schema_SignUp),
   })
 
-  const router = useRouter()
-
-  const onSubmit = async (data: Type_SignUp_FormData) => {
-    try {
-      const res = await fetch('/api/auth/signup', {
-        body: JSON.stringify({
-          firstname: data.firstname,
-          lastname: data.lastname,
-          email: data.email,
-          password: data.password,
-        }),
-        headers: {
-          'content-type': 'application/json',
-          method: 'POST',
-        },
-      })
-      console.log({res})
-
-      const {user} = await res.json()
-
-      console.log({user})
-
-      if (user) router.push(`/welcome?email${user.email}`)
-    } catch {
-      console.error('error')
+  async function onSubmit(data: Type_SignUp_FormData) {
+    const result = await register(data)
+    const {error} = JSON.parse(result)
+    if (error?.message) {
+      console.error(error.message)
+    } else {
     }
   }
 
@@ -139,7 +130,6 @@ const SignUpForm = () => {
                       </InputAdornment>
                     ),
                   }}
-                  autoComplete='on'
                   error={!!errors.password}
                   helperText={errors.password?.message}
                   fullWidth
@@ -171,7 +161,6 @@ const SignUpForm = () => {
                   }}
                   error={!!errors.confirm_password}
                   helperText={errors.confirm_password?.message}
-                  autoComplete='on'
                   fullWidth
                 />
               )}

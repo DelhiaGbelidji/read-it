@@ -1,5 +1,3 @@
-import { SetStateAction } from "react"
-
 //Forms
 export type Type_SignUp_FormData = {
   firstname: string

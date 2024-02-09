@@ -1,9 +1,17 @@
 import {Box, Typography} from '@mui/material'
-import SignUpForm from '@/components/auth/SignUpForm'
 import Stack from '@mui/material/Stack'
 import '@fontsource/roboto/500.css'
 
-const SignUp = () => {
+import {readUserSession} from '@/utils/supabase/actions'
+import {redirect} from 'next/navigation'
+import SignUpForm from './SignUpForm'
+
+export default async function SignUp() {
+  const {data} = await readUserSession()
+
+  if (data.session) {
+    return redirect('/')
+  }
   return (
     <Box
       display='flex'
@@ -22,5 +30,3 @@ const SignUp = () => {
     </Box>
   )
 }
-
-export default SignUp

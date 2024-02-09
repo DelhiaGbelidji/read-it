@@ -12,8 +12,8 @@ import {Visibility, VisibilityOff} from '@mui/icons-material'
 import {yupResolver} from '@hookform/resolvers/yup'
 
 import {ActionButton} from '@/components/buttons/ActionButton'
-import {Schema_Login} from '@/schemas'
-import {Type_Login_FormData} from '@/types'
+import {Schema_Login} from '@/utils/schemas'
+import {Type_Login_FormData} from '@/utils/types'
 import {createClientComponentClient} from '@supabase/auth-helpers-nextjs'
 
 const LoginForm = () => {
@@ -98,11 +98,10 @@ const LoginForm = () => {
           </Grid>
         </Grid>
         <ActionButton
-          type="submit"
-          variant="contained"
+          type='submit'
+          variant='contained'
           fullWidth
-          sx={{ mt: 3, py: 2}}
-        >
+          sx={{mt: 3, py: 2}}>
           Login
         </ActionButton>
       </form>

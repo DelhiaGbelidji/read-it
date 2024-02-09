@@ -1,29 +1,18 @@
-import {supabase} from '@/supabase'
-import {NextApiRequest, NextApiResponse} from 'next'
-import {NextResponse} from 'next/server'
+// import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
+// import { cookies } from 'next/headers'
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
-  const {user} = req.body
+// import type { Database } from '@/utils/types'
+// import { NextResponse } from 'next/server';
 
-  const {error} = await supabase.auth.signUp({
-    email: user.email,
-    password: user.password,
-    options: {
-      emailRedirectTo: `${location.origin}/auth/callback`,
-    },
-  })
+// export async function POST(request: Request) {
+//   const data = await request.json();
+//   const email = data.email
+//   const password = data.password
+//   const cookieStore = cookies()
+//   const supabase = createRouteHandlerClient<Database>({ cookies: () => cookieStore })
 
-  console.log('error', error)
-
-  if (error) {
-    return NextResponse.json({error: error.message}, {status: 400})
-  }
-
-  return NextResponse.json({user}, {status: 200})
-}
-
-
-// data: {
-//   firstname: user.firstname,
-//   lastname: user.lastname,
-// // },
+  
+//   return NextResponse.json({
+//     data,
+//   }, {status:200})
+// }

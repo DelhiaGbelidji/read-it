@@ -7,7 +7,7 @@ import {usePathname, useRouter} from 'next/navigation'
 import {ActionButton, ActionButtonOutlined} from '../buttons/ActionButton'
 import {Styled_IconButton} from '../buttons/IconButton.style'
 import {Styled_Switch} from '../switch/Switch.style'
-import {Type_Props_HeaderNotLogged} from '@/types/public.type'
+import {Type_Props_HeaderNotLogged} from '@/utils/types/public.type'
 
 const HeaderNotLogged = ({toggleTheme}: Type_Props_HeaderNotLogged) => {
   const router = useRouter()
