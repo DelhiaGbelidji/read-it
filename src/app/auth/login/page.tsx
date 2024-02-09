@@ -3,7 +3,7 @@ import LoginForm from './LoginForm'
 import Stack from '@mui/material/Stack'
 import '@fontsource/roboto/500.css'
 
-const Login = () => {
+const LoginPage = () => {
   return (
     <Box
       display='flex'
@@ -20,3 +20,4 @@ const Login = () => {
     </Box>
   )
 }
+export default LoginPage

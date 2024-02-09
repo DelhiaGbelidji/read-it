@@ -9,13 +9,25 @@ import {
   IconButton,
 } from '@mui/material'
 import {Visibility, VisibilityOff} from '@mui/icons-material'
+import * as Yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
 
 import {ActionButton} from '@/components/buttons/ActionButton'
-import {Schema_SignUp} from '@/utils/schemas'
 import {Type_SignUp_FormData} from '@/utils/types'
 import {useRouter} from 'next/navigation'
-import {register} from './actions'
+import {registerUser} from './actions'
+
+export const Schema_SignUp = Yup.object().shape({
+  firstname: Yup.string().required('First name is required'),
+  lastname: Yup.string().required('Last name is required'),
+  email: Yup.string().email('Invalid email').required('Email is required'),
+  password: Yup.string()
+    .required('Password is required')
+    .min(8, 'Password must be at least 8 characters'),
+  confirm_password: Yup.string()
+    .oneOf([Yup.ref('password')], 'Passwords must match')
+    .required('Confirm password is required'),
+})
 
 const SignUpForm = () => {
   const router = useRouter()
@@ -33,7 +45,8 @@ const SignUpForm = () => {
   const {
     handleSubmit,
     control,
-    formState: {errors},
+    reset,
+    formState: {errors, isSubmitSuccessful},
   } = useForm<Type_SignUp_FormData>({
     defaultValues: {
       firstname: '',
@@ -46,11 +59,23 @@ const SignUpForm = () => {
   })
 
   async function onSubmit(data: Type_SignUp_FormData) {
-    const result = await register(data)
-    const {error} = JSON.parse(result)
-    if (error?.message) {
-      console.error(error.message)
-    } else {
+    try {
+      const result = await registerUser(data)
+      const {error} = JSON.parse(result)
+
+      if (!error) {
+        reset({
+          firstname: '',
+          lastname: '',
+          email: '',
+          password: '',
+          confirm_password: '',
+        })
+
+        router.push('/welcome')
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
     }
   }
 

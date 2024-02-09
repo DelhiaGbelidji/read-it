@@ -9,12 +9,17 @@ import {
   IconButton,
 } from '@mui/material'
 import {Visibility, VisibilityOff} from '@mui/icons-material'
+import * as Yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
+import {createClientComponentClient} from '@supabase/auth-helpers-nextjs'
 
 import {ActionButton} from '@/components/buttons/ActionButton'
-import {Schema_Login} from '@/utils/schemas'
 import {Type_Login_FormData} from '@/utils/types'
-import {createClientComponentClient} from '@supabase/auth-helpers-nextjs'
+
+export const Schema_Login = Yup.object().shape({
+  email: Yup.string().email('Invalid email').required('Email is required'),
+  password: Yup.string().required('Password is required'),
+})
 
 const LoginForm = () => {
   const {
@@ -22,6 +27,10 @@ const LoginForm = () => {
     control,
     formState: {errors},
   } = useForm<Type_Login_FormData>({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
     resolver: yupResolver(Schema_Login),
   })
 
@@ -88,7 +97,6 @@ const LoginForm = () => {
                       </InputAdornment>
                     ),
                   }}
-                  autoComplete='on'
                   error={!!errors.password}
                   helperText={errors.password?.message}
                   fullWidth

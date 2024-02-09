@@ -1,21 +1,15 @@
 'use server'
-import { redirect } from 'next/navigation'
+import { createSupabaseServerClient } from "@/utils/supabase/server";
+import { Type_SignUp_FormData } from "@/utils/types";
 
-import { createSupabaseServerClient } from '@/utils/supabase/server'
-import { Type_SignUp_FormData } from '@/utils/types'
-
-export async function register(formData: Type_SignUp_FormData) {
-  debugger;
-  const supabase =  await createSupabaseServerClient()
-
- const result = await supabase.auth.signUp({
-    email: formData.email,
-    password: formData.password,
-    options: {
-      data: {
-      firstname: formData.firstname,
-      lastname: formData.lastname
-    }}
-  })
-  return JSON.stringify(result)
+export async function registerUser(data: Type_SignUp_FormData) {
+	const supabase = await createSupabaseServerClient();
+	const result = await supabase.auth.signUp({
+		email: data.email,
+		password: data.password,
+    options:{
+      emailRedirectTo: '/auth/callback'
+    }
+	});
+	return JSON.stringify(result);
 }

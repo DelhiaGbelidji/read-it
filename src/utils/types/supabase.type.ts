@@ -11,31 +11,22 @@ export type Database = {
     Tables: {
       users: {
         Row: {
-          created_at: string | null
-          deleted_at: string | null
           email: string | null
           firstname: string | null
           id: string
           lastname: string | null
-          updated_at: string | null
         }
         Insert: {
-          created_at?: string | null
-          deleted_at?: string | null
           email?: string | null
           firstname?: string | null
           id: string
           lastname?: string | null
-          updated_at?: string | null
         }
         Update: {
-          created_at?: string | null
-          deleted_at?: string | null
           email?: string | null
           firstname?: string | null
           id?: string
           lastname?: string | null
-          updated_at?: string | null
         }
         Relationships: [
           {
