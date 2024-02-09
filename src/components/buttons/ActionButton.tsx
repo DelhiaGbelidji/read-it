@@ -1,5 +1,4 @@
 import { Button, styled } from "@mui/material";
-
 import { COLORS } from "../../../public/assets/colors";
 
 export const ActionButton = styled(Button)(() => ({
@@ -39,3 +38,4 @@ export const ActionButtonOutlined = styled(Button)(() => ({
     backgroundColor: COLORS.disabledButton,
   },
 }));
+
