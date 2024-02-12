@@ -1,9 +1,10 @@
-import {Box, Typography} from '@mui/material'
-import LoginForm from './LoginForm'
-import Stack from '@mui/material/Stack'
+import {Box, Typography, Stack} from '@mui/material'
+import {redirect} from 'next/navigation'
 import '@fontsource/roboto/500.css'
 
-const LoginPage = () => {
+import LoginForm from './LoginForm'
+
+export default async function LoginPage() {
   return (
     <Box
       display='flex'
@@ -20,4 +21,3 @@ const LoginPage = () => {
     </Box>
   )
 }
-export default LoginPage
