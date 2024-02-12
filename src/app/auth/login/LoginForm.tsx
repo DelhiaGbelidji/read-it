@@ -11,10 +11,11 @@ import {
 import {Visibility, VisibilityOff} from '@mui/icons-material'
 import * as Yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
-import {createClientComponentClient} from '@supabase/auth-helpers-nextjs'
 
 import {ActionButton} from '@/components/buttons/ActionButton'
 import {Type_Login_FormData} from '@/utils/types'
+import {signInWithEmailAndPassword} from './actions'
+import {useRouter} from 'next/navigation'
 
 export const Schema_Login = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
@@ -22,9 +23,19 @@ export const Schema_Login = Yup.object().shape({
 })
 
 const LoginForm = () => {
+  const router = useRouter()
+
+  const [showPassword, setShowPassword] = React.useState(false)
+  const handleClickShowPassword = () => setShowPassword(show => !show)
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>,
+  ) => {
+    event.preventDefault()
+  }
   const {
     handleSubmit,
     control,
+    reset,
     formState: {errors},
   } = useForm<Type_Login_FormData>({
     defaultValues: {
@@ -34,24 +45,21 @@ const LoginForm = () => {
     resolver: yupResolver(Schema_Login),
   })
 
-  const [showPassword, setShowPassword] = React.useState(false)
-  const handleClickShowPassword = () => setShowPassword(show => !show)
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>,
-  ) => {
-    event.preventDefault()
-  }
-
-  const supabase = createClientComponentClient()
-
   const onSubmit = async (data: Type_Login_FormData) => {
     try {
-      await supabase.auth.signInWithPassword({
-        email: data.email,
-        password: data.password,
-      })
-    } catch {
-      console.error('error')
+      const result = await signInWithEmailAndPassword(data)
+      const {error} = JSON.parse(result)
+
+      if (!error) {
+        reset({
+          email: '',
+          password: '',
+        })
+
+        router.push('/account')
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
     }
   }
 
