@@ -48,7 +48,7 @@ export function createSupabaseClient() {
 }
 
 //Req/Res Client
-export function createSupabaseReqResClient(req: NextRequest, res: NextResponse) {
+export function createSupabaseReqResClient(req: NextRequest, res?: NextResponse) {
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_KEY!,
