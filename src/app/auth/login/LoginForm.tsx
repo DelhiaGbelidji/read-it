@@ -56,6 +56,7 @@ const LoginForm = () => {
           password: '',
         })
 
+        console.log('Logged in with success')
         router.push('/account')
       }
     } catch (error) {
