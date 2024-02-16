@@ -1,4 +1,4 @@
-import { Button, Container, Grid, Stack, Typography,  } from "@mui/material";
+import { Box, Button, Container, Grid, Stack, Typography,  } from "@mui/material";
 import Image from "next/image";
 import Link from 'next/link';
 import {ActionButton, ActionButtonOutlined} from '../buttons/ActionButton';
@@ -14,12 +14,12 @@ const Landing = () => {
         direction="row"
         justifyContent="space-around"
         alignItems="flex-start"
-        height={900}
+        height={700}
         >
           <Grid
           position="relative"
           width={500}
-          height={700}
+          height={600}
           >
             <Image
             src={"/assets/livres-scaled.jpg"}
@@ -57,8 +57,30 @@ const Landing = () => {
             </Stack>
           </Grid>
         </Grid>
-      </Container>
-    </>
+        <Grid>
+        <Box
+          sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          my: 1,
+          }}
+        >
+          <Box sx={{ flexGrow: 1, height: '1px', bgcolor: 'grey.500' }} />
+            <Typography
+              sx={{
+              mx: 2,
+              bgcolor: 'background.paper',
+              px: 1,
+              }}
+            >
+              Book recommendation
+            </Typography>
+          <Box sx={{ flexGrow: 1, height: '1px', bgcolor: 'grey.500' }} />
+        </Box>
+      </Grid>
+    </Container>
+  </>
   );
 };
 
