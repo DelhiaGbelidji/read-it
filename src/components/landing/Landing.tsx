@@ -1,4 +1,4 @@
-import { Box, Button, Container, Grid, Stack, Typography,  } from "@mui/material";
+import { Box, Container, Grid, Stack, Typography,  } from "@mui/material";
 import Image from "next/image";
 import Link from 'next/link';
 import {ActionButton, ActionButtonOutlined} from '../buttons/ActionButton';
@@ -10,6 +10,7 @@ const Landing = () => {
     <>
       <Container sx={{ mt: 4 }}>
         <Grid 
+        container
         display="flex"
         direction="row"
         justifyContent="space-around"
@@ -19,13 +20,13 @@ const Landing = () => {
           <Grid
           position="relative"
           width={500}
-          height={500}
+          height={550}
           >
             <Image
             src={"/assets/livres-scaled.jpg"}
             alt="Books"
-            layout="fill"
-            objectFit="cover"
+            width={500}
+            height={550}
             />
           </Grid>
           <Grid
@@ -42,12 +43,13 @@ const Landing = () => {
             display="block"
             sx={{ mt: 5 }}
             >
-              Chez <span style={{fontWeight: 'bold', color: '#F7195C' }}>READ-it</span>, nous croyons au pouvoir des mots pour inspirer, connecter et émouvoir. Notre mission est de créer une passerelle entre les amoureux de la lecture et les auteurs talentueux. Nous sommes bien plus qu'une simple plateforme de publication de manuscrits. Nous sommes un espace où les rêves prennent vie et où les histoires prennent leur envol.
+              At <span style={{fontWeight: 'bold', color: '#F7195C' }}>READ-it</span>, we hold the conviction that words possess the power to inspire, forge connections, and evoke emotions. Our mission is to establish a conduit between avid readers and gifted authors. We transcend the conventional boundaries of a manuscript publishing platform. Instead, we offer a realm where dreams are realized and stories ascend to new heights.
             </Typography>
             <Stack 
             display="flex"
             flexDirection="row"
-            justifyContent="space-around"
+            justifyContent="center"
+            gap={1.5}
             sx={{ mt: 8 }}
             >
               <ActionButton>About us</ActionButton>

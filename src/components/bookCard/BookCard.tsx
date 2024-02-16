@@ -3,7 +3,7 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import axios from 'axios';
 import {Card, CardMedia, CardContent, Container, Grid, Typography} from "@mui/material";
-import {Book, BooksApiResponse} from '../../utils/types/dataBook'
+import {Book_format, Books_Api_Response} from '../../utils/types/googleBooks.type'
 
 
 
@@ -13,7 +13,8 @@ const apiKey = process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API_KEY;
 const authorQuery = "Octavia Butler"; 
 // Change en fonction des envie de recommandation j'ai pas encore trouvée de moyen d'avoir des recommandations accordé avec notre ligne editorial.
 const formattedQuery = encodeURIComponent(`inauthor:${authorQuery}`);
-const [bookData, setBookData] = useState<Book[]>([]);
+const [bookData, setBookData] = useState<Book_format[]>([]);
+// Initialise un tableau vide qui est spécifiquement destiné à contenir des objets du type Book.
 
 useEffect(() => {const fetchData = async () => {
     try 
@@ -42,11 +43,10 @@ if (!bookData) return <Typography>Loading...</Typography>;
                     <Grid 
                         item 
                         key={index} 
-                        xs={12} 
-                        sm={6} 
-                        md={4}>
+                        xs={3} 
+                        >
                         <Card>
-                            {imageLinks && imageLinks.thumbnail && (
+                            {imageLinks?.thumbnail && (
                             <CardMedia
                             component="img"
                             image={imageLinks.thumbnail}

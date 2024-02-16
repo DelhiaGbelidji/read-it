@@ -1,4 +1,4 @@
-export interface Book {
+export interface Book_format {
     id: string;
     volumeInfo: {
         title: string;
@@ -9,6 +9,6 @@ export interface Book {
     };
 }
 
-export interface BooksApiResponse {
-    items: Book[];
+export interface Books_Api_Response {
+    items: Book_format[];
 }
