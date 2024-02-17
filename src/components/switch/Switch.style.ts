@@ -1,4 +1,4 @@
-import { COLORS } from "@/assets/colors";
+import { COLORS } from "../../utils/colors";
 import { Switch, alpha, styled } from "@mui/material";
 
 export const Styled_Switch = styled(Switch)(({ theme }) => ({
