@@ -41,4 +41,7 @@ export const ActionButtonOutlined = styled(Button)(() => ({
     color: COLORS.disabledTextButton,
     backgroundColor: COLORS.disabledButton,
   },
-}));
+  '&.MuiButtonBase-root': {
+    textTransform: 'none',
+  },
+}))
