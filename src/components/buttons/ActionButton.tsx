@@ -1,6 +1,6 @@
 import {Button, styled} from '@mui/material'
 
-import {COLORS} from '@/assets/colors'
+import {COLORS} from '@/utils/colors'
 
 export const ActionButton = styled(Button)(() => ({
   fontSize: '14px',
