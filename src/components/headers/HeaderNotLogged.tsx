@@ -1,4 +1,3 @@
-
 'use client'
 import {FormControlLabel, Grid, Stack} from '@mui/material'
 import ContrastIcon from '@mui/icons-material/Contrast'
@@ -9,11 +8,12 @@ import {ActionButton} from '../buttons/ActionButton'
 import {Styled_IconButton} from '../buttons/IconButton.style'
 import {Styled_Switch} from '../switch/Switch.style'
 import {Type_Props_HeaderNotLogged} from '@/utils/types/public.type'
+import {COLORS} from '@/utils/colors'
 
 const HeaderNotLogged = ({toggleTheme}: Type_Props_HeaderNotLogged) => {
   const router = useRouter()
   return (
-    <Grid sx={{p: 2}}>
+    <Grid sx={{p: 2, backgroundColor: `${COLORS.lightGrey}`}}>
       <Grid
         container
         direction='row'
