@@ -1,53 +1,49 @@
-"use client";
-import { Roboto } from "next/font/google";
-import { useEffect, useState } from "react";
+'use client'
+import {Roboto} from 'next/font/google'
+import {useEffect, useState} from 'react'
 
-import "./globals.css";
-import HeaderNotLogged from "@/components/headers/HeaderNotLogged";
-import HeaderLogged from "@/components/headers/HeaderLogged";
-import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import './globals.css'
+import HeaderNotLogged from '@/components/headers/HeaderNotLogged'
+import HeaderLogged from '@/components/headers/HeaderLogged'
+import {CssBaseline, ThemeProvider, createTheme} from '@mui/material'
 
 const roboto = Roboto({
-  weight: "400",
-  subsets: ["latin"],
-});
+  weight: '400',
+  subsets: ['latin'],
+})
 
 const lightTheme = createTheme({
   palette: {
-    mode: "light",
+    mode: 'light',
   },
-});
+})
 
 const darkTheme = createTheme({
   palette: {
-    mode: "dark",
+    mode: 'dark',
   },
-});
+})
 
-function getActiveTheme(themeMode: "light" | "dark") {
-  return themeMode === "light" ? lightTheme : darkTheme;
+function getActiveTheme(themeMode: 'light' | 'dark') {
+  return themeMode === 'light' ? lightTheme : darkTheme
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const [isLogged, setIsLogged] = useState(false); //pour tester les deux layouts différents, passer isLogged à true
-  const [activeTheme, setActiveTheme] = useState(lightTheme);
-  const [selectedTheme, setSelectedTheme] = useState<"light" | "dark">("light");
+export default function RootLayout({children}: {children: React.ReactNode}) {
+  const [isLogged, setIsLogged] = useState(false) //pour tester les deux layouts différents, passer isLogged à true
+  const [activeTheme, setActiveTheme] = useState(lightTheme)
+  const [selectedTheme, setSelectedTheme] = useState<'light' | 'dark'>('light')
   const toggleTheme = () => {
-    const desiredTheme = selectedTheme === "light" ? "dark" : "light";
-    setSelectedTheme(desiredTheme);
-    setActiveTheme(desiredTheme === "light" ? lightTheme : darkTheme);
-  };
+    const desiredTheme = selectedTheme === 'light' ? 'dark' : 'light'
+    setSelectedTheme(desiredTheme)
+    setActiveTheme(desiredTheme === 'light' ? lightTheme : darkTheme)
+  }
 
   useEffect(() => {
-    setActiveTheme(getActiveTheme(selectedTheme));
-  }, [selectedTheme]);
+    setActiveTheme(getActiveTheme(selectedTheme))
+  }, [selectedTheme])
 
   return (
-    <html lang="en">
+    <html lang='en'>
       <ThemeProvider theme={activeTheme}>
         <CssBaseline />
         <body className={roboto.className}>
@@ -60,5 +56,5 @@ export default function RootLayout({
         </body>
       </ThemeProvider>
     </html>
-  );
+  )
 }
