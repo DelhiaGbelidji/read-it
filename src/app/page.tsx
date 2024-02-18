@@ -7,8 +7,11 @@ import {
   ActionButtonOutlined,
 } from '@/components/buttons/ActionButton'
 import BookCard from './landing/BookCard'
+import {useRouter} from 'next/navigation'
 
 export default function Home() {
+  const router = useRouter()
+
   return (
     <main>
       <Container sx={{mt: 4}}>
@@ -50,7 +53,9 @@ export default function Home() {
               gap={1.5}
               sx={{mt: 8}}>
               <ActionButton>About us</ActionButton>
-              <ActionButtonOutlined>Join us</ActionButtonOutlined>
+              <ActionButtonOutlined onClick={() => router.push('/auth')}>
+                Join us
+              </ActionButtonOutlined>
             </Stack>
           </Grid>
         </Grid>

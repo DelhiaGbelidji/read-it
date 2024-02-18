@@ -12,6 +12,7 @@ export default async function AuthPage() {
   if (data.session) {
     return redirect('/')
   }
+
   return (
     <Container component='main' maxWidth='xs'>
       <Box
@@ -21,7 +22,7 @@ export default async function AuthPage() {
         minHeight='90vh'>
         <Stack direction='column' spacing={4} alignItems='center'>
           <Typography fontSize={33} sx={{fontWeight: 700}}>
-            Good to see you !
+            Good to see you ! 🤗
           </Typography>
           <AuthForm />
         </Stack>

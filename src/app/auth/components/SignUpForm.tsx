@@ -1,4 +1,3 @@
-'use client'
 import React, {useState} from 'react'
 import {useForm, Controller} from 'react-hook-form'
 import {TextField, Grid, InputAdornment, IconButton} from '@mui/material'
@@ -38,7 +37,7 @@ const SignUpForm = () => {
     handleSubmit,
     control,
     reset,
-    formState: {errors, isSubmitSuccessful},
+    formState: {errors},
   } = useForm<Type_Auth>({
     defaultValues: {
       email: '',
@@ -48,12 +47,12 @@ const SignUpForm = () => {
     resolver: yupResolver(Schema_SignUp),
   })
 
-  const handleCreateUser = async (id: string) => {
-    await fetch('/api/users', {
-      method: 'put',
-      body: JSON.stringify({id}),
-    })
-  }
+  // const handleCreateUser = async (id: string) => {
+  //   await fetch('/api/users', {
+  //     method: 'put',
+  //     body: JSON.stringify({id}),
+  //   })
+  // }
 
   async function onSubmit(data: Type_Auth) {
     try {

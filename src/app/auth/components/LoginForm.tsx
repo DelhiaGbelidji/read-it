@@ -1,13 +1,6 @@
-'use client'
 import React from 'react'
 import {useForm, Controller} from 'react-hook-form'
-import {
-  TextField,
-  Container,
-  Grid,
-  InputAdornment,
-  IconButton,
-} from '@mui/material'
+import {TextField, Grid, InputAdornment, IconButton} from '@mui/material'
 import {Visibility, VisibilityOff} from '@mui/icons-material'
 import * as Yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
