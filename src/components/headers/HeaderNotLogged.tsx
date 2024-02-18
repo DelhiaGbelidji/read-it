@@ -2,52 +2,15 @@
 import {FormControlLabel, Grid, Stack} from '@mui/material'
 import ContrastIcon from '@mui/icons-material/Contrast'
 import HandymanIcon from '@mui/icons-material/Handyman'
-import {usePathname, useRouter} from 'next/navigation'
+import {useRouter} from 'next/navigation'
 
-import {ActionButton, ActionButtonOutlined} from '../buttons/ActionButton'
+import {ActionButton} from '../buttons/ActionButton'
 import {Styled_IconButton} from '../buttons/IconButton.style'
 import {Styled_Switch} from '../switch/Switch.style'
 import {Type_Props_HeaderNotLogged} from '@/utils/types/public.type'
 
 const HeaderNotLogged = ({toggleTheme}: Type_Props_HeaderNotLogged) => {
   const router = useRouter()
-  const pathname = usePathname()
-
-  function displayButtons() {
-    if (pathname === '/auth/login') {
-      return (
-        <ActionButton
-          variant='contained'
-          onClick={() => router.push('/auth/signup')}>
-          Sign up
-        </ActionButton>
-      )
-    }
-    if (pathname === '/auth/signup') {
-      return (
-        <ActionButtonOutlined
-          variant='outlined'
-          onClick={() => router.push('/auth/login')}>
-          Login
-        </ActionButtonOutlined>
-      )
-    }
-
-    return (
-      <>
-        <ActionButtonOutlined
-          variant='outlined'
-          onClick={() => router.push('/auth/login')}>
-          Login
-        </ActionButtonOutlined>
-        <ActionButton
-          variant='contained'
-          onClick={() => router.push('/auth/signup')}>
-          Sign up
-        </ActionButton>
-      </>
-    )
-  }
 
   return (
     <Grid sx={{p: 2}}>
@@ -73,7 +36,7 @@ const HeaderNotLogged = ({toggleTheme}: Type_Props_HeaderNotLogged) => {
           container
           direction={'row'}
           alignItems={'center'}
-          gap={1}>
+          gap={2}>
           <FormControlLabel
             control={
               <Styled_Switch onChange={toggleTheme} name='toggleTheme' />
@@ -85,7 +48,9 @@ const HeaderNotLogged = ({toggleTheme}: Type_Props_HeaderNotLogged) => {
             }
             labelPlacement='start'
           />
-          {displayButtons()}
+          <ActionButton onClick={() => router.push('/auth')}>
+            Login
+          </ActionButton>
         </Grid>
       </Grid>
     </Grid>
