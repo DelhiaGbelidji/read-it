@@ -5,7 +5,14 @@ import {useEffect, useState} from 'react'
 import './globals.css'
 import HeaderNotLogged from '@/components/headers/HeaderNotLogged'
 import HeaderLogged from '@/components/headers/HeaderLogged'
-import {CssBaseline, ThemeProvider, createTheme} from '@mui/material'
+import {
+  CssBaseline,
+  ThemeProvider,
+  createTheme,
+  Container,
+  Box,
+} from '@mui/material'
+import {COLORS} from '@/utils/colors'
 
 const roboto = Roboto({
   weight: '400',
@@ -52,7 +59,10 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           ) : (
             <HeaderLogged toggleTheme={toggleTheme} />
           )}
-          {children}
+          <Container component='main' fixed>
+            {children}
+          </Container>
+          <Box sx={{bgcolor: `${COLORS.lightGrey}`, height: '70px'}}></Box>
         </body>
       </ThemeProvider>
     </html>

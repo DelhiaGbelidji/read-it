@@ -5,6 +5,7 @@ import {createClient} from '@/utils/supabase/server'
 import AccountForm from './AccountForm'
 import {ActionButton} from '@/components/buttons/ActionButton'
 import {Button} from '@mui/material'
+import {readUserSession} from '@/utils/actions'
 
 export default async function PrivatePage() {
   const cookieStore = cookies()

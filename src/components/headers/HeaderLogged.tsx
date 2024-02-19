@@ -1,5 +1,5 @@
 'use client'
-import {Avatar, FormControlLabel, Grid} from '@mui/material'
+import {Avatar, FormControlLabel, Grid, IconButton} from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import ContrastIcon from '@mui/icons-material/Contrast'
 
@@ -36,13 +36,14 @@ const HeaderLogged = ({toggleTheme}: Type_Props_HeaderLogged) => {
           direction={'row'}
           alignItems={'center'}
           gap={1}>
-          <FormControlLabel
-            control={
-              <Styled_Switch onChange={toggleTheme} name='toggleTheme' />
-            }
-            label={<ContrastIcon />}
-            labelPlacement='start'
-          />
+          <Styled_IconButton
+            size='large'
+            edge='start'
+            aria-label='menu'
+            sx={{mr: 2}}
+            onClick={toggleTheme}>
+            <ContrastIcon />
+          </Styled_IconButton>
           <Avatar
             sx={{bgcolor: COLORS.black}}
             onClick={() => router.push('/account')}>

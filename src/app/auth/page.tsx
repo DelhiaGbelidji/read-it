@@ -10,23 +10,21 @@ export default async function AuthPage() {
   const {data} = await readUserSession()
 
   if (data.session) {
-    return redirect('/')
+    return redirect('/account')
   }
 
   return (
-    <Container component='main' maxWidth='xs'>
-      <Box
-        display='flex'
-        justifyContent='center'
-        alignItems='center'
-        minHeight='90vh'>
-        <Stack direction='column' spacing={4} alignItems='center'>
-          <Typography fontSize={33} sx={{fontWeight: 700}}>
-            Good to see you ! 🤗
-          </Typography>
-          <AuthForm />
-        </Stack>
-      </Box>
-    </Container>
+    <Box
+      display='flex'
+      justifyContent='center'
+      alignItems='center'
+      minHeight='90vh'>
+      <Stack direction='column' spacing={4} alignItems='center'>
+        <Typography fontSize={33} sx={{fontWeight: 700}}>
+          Good to see you ! 🤗
+        </Typography>
+        <AuthForm />
+      </Stack>
+    </Box>
   )
 }
