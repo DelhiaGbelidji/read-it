@@ -1,70 +1,23 @@
-'use client'
-import {Roboto} from 'next/font/google'
-import {useEffect, useState} from 'react'
-
-import './globals.css'
-import HeaderNotLogged from '@/components/headers/HeaderNotLogged'
-import HeaderLogged from '@/components/headers/HeaderLogged'
-import {
-  CssBaseline,
-  ThemeProvider,
-  createTheme,
-  Container,
-  Box,
-} from '@mui/material'
-import {COLORS} from '@/utils/colors'
-
-const roboto = Roboto({
-  weight: '400',
-  subsets: ['latin'],
-})
-
-const lightTheme = createTheme({
-  palette: {
-    mode: 'light',
-  },
-})
-
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-})
-
-function getActiveTheme(themeMode: 'light' | 'dark') {
-  return themeMode === 'light' ? lightTheme : darkTheme
-}
+import {CssBaseline, ThemeProvider, Box} from '@mui/material'
+import {TopBar} from '@/components/headers/AppBar'
+import {theme, COLORS} from '@/utils/theme/'
+import {AppRouterCacheProvider} from '@mui/material-nextjs/v13-appRouter'
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
-  const [isLogged, setIsLogged] = useState(false) //pour tester les deux layouts différents, passer isLogged à true
-  const [activeTheme, setActiveTheme] = useState(lightTheme)
-  const [selectedTheme, setSelectedTheme] = useState<'light' | 'dark'>('light')
-  const toggleTheme = () => {
-    const desiredTheme = selectedTheme === 'light' ? 'dark' : 'light'
-    setSelectedTheme(desiredTheme)
-    setActiveTheme(desiredTheme === 'light' ? lightTheme : darkTheme)
-  }
-
-  useEffect(() => {
-    setActiveTheme(getActiveTheme(selectedTheme))
-  }, [selectedTheme])
-
   return (
     <html lang='en'>
-      <ThemeProvider theme={activeTheme}>
-        <CssBaseline />
-        <body className={roboto.className}>
-          {!isLogged ? (
-            <HeaderNotLogged toggleTheme={toggleTheme} />
-          ) : (
-            <HeaderLogged toggleTheme={toggleTheme} />
-          )}
-          <Container component='main' fixed>
-            {children}
-          </Container>
-          <Box sx={{bgcolor: `${COLORS.lightGrey}`, height: '70px'}}></Box>
-        </body>
-      </ThemeProvider>
+      <CssBaseline />
+      <body>
+        <AppRouterCacheProvider>
+          <ThemeProvider theme={theme}>
+            <TopBar />
+            <main>{children}</main>
+            <footer>
+              <Box sx={{bgcolor: `${COLORS.lightGrey}`, height: '70px'}}></Box>
+            </footer>
+          </ThemeProvider>
+        </AppRouterCacheProvider>
+      </body>
     </html>
   )
 }

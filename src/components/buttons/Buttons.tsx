@@ -1,8 +1,8 @@
 import {Button, styled} from '@mui/material'
 
-import {COLORS} from '@/utils/colors'
+import {COLORS} from '@/utils/theme/'
 
-export const ActionButton = styled(Button)(() => ({
+export const Default_Button = styled(Button)(() => ({
   fontSize: '14px',
   lineHeight: '16px',
   backgroundColor: COLORS.black,
@@ -22,7 +22,7 @@ export const ActionButton = styled(Button)(() => ({
   },
 }))
 
-export const ActionButtonOutlined = styled(Button)(() => ({
+export const ClearButton = styled(Button)(() => ({
   fontSize: '14px',
   lineHeight: '16px',
   backgroundColor: COLORS.clear,
@@ -39,5 +39,11 @@ export const ActionButtonOutlined = styled(Button)(() => ({
   },
   '&.MuiButtonBase-root': {
     textTransform: 'none',
+  },
+}))
+
+export const Text_Button = styled(Button)(() => ({
+  '&.MuiButtonBase-root, .MuiButton-text': {
+    color: COLORS.black,
   },
 }))

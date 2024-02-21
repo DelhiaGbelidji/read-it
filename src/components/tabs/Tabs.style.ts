@@ -1,4 +1,4 @@
-import { COLORS } from "@/utils/colors";
+import { COLORS } from "@/utils/theme";
 import { TabList } from "@mui/lab";
 import { styled } from "@mui/material";
 

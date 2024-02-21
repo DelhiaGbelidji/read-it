@@ -5,7 +5,7 @@ import {Visibility, VisibilityOff} from '@mui/icons-material'
 import * as Yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
 
-import {ActionButton} from '@/components/buttons/ActionButton'
+import {Default_Button} from '@/components/buttons/Buttons'
 import {Type_Auth} from '@/utils/types'
 import {signInWithEmailAndPassword} from '../actions'
 import {useRouter} from 'next/navigation'
@@ -48,8 +48,6 @@ const LoginForm = () => {
           email: '',
           password: '',
         })
-
-        console.log('Logged in with success')
         router.push('/account')
       }
     } catch (error) {
@@ -106,13 +104,13 @@ const LoginForm = () => {
           />
         </Grid>
       </Grid>
-      <ActionButton
+      <Default_Button
         type='submit'
         variant='contained'
         fullWidth
         sx={{mt: 3, py: 2}}>
         Login
-      </ActionButton>
+      </Default_Button>
     </form>
   )
 }

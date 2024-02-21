@@ -2,10 +2,7 @@
 import {Box, Container, Grid, Stack, Typography} from '@mui/material'
 import Image from 'next/image'
 
-import {
-  ActionButton,
-  ActionButtonOutlined,
-} from '@/components/buttons/ActionButton'
+import {Default_Button, ClearButton} from '@/components/buttons/Buttons'
 import BookCard from './landing/BookCard'
 import {useRouter} from 'next/navigation'
 
@@ -52,10 +49,10 @@ export default function Home() {
               justifyContent='center'
               gap={1.5}
               sx={{mt: 8}}>
-              <ActionButton>About us</ActionButton>
-              <ActionButtonOutlined onClick={() => router.push('/auth')}>
+              <Default_Button>About us</Default_Button>
+              <ClearButton onClick={() => router.push('/auth')}>
                 Join us
-              </ActionButtonOutlined>
+              </ClearButton>
             </Stack>
           </Grid>
         </Grid>

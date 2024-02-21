@@ -1,12 +1,11 @@
 'use client'
-import {Avatar, FormControlLabel, Grid, IconButton} from '@mui/material'
+import {Avatar, Grid} from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import ContrastIcon from '@mui/icons-material/Contrast'
 
 import {Styled_IconButton} from '../buttons/IconButton.style'
-import {Styled_Switch} from '../switch/Switch.style'
 import {Type_Props_HeaderLogged} from '@/utils/types/public.type'
-import {COLORS} from '@/utils/colors'
+import {COLORS} from '@/utils/theme'
 import {useRouter} from 'next/navigation'
 
 const HeaderLogged = ({toggleTheme}: Type_Props_HeaderLogged) => {

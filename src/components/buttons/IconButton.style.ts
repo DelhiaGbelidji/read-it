@@ -1,4 +1,4 @@
-import { COLORS } from "../../utils/colors";
+import { COLORS } from "@/utils/theme/";
 import { IconButton, styled } from "@mui/material";
 
 export const Styled_IconButton = styled(IconButton)(() => ({

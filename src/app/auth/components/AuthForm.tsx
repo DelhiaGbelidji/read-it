@@ -15,7 +15,7 @@ export default function AuthTabs() {
   }
 
   return (
-    <Box sx={{width: '100%', typography: 'body1'}}>
+    <Box sx={{width: '100%'}}>
       <TabContext value={value}>
         <Box>
           <StyledTabList
