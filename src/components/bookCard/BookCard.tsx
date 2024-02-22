@@ -57,7 +57,7 @@ if (!bookData) return <Typography>Loading...</Typography>;
                                     {title}
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                    Publication Year: {publishedDate}
+                                    Author : {authorQuery}
                                 </Typography>
                             </CardContent>
                         </Card>
