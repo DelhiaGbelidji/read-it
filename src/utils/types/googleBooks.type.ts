@@ -1,4 +1,4 @@
-export interface Book_format {
+export type Type_book ={
     id: string;
     volumeInfo: {
         title: string;
@@ -7,8 +7,4 @@ export interface Book_format {
     };
         publishedDate?: string;
     };
-}
-
-export interface Books_Api_Response {
-    items: Book_format[];
 }

@@ -71,3 +71,4 @@ if (!bookData) return <Typography>Loading...</Typography>;
 
 
 export default BookCard
+
