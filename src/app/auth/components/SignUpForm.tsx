@@ -5,7 +5,7 @@ import {Visibility, VisibilityOff} from '@mui/icons-material'
 import * as Yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
 
-import {ActionButton} from '@/components/buttons/ActionButton'
+import {Default_Button} from '@/components/buttons/Buttons'
 import {Type_Auth} from '@/utils/types'
 import {useRouter} from 'next/navigation'
 import {registerUser} from '../actions'
@@ -65,6 +65,7 @@ const SignUpForm = () => {
           password: '',
           confirm_password: '',
         })
+        router.push('/welcome')
       }
     } catch (error) {
       console.error('Error submitting form:', error)
@@ -149,13 +150,13 @@ const SignUpForm = () => {
           />
         </Grid>
       </Grid>
-      <ActionButton
+      <Default_Button
         type='submit'
         variant='contained'
         fullWidth
         sx={{mt: 3, py: 2}}>
         Sign up
-      </ActionButton>
+      </Default_Button>
     </form>
   )
 }

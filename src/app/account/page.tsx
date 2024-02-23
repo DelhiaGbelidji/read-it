@@ -3,8 +3,6 @@ import {redirect} from 'next/navigation'
 
 import {createClient} from '@/utils/supabase/server'
 import AccountForm from './AccountForm'
-import {ActionButton} from '@/components/buttons/ActionButton'
-import {Button} from '@mui/material'
 
 export default async function PrivatePage() {
   const cookieStore = cookies()
@@ -15,10 +13,5 @@ export default async function PrivatePage() {
     redirect('/')
   }
 
-  return (
-    <>
-      <p>Hello {data.user.email}</p>
-      <AccountForm email={data.user.email as string} />
-    </>
-  )
+  return <AccountForm email={data.user.email as string} />
 }
