@@ -11,6 +11,7 @@ import {
   Container,
   Menu,
   MenuItem,
+  Stack,
   Toolbar,
   Tooltip,
   Typography,
@@ -18,19 +19,20 @@ import {
 import {Styled_AppBar} from './AppBar.style'
 import ThemeToggle from '../toggleTheme/ToggleTheme'
 
-const pages = ['Home', 'Product', 'About us']
+const pages = ['home', 'product', 'about-us']
 
 export function TopBar() {
+  const router = useRouter()
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget)
   }
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (page: string) => {
     setAnchorElNav(null)
+    router.push(`/${page === 'home' ? '/' : page}`)
   }
-
-  const router = useRouter()
 
   return (
     <Styled_AppBar position='static'>
@@ -68,7 +70,7 @@ export function TopBar() {
                 display: {xs: 'block', md: 'none'},
               }}>
               {pages.map(page => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page} onClick={() => handleCloseNavMenu(page)}>
                   <Typography textAlign='center'>{page}</Typography>
                 </MenuItem>
               ))}
@@ -82,21 +84,21 @@ export function TopBar() {
             {pages.map(page => (
               <Text_Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => handleCloseNavMenu(page)}
                 sx={{my: 2, color: 'white', display: 'block'}}>
                 {page}
               </Text_Button>
             ))}
           </Box>
 
-          <Box sx={{flexGrow: 0}}>
+          <Stack direction={'row'} sx={{flexGrow: 0}} spacing={2}>
             <ThemeToggle />
             <Tooltip title='Login'>
               <Default_Button onClick={() => router.push('/auth')}>
                 Login
               </Default_Button>
             </Tooltip>
-          </Box>
+          </Stack>
         </Toolbar>
       </Container>
     </Styled_AppBar>
