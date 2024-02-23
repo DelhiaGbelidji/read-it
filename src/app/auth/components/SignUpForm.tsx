@@ -8,7 +8,6 @@ import {yupResolver} from '@hookform/resolvers/yup'
 import {Default_Button} from '@/components/buttons/Buttons'
 import {Type_Auth} from '@/utils/types'
 import {useRouter} from 'next/navigation'
-import {registerUser} from '../actions'
 
 export const Schema_SignUp = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
@@ -47,30 +46,7 @@ const SignUpForm = () => {
     resolver: yupResolver(Schema_SignUp),
   })
 
-  // const handleCreateUser = async (id: string) => {
-  //   await fetch('/api/users', {
-  //     method: 'put',
-  //     body: JSON.stringify({id}),
-  //   })
-  // }
-
-  async function onSubmit(data: Type_Auth) {
-    try {
-      const result = await registerUser(data)
-      const {error} = JSON.parse(result)
-      console.log(error)
-      if (!error) {
-        reset({
-          email: '',
-          password: '',
-          confirm_password: '',
-        })
-        router.push('/welcome')
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error)
-    }
-  }
+  async function onSubmit(data: Type_Auth) {}
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
