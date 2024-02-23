@@ -7,7 +7,6 @@ import {yupResolver} from '@hookform/resolvers/yup'
 
 import {Default_Button} from '@/components/buttons/Buttons'
 import {Type_Auth} from '@/utils/types'
-import {signInWithEmailAndPassword} from '../actions'
 import {useRouter} from 'next/navigation'
 
 export const Schema_Login = Yup.object().shape({
@@ -38,22 +37,7 @@ const LoginForm = () => {
     resolver: yupResolver(Schema_Login),
   })
 
-  const onSubmit = async (data: Omit<Type_Auth, 'confirm_password'>) => {
-    try {
-      const result = await signInWithEmailAndPassword(data)
-      const {error} = JSON.parse(result)
-
-      if (!error) {
-        reset({
-          email: '',
-          password: '',
-        })
-        router.push('/account')
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error)
-    }
-  }
+  const onSubmit = async (data: Omit<Type_Auth, 'confirm_password'>) => {}
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

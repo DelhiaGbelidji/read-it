@@ -10,13 +10,13 @@ export const Schema_Account = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
 })
 
-const AccountForm = ({email}: Type_AccountForm_Props) => {
+const AccountForm = () => {
   const onSubmit = () => {}
 
   return (
     <form action='/api/auth/signout' method='post'>
       <Grid item xs={12}>
-        <TextField variant='outlined' fullWidth defaultValue={email} disabled />
+        <TextField variant='outlined' fullWidth disabled />
       </Grid>
       <Default_Button type='submit'> Log out</Default_Button>
     </form>
