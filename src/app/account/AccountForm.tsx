@@ -2,7 +2,7 @@
 import React from 'react'
 import {TextField, Grid} from '@mui/material'
 import * as Yup from 'yup'
-import {Default_Button} from '@/components/buttons/Buttons'
+import {DefaultButton} from '@/components/buttons/Buttons'
 
 type Type_AccountForm_Props = {email: string}
 
@@ -18,7 +18,7 @@ const AccountForm = () => {
       <Grid item xs={12}>
         <TextField variant='outlined' fullWidth disabled />
       </Grid>
-      <Default_Button type='submit'> Log out</Default_Button>
+      <DefaultButton type='submit'> Log out</DefaultButton>
     </form>
   )
 }

@@ -5,12 +5,22 @@ import {Visibility, VisibilityOff} from '@mui/icons-material'
 import * as Yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
 
-import {Default_Button} from '@/components/buttons/Buttons'
-import {Type_Auth} from '@/utils/types'
-import {useRouter} from 'next/navigation'
+import {DefaultButton} from '@/components/buttons/Buttons'
+import {redirect, useRouter} from 'next/navigation'
+import {registerUser} from '@/app/api/signup/route'
+
+export type Type_Signup = {
+  email: string
+  firstname: string
+  lastname: string
+  password: string
+  confirm_password: string
+}
 
 export const Schema_SignUp = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
+  firstname: Yup.string().required('Firstname is required'),
+  lastname: Yup.string().required('Lastname is required'),
   password: Yup.string()
     .required('Password is required')
     .min(8, 'Password must be at least 8 characters'),
@@ -37,8 +47,10 @@ const SignUpForm = () => {
     control,
     reset,
     formState: {errors},
-  } = useForm<Type_Auth>({
+  } = useForm<Type_Signup>({
     defaultValues: {
+      firstname: '',
+      lastname: '',
       email: '',
       password: '',
       confirm_password: '',
@@ -46,11 +58,57 @@ const SignUpForm = () => {
     resolver: yupResolver(Schema_SignUp),
   })
 
-  async function onSubmit(data: Type_Auth) {}
+  async function onSubmit(data: Type_Signup) {
+    console.log(data)
+    const userData = {
+      firstname: data.firstname,
+      lastname: data.lastname,
+      email: data.email,
+      password: data.password,
+    }
+    const {error} = await registerUser(userData)
+    if (error) {
+      alert(error)
+      return
+    }
+    router.push('/account')
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={2}>
+        <Grid item xs={6}>
+          <Controller
+            name='firstname'
+            control={control}
+            render={({field}) => (
+              <TextField
+                {...field}
+                label='Firstname'
+                variant='outlined'
+                fullWidth
+                error={!!errors.firstname}
+                helperText={errors.firstname?.message}
+              />
+            )}
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <Controller
+            name='lastname'
+            control={control}
+            render={({field}) => (
+              <TextField
+                {...field}
+                label='Lastname'
+                variant='outlined'
+                fullWidth
+                error={!!errors.lastname}
+                helperText={errors.lastname?.message}
+              />
+            )}
+          />
+        </Grid>
         <Grid item xs={12}>
           <Controller
             name='email'
@@ -126,13 +184,13 @@ const SignUpForm = () => {
           />
         </Grid>
       </Grid>
-      <Default_Button
+      <DefaultButton
         type='submit'
         variant='contained'
         fullWidth
         sx={{mt: 3, py: 2}}>
         Sign up
-      </Default_Button>
+      </DefaultButton>
     </form>
   )
 }
