@@ -6,7 +6,7 @@ import * as Yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
 
 import {DefaultButton} from '@/components/buttons/Buttons'
-import {useRouter} from 'next/navigation'
+import {redirect, useRouter} from 'next/navigation'
 import {registerUser} from '@/app/api/signup/route'
 
 export type Type_Signup = {
@@ -66,13 +66,12 @@ const SignUpForm = () => {
       email: data.email,
       password: data.password,
     }
-    const {response, error} = await registerUser(userData)
+    const {error} = await registerUser(userData)
     if (error) {
       alert(error)
       return
     }
-    alert('User Registered!')
-    console.log({response})
+    router.push('/account')
   }
 
   return (
