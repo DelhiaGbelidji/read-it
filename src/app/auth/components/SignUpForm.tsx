@@ -7,6 +7,7 @@ import {yupResolver} from '@hookform/resolvers/yup'
 
 import {DefaultButton} from '@/components/buttons/Buttons'
 import {useRouter} from 'next/navigation'
+import {registerUser} from '@/app/api/signup/route'
 
 export type Type_Signup = {
   email: string
@@ -57,7 +58,22 @@ const SignUpForm = () => {
     resolver: yupResolver(Schema_SignUp),
   })
 
-  async function onSubmit(data: Type_Signup) {}
+  async function onSubmit(data: Type_Signup) {
+    console.log(data)
+    const userData = {
+      firstname: data.firstname,
+      lastname: data.lastname,
+      email: data.email,
+      password: data.password,
+    }
+    const {response, error} = await registerUser(userData)
+    if (error) {
+      alert(error)
+      return
+    }
+    alert('User Registered!')
+    console.log({response})
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

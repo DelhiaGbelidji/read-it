@@ -27,24 +27,14 @@ const SignInButton = () => {
 
   return (
     <Stack direction={'row'} sx={{flexGrow: 0}} spacing={2}>
-      <ClearButton>
-        <Link
-          href={'/api/auth/signin'}
-          style={{
-            textDecoration: 'none',
-            color: 'inherit',
-          }}>
-          Sign In
-        </Link>
-      </ClearButton>
       <DefaultButton>
         <Link
-          href={'/signup'}
+          href={'/auth'}
           style={{
             textDecoration: 'none',
             color: 'inherit',
           }}>
-          Sign Up
+          Login
         </Link>
       </DefaultButton>
     </Stack>
