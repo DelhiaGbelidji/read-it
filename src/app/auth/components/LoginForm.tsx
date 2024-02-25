@@ -5,7 +5,7 @@ import {Visibility, VisibilityOff} from '@mui/icons-material'
 import * as Yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
 
-import {Default_Button} from '@/components/buttons/Buttons'
+import {DefaultButton} from '@/components/buttons/Buttons'
 import {Type_Auth} from '@/utils/types'
 import {useRouter} from 'next/navigation'
 
@@ -88,13 +88,13 @@ const LoginForm = () => {
           />
         </Grid>
       </Grid>
-      <Default_Button
+      <DefaultButton
         type='submit'
         variant='contained'
         fullWidth
         sx={{mt: 3, py: 2}}>
         Login
-      </Default_Button>
+      </DefaultButton>
     </form>
   )
 }

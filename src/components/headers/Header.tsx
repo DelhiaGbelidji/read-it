@@ -1,10 +1,10 @@
 'use client'
 import * as React from 'react'
-import {ImageLink} from './HeaderNotLogged'
 import {Styled_IconButton} from '../buttons/IconButton.style'
-import {Default_Button, Text_Button} from '../buttons/Buttons'
+import {Text_Button} from '../buttons/Buttons'
 import {useRouter} from 'next/navigation'
 import MenuIcon from '@mui/icons-material/Menu'
+import Image from 'next/image'
 
 import {
   Box,
@@ -18,8 +18,19 @@ import {
 } from '@mui/material'
 import {Styled_AppBar} from './AppBar.style'
 import ThemeToggle from '../toggleTheme/ToggleTheme'
+import SignInButton from '../buttons/SigninButton'
 
 const pages = ['home', 'product', 'about-us']
+
+export const ImageLink = ({src, href}: {src: string; href: string}) => {
+  return (
+    <Box alignItems={'center'}>
+      <a href={href}>
+        <Image src={src} alt='Logo' width={140} height={50} />
+      </a>
+    </Box>
+  )
+}
 
 export function TopBar() {
   const router = useRouter()
@@ -94,9 +105,7 @@ export function TopBar() {
           <Stack direction={'row'} sx={{flexGrow: 0}} spacing={2}>
             <ThemeToggle />
             <Tooltip title='Login'>
-              <Default_Button onClick={() => router.push('/auth')}>
-                Login
-              </Default_Button>
+              <SignInButton />
             </Tooltip>
           </Stack>
         </Toolbar>

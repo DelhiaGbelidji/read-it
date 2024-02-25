@@ -2,9 +2,9 @@
 import {Box, Container, Grid, Stack, Typography} from '@mui/material'
 import Image from 'next/image'
 
-import {Default_Button, ClearButton} from '@/components/buttons/Buttons'
+import {DefaultButton, ClearButton} from '@/components/buttons/Buttons'
 import BookCard from './landing/BookCard'
-import {redirect, useRouter} from 'next/navigation'
+import {useRouter} from 'next/navigation'
 
 export default function Home() {
   const router = useRouter()
@@ -49,9 +49,9 @@ export default function Home() {
               justifyContent='center'
               gap={1.5}
               sx={{mt: 8}}>
-              <Default_Button onClick={() => router.push('/about-us')}>
+              <DefaultButton onClick={() => router.push('/about-us')}>
                 About us
-              </Default_Button>
+              </DefaultButton>
               <ClearButton onClick={() => router.push('/auth')}>
                 Join us
               </ClearButton>

@@ -5,12 +5,14 @@ import {Visibility, VisibilityOff} from '@mui/icons-material'
 import * as Yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
 
-import {Default_Button} from '@/components/buttons/Buttons'
+import {DefaultButton} from '@/components/buttons/Buttons'
 import {Type_Auth} from '@/utils/types'
 import {useRouter} from 'next/navigation'
 
 export const Schema_SignUp = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
+  firstname: Yup.string().required('Firstname is required'),
+  lastname: Yup.string().required('Lastname is required'),
   password: Yup.string()
     .required('Password is required')
     .min(8, 'Password must be at least 8 characters'),
@@ -39,6 +41,8 @@ const SignUpForm = () => {
     formState: {errors},
   } = useForm<Type_Auth>({
     defaultValues: {
+      firstname: '',
+      lastname: '',
       email: '',
       password: '',
       confirm_password: '',
@@ -126,13 +130,13 @@ const SignUpForm = () => {
           />
         </Grid>
       </Grid>
-      <Default_Button
+      <DefaultButton
         type='submit'
         variant='contained'
         fullWidth
         sx={{mt: 3, py: 2}}>
         Sign up
-      </Default_Button>
+      </DefaultButton>
     </form>
   )
 }

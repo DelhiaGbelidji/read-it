@@ -2,7 +2,7 @@ import {Button, styled} from '@mui/material'
 
 import {COLORS} from '@/utils/theme/'
 
-export const Default_Button = styled(Button)(() => ({
+export const DefaultButton = styled(Button)(() => ({
   fontSize: '14px',
   lineHeight: '16px',
   backgroundColor: COLORS.black,
