@@ -20,17 +20,14 @@ async function refreshToken(token: JWT): Promise<JWT> {
     backendTokens: response,
   }
 }
+
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
-        username: {
-          label: 'Username',
-          type: 'text',
-          placeholder: 'jssmith',
-        },
-        password: {label: 'Password', type: 'password'},
+        username: { label: "Username", type: "text" },
+        password: { label: "Password", type: "password" },
       },
 
       async authorize(credentials, req) {
@@ -55,7 +52,9 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
-
+  pages: {
+    signIn: '/auth', 
+  },
   callbacks: {
     async jwt({token, user}) {
       if (user) return {...token, ...user}

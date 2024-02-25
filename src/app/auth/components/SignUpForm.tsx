@@ -6,8 +6,15 @@ import * as Yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
 
 import {DefaultButton} from '@/components/buttons/Buttons'
-import {Type_Auth} from '@/utils/types'
 import {useRouter} from 'next/navigation'
+
+export type Type_Signup = {
+  email: string
+  firstname: string
+  lastname: string
+  password: string
+  confirm_password: string
+}
 
 export const Schema_SignUp = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
@@ -39,7 +46,7 @@ const SignUpForm = () => {
     control,
     reset,
     formState: {errors},
-  } = useForm<Type_Auth>({
+  } = useForm<Type_Signup>({
     defaultValues: {
       firstname: '',
       lastname: '',
@@ -50,11 +57,43 @@ const SignUpForm = () => {
     resolver: yupResolver(Schema_SignUp),
   })
 
-  async function onSubmit(data: Type_Auth) {}
+  async function onSubmit(data: Type_Signup) {}
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={2}>
+        <Grid item xs={6}>
+          <Controller
+            name='firstname'
+            control={control}
+            render={({field}) => (
+              <TextField
+                {...field}
+                label='Firstname'
+                variant='outlined'
+                fullWidth
+                error={!!errors.firstname}
+                helperText={errors.firstname?.message}
+              />
+            )}
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <Controller
+            name='lastname'
+            control={control}
+            render={({field}) => (
+              <TextField
+                {...field}
+                label='Lastname'
+                variant='outlined'
+                fullWidth
+                error={!!errors.lastname}
+                helperText={errors.lastname?.message}
+              />
+            )}
+          />
+        </Grid>
         <Grid item xs={12}>
           <Controller
             name='email'
