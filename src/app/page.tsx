@@ -1,16 +1,13 @@
 'use client'
 import {Box, Container, Grid, Stack, Typography} from '@mui/material'
 import Image from 'next/image'
-import {
-  ActionButton,
-  ActionButtonOutlined,
-} from '@/components/buttons/ActionButton'
-import Carousel from './landing/Carousel'
-
-const apiKey = process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API_KEY;
-const query = 'Octavia Butler';
+import {DefaultButton, ClearButton} from '@/components/buttons/Buttons'
+import BookCard from './landing/BookCard'
+import {useRouter} from 'next/navigation'
 
 export default function Home() {
+  const router = useRouter()
+
   return (
     <main>
       <Container sx={{mt: 4}}>
@@ -51,8 +48,12 @@ export default function Home() {
               justifyContent='center'
               gap={1.5}
               sx={{mt: 8}}>
-              <ActionButton>About us</ActionButton>
-              <ActionButtonOutlined>Join us</ActionButtonOutlined>
+              <DefaultButton onClick={() => router.push('/about-us')}>
+                About us
+              </DefaultButton>
+              <ClearButton onClick={() => router.push('/auth')}>
+                Join us
+              </ClearButton>
             </Stack>
           </Grid>
         </Grid>

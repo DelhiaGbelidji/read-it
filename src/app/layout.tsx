@@ -1,60 +1,24 @@
-'use client'
-import {Roboto} from 'next/font/google'
-import {useEffect, useState} from 'react'
-
-import './globals.css'
-import HeaderNotLogged from '@/components/headers/HeaderNotLogged'
-import HeaderLogged from '@/components/headers/HeaderLogged'
-import {CssBaseline, ThemeProvider, createTheme} from '@mui/material'
-
-const roboto = Roboto({
-  weight: '400',
-  subsets: ['latin'],
-})
-
-const lightTheme = createTheme({
-  palette: {
-    mode: 'light',
-  },
-})
-
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-})
-
-function getActiveTheme(themeMode: 'light' | 'dark') {
-  return themeMode === 'light' ? lightTheme : darkTheme
-}
+import {CssBaseline, ThemeProvider, Box, Container} from '@mui/material'
+import {TopBar} from '@/components/headers/Header'
+import {theme} from '@/utils/theme/'
+import {Footer} from '@/components/footer/Footer'
+import Providers from '@/components/Providers'
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
-  const [isLogged, setIsLogged] = useState(false) //pour tester les deux layouts différents, passer isLogged à true
-  const [activeTheme, setActiveTheme] = useState(lightTheme)
-  const [selectedTheme, setSelectedTheme] = useState<'light' | 'dark'>('light')
-  const toggleTheme = () => {
-    const desiredTheme = selectedTheme === 'light' ? 'dark' : 'light'
-    setSelectedTheme(desiredTheme)
-    setActiveTheme(desiredTheme === 'light' ? lightTheme : darkTheme)
-  }
-
-  useEffect(() => {
-    setActiveTheme(getActiveTheme(selectedTheme))
-  }, [selectedTheme])
-
   return (
     <html lang='en'>
-      <ThemeProvider theme={activeTheme}>
-        <CssBaseline />
-        <body className={roboto.className}>
-          {!isLogged ? (
-            <HeaderNotLogged toggleTheme={toggleTheme} />
-          ) : (
-            <HeaderLogged toggleTheme={toggleTheme} />
-          )}
-          {children}
-        </body>
-      </ThemeProvider>
+      <CssBaseline />
+      <body>
+        <Providers>
+          <ThemeProvider theme={theme}>
+            <TopBar />
+            <main>
+              <Container sx={{minHeight: '90vH'}}>{children}</Container>
+            </main>
+            <Footer />
+          </ThemeProvider>
+        </Providers>
+      </body>
     </html>
   )
 }
