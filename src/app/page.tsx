@@ -1,12 +1,14 @@
 'use client'
 import {Box, Container, Grid, Stack, Typography} from '@mui/material'
 import Image from 'next/image'
-
 import {
   ActionButton,
   ActionButtonOutlined,
 } from '@/components/buttons/ActionButton'
-import BookCard from './landing/BookCard'
+import Carousel from './landing/Carousel'
+
+const apiKey = process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API_KEY;
+const query = 'Octavia Butler';
 
 export default function Home() {
   return (
@@ -75,7 +77,7 @@ export default function Home() {
           </Box>
         </Grid>
         <Grid>
-          <BookCard />
+        <Carousel apiKey={process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API_KEY || ''} query={query} />
         </Grid>
       </Container>
     </main>
