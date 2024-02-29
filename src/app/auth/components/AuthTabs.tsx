@@ -15,30 +15,28 @@ const AuthTabs = () => {
   }
 
   return (
-    <Stack direction='column' spacing={4} alignItems='center'>
+    <Stack direction='column' spacing={2} alignItems='center'>
       <Typography fontSize={33} sx={{fontWeight: 700}}>
         Good to see you ! 🤗
       </Typography>
 
-      <Box>
-        <TabContext value={value}>
-          <Box>
-            <StyledTabList
-              onChange={handleChange}
-              aria-label='auth tabs'
-              centered>
-              <Tab label='Login' value='1' />
-              <Tab label='Sign Up' value='2' />
-            </StyledTabList>
-          </Box>
-          <TabPanel value='1'>
-            <LoginForm />
-          </TabPanel>
-          <TabPanel value='2'>
-            <SignUpForm />
-          </TabPanel>
-        </TabContext>
-      </Box>
+      <TabContext value={value}>
+        <Box>
+          <StyledTabList
+            onChange={handleChange}
+            aria-label='auth tabs'
+            centered>
+            <Tab label='Login' value='1' />
+            <Tab label='Sign Up' value='2' />
+          </StyledTabList>
+        </Box>
+        <TabPanel value='1' style={{maxWidth: '500px', margin: 'auto'}}>
+          <LoginForm />
+        </TabPanel>
+        <TabPanel value='2' style={{maxWidth: '500px', margin: 'auto'}}>
+          <SignUpForm />
+        </TabPanel>
+      </TabContext>
     </Stack>
   )
 }

@@ -68,6 +68,7 @@ const LoginForm = () => {
             control={control}
             render={({field}) => (
               <TextField
+                autoComplete='off'
                 {...field}
                 label='Email'
                 variant='outlined'
@@ -84,6 +85,7 @@ const LoginForm = () => {
             control={control}
             render={({field}) => (
               <TextField
+                autoComplete='off'
                 {...field}
                 label='Password'
                 type={showPassword ? 'text' : 'password'}

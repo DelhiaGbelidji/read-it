@@ -65,19 +65,17 @@ const SignUpForm = () => {
       email: data.email,
       password: data.password,
     }
-    const {error} = await registerUser(userData)
+    const {error, response} = await registerUser(userData)
 
     if (error) {
       alert(error)
     }
-
-    router.push('/')
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={2}>
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           <Controller
             name='firstname'
             control={control}
@@ -93,7 +91,7 @@ const SignUpForm = () => {
             )}
           />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           <Controller
             name='lastname'
             control={control}
