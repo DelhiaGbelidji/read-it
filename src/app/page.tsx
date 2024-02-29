@@ -6,7 +6,7 @@ import {DefaultButton, ClearButton} from '@/components/buttons/Buttons'
 import BookCard from './landing/BookCard'
 import {useRouter} from 'next/navigation'
 
-export default function Home() {
+const Home = () => {
   const router = useRouter()
 
   return (
@@ -85,3 +85,5 @@ export default function Home() {
     </main>
   )
 }
+
+export default Home

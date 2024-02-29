@@ -59,7 +59,6 @@ const SignUpForm = () => {
   })
 
   async function onSubmit(data: Type_Signup) {
-    console.log(data)
     const userData = {
       firstname: data.firstname,
       lastname: data.lastname,
@@ -67,11 +66,12 @@ const SignUpForm = () => {
       password: data.password,
     }
     const {error} = await registerUser(userData)
+
     if (error) {
       alert(error)
-      return
     }
-    router.push('/account')
+
+    router.push('/')
   }
 
   return (

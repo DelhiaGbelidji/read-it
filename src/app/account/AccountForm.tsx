@@ -6,7 +6,7 @@ import {DefaultButton} from '@/components/buttons/Buttons'
 
 type Type_AccountForm_Props = {email: string}
 
-export const Schema_Account = Yup.object().shape({
+const Schema_Account = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
 })
 

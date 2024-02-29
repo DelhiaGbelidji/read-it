@@ -1,16 +1,18 @@
 import {Box} from '@mui/material'
 import '@fontsource/roboto/500.css'
-import AuthForm from './components/AuthForm'
+import AuthTabs from './components/AuthTabs'
 import React from 'react'
 
-export default async function AuthPage() {
+const AuthPage = () => {
   return (
     <Box
       display='flex'
       justifyContent='center'
       alignItems='center'
       minHeight='90vh'>
-      <AuthForm />
+      <AuthTabs />
     </Box>
   )
 }
+
+export default AuthPage

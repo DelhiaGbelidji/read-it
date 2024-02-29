@@ -7,7 +7,7 @@ import LoginForm from './LoginForm'
 import SignUpForm from './SignUpForm'
 import {StyledTabList} from '@/components/tabs/Tabs.style'
 
-export default function AuthTabs() {
+const AuthTabs = () => {
   const [value, setValue] = useState('1')
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -42,3 +42,5 @@ export default function AuthTabs() {
     </Stack>
   )
 }
+
+export default AuthTabs

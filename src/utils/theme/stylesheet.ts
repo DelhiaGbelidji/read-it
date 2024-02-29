@@ -38,27 +38,7 @@ export const COLORS = {
     success900: "#14532d",
     success950: "#052e16",
 
-     // error
-     error50: "#FFEAE8",
-     error100: "#FFD4D1",
-     error200: "#FFA9A4",
-     error300: "#FE7E76",
-     error400: "#FE5349",
-     error500: "#FE281B",
-     error600: "#D42116",
-     error700: "#AB1910",
-     error800: "#81120B",
-     error900: "#23411F",
-     error950: "#2E0300",
-     red100: "#F7C9CC",
-    red200: "#E09490",
-    red300: "#D26F69",
-    red400: "#DB564A",
     red500: "#DF4B35",
-    red600: "#CF4233",
-    red700: "#BC3A2E",
-    red800: "#AF3428",
-    red900: "#4C0500",
 
     magenta100: "#EEB6C9",
     magenta200: "#E58AA7",
@@ -255,3 +235,22 @@ export const COLORS = {
 
 export const SPACING_UNIT = 4;
 export const FONT_FAMILY = "Roboto";
+
+export const stringToColor = (string: string) => {
+  let hash = 0;
+  let i;
+
+  /* eslint-disable no-bitwise */
+  for (i = 0; i < string.length; i += 1) {
+      hash = string.charCodeAt(i) + ((hash << 5) - hash);
+  }
+
+  let color = "#";
+
+  for (i = 0; i < 3; i += 1) {
+      const value = (hash >> (i * 8)) & 0xff;
+      color += `00${value.toString(16)}`.slice(-2);
+  }
+  /* eslint-enable no-bitwise */
+  return color;
+};

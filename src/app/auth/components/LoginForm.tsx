@@ -7,6 +7,7 @@ import {yupResolver} from '@hookform/resolvers/yup'
 import {signIn} from 'next-auth/react'
 import {DefaultButton} from '@/components/buttons/Buttons'
 import {useRouter} from 'next/navigation'
+import {getServerSession} from 'next-auth'
 
 type Type_Login = {
   username: string
@@ -53,7 +54,9 @@ const LoginForm = () => {
     if (result?.error) {
       setLoginError(result.error)
     }
-    router.push('/account')
+
+    reset({})
+    router.push('/')
   }
 
   return (
