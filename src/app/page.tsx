@@ -1,9 +1,10 @@
 'use client'
 import {Box, Container, Grid, Stack, Typography} from '@mui/material'
 import Image from 'next/image'
-import {DefaultButton, ClearButton} from '@/components/buttons/Buttons'
+import { DefaultButton, ClearButton } from '@/components/buttons/Buttons'
 import BookCard from './landing/BookCard'
 import {useRouter} from 'next/navigation'
+import Carousel from './landing/Carousel'
 
 export default function Home() {
   const router = useRouter()
@@ -78,7 +79,7 @@ export default function Home() {
           </Box>
         </Grid>
         <Grid>
-        <Carousel apiKey={process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API_KEY || ''} query={query} />
+        <Carousel  />
         </Grid>
       </Container>
     </main>

@@ -5,12 +5,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import useBookSearch from '../../utils/hooks/useBookSearch';
 
-interface CarouselBookCardProps {
-    apiKey: string;
-    query: string;
-}
 
-const CarouselBookCard: React.FC<CarouselBookCardProps> = ({ apiKey, query }) => {
+const CarouselBookCard: React.FC = () => {
+    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API_KEY!
+    const query = "Octavia Butler"
     const { bookData, isLoading } = useBookSearch(apiKey, query);
 
     if (isLoading) {
