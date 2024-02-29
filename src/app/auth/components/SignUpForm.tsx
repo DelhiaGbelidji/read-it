@@ -6,8 +6,9 @@ import * as Yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
 
 import {DefaultButton} from '@/components/buttons/Buttons'
-import {redirect, useRouter} from 'next/navigation'
+import {useRouter} from 'next/navigation'
 import {registerUser} from '@/app/api/signup/route'
+import {notify} from '@/utils/constants'
 
 export type Type_Signup = {
   email: string
@@ -68,7 +69,7 @@ const SignUpForm = () => {
     const {error, response} = await registerUser(userData)
 
     if (error) {
-      alert(error)
+      notify(error)
     }
   }
 

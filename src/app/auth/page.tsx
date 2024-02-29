@@ -1,7 +1,8 @@
-import {Box} from '@mui/material'
-import '@fontsource/roboto/500.css'
-import AuthTabs from './components/AuthTabs'
 import React from 'react'
+import {Toaster} from 'react-hot-toast'
+
+import {Box} from '@mui/material'
+import AuthTabs from './components/AuthTabs'
 
 const AuthPage = () => {
   return (
@@ -10,6 +11,7 @@ const AuthPage = () => {
       justifyContent='center'
       alignItems='center'
       minHeight='90vh'>
+      <Toaster />
       <AuthTabs />
     </Box>
   )

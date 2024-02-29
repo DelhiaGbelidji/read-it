@@ -1,8 +1,9 @@
-import {BACKEND_URL} from '@/utils/constants'
 import {NextAuthOptions} from 'next-auth'
 import NextAuth from 'next-auth/next'
 import {JWT} from 'next-auth/jwt'
 import CredentialsProvider from 'next-auth/providers/credentials'
+
+import {BACKEND_URL} from '@/utils/constants'
 
 async function refreshToken(token: JWT): Promise<JWT> {
   const res = await fetch(BACKEND_URL + '/auth/refresh', {
@@ -71,6 +72,7 @@ export const authOptions: NextAuthOptions = {
       return session
     },
   },
+  secret: process?.env.NEXTAUTH_SECRET!
 }
 
 const handler = NextAuth(authOptions)
