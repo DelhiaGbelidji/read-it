@@ -1,4 +1,4 @@
-import {CssBaseline, ThemeProvider, Box, Container} from '@mui/material'
+import {CssBaseline, ThemeProvider, Container} from '@mui/material'
 import {TopBar} from '@/components/headers/Header'
 import {theme} from '@/utils/theme/'
 import {Footer} from '@/components/footer/Footer'
@@ -13,7 +13,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           <ThemeProvider theme={theme}>
             <TopBar />
             <main>
-              <Container sx={{minHeight: '90vH'}}>{children}</Container>
+              <Container sx={{minHeight: '90vH', p: 5}}>{children}</Container>
             </main>
             <Footer />
           </ThemeProvider>

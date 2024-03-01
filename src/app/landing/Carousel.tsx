@@ -1,42 +1,61 @@
-import React from 'react';
-import MyCard from '../../components/card/MyCard';
-import Slider from 'react-slick';
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
-import useBookSearch from '../../utils/hooks/useBookSearch';
+import React from 'react'
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
+import useBookSearch from '@/utils/hooks/useBookSearch'
+import Card from '@/components/card/Card'
+import {Box} from '@mui/material'
 
-const CarouselBookCard: React.FC = () => {
-    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API_KEY!
-    const query = "Octavia Butler"
-    const { bookData, isLoading } = useBookSearch(apiKey, query);
+const BooksCarousel = () => {
+  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API_KEY!
+  const query = 'Octavia Butler'
+  const {bookData, isLoading} = useBookSearch(apiKey, query)
 
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
 
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 400,
-        slidesToShow: 3,
-        slidesToScroll: 2,
-        centerMode: true,
-        centerPadding: "-60px", // Adjust centerPadding as needed
-    };
+  const settings = {
+    autoplay: true,
+    autoplaySpeed: 10000,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          autoplay: true,
+          autoplaySpeed: 2000,
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          autoplay: true,
+          autoplaySpeed: 2000,
+          slidesToShow: 1,
+        },
+      },
+    ],
+  }
 
-return (
+  return (
     <Slider {...settings}>
-        {bookData.map((book) => (
-            <MyCard
-            key={book.id}
-            imageUrl={book.volumeInfo.imageLinks?.thumbnail}
-            title={book.volumeInfo.title}
-            description={`Published: ${book.volumeInfo.publishedDate}`}
-        />        
-    ))}
+      {bookData.map(book => (
+        <>
+          <Box>
+            <Card
+              key={book.id}
+              imageUrl={book.volumeInfo.imageLinks?.thumbnail}
+              title={book.volumeInfo.title}
+            />
+          </Box>
+        </>
+      ))}
     </Slider>
-    );
-};
+  )
+}
 
-export default CarouselBookCard;
+export default BooksCarousel
