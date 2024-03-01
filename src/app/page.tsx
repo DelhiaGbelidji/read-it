@@ -96,5 +96,3 @@ export default function Home() {
     </Container>
   )
 }
-
-export default Home

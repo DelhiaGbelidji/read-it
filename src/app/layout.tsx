@@ -1,5 +1,4 @@
 import {CssBaseline, ThemeProvider, Box, Container} from '@mui/material'
-import {TopBar} from '@/components/headers/Header'
 import {theme} from '@/utils/theme/'
 import Footer from '@/components/footer/Footer'
 import Providers from '@/components/Providers'

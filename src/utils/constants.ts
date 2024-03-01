@@ -7,4 +7,4 @@ export const notify = (error: any) => {
       duration: 5000,
       position: 'bottom-left',
     })
-  }
+}
