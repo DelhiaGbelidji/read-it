@@ -1,4 +1,5 @@
 import {CssBaseline, ThemeProvider, Box, Container} from '@mui/material'
+import {TopBar} from '@/components/headers/Header'
 import {theme} from '@/utils/theme/'
 import Footer from '@/components/footer/Footer'
 import Providers from '@/components/Providers'
@@ -24,7 +25,7 @@ export default async function RootLayout({
           <ThemeProvider theme={theme}>
             {session ? <PrivateAppBar name={fullName} /> : <PublicAppBar />}
             <main>
-              <Container sx={{minHeight: '90vH'}}>{children}</Container>
+              <Container sx={{minHeight: '90vH', p: 5}}>{children}</Container>
             </main>
             <Footer />
           </ThemeProvider>
