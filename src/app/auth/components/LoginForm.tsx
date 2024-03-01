@@ -3,7 +3,7 @@ import {useForm, Controller} from 'react-hook-form'
 import * as Yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
 import {signIn} from 'next-auth/react'
-import {useRouter} from 'next/navigation'
+import {redirect, useRouter} from 'next/navigation'
 
 import {TextField, Grid, InputAdornment, IconButton} from '@mui/material'
 import {Visibility, VisibilityOff} from '@mui/icons-material'
@@ -55,6 +55,7 @@ const LoginForm = () => {
       if (result?.error) {
         notify('Username or password is incorrect')
       }
+      router.push('/account')
     } catch (error) {
       console.error(error)
     }
