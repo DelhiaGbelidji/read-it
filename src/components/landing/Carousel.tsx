@@ -17,8 +17,9 @@ const BooksCarousel = () => {
   }
 
   const settings = {
+    dots: true,
     autoplay: true,
-    autoplaySpeed: 10000,
+    autoplaySpeed: 2000,
     slidesToShow: 3,
     slidesToScroll: 1,
     responsive: [
@@ -43,16 +44,12 @@ const BooksCarousel = () => {
 
   return (
     <Slider {...settings}>
-      {bookData.map(book => (
-        <>
-          <Box>
-            <Card
-              key={book.id}
-              imageUrl={book.volumeInfo.imageLinks?.thumbnail}
-              title={book.volumeInfo.title}
-            />
-          </Box>
-        </>
+      {bookData.map((book, index) => (
+        <Card
+          key={`${index}-${book.id}`}
+          imageUrl={book.volumeInfo.imageLinks?.thumbnail}
+          title={book.volumeInfo.title}
+        />
       ))}
     </Slider>
   )

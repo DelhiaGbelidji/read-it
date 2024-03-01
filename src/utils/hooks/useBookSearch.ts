@@ -34,11 +34,6 @@ export default function useBookSearch(
     }
 
     fetchData()
-
-    return () => {
-      // Code de nettoyage si nécessaire
-    }
   }, [apiKey, formattedQuery])
-
   return {bookData, isLoading}
 }

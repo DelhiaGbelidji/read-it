@@ -10,8 +10,8 @@ import {
 } from '@mui/material'
 import Image from 'next/image'
 import {DefaultButton, ClearButton} from '@/components/buttons/Buttons'
-import BooksCarousel from './landing/Carousel'
-import CustomSloganTypography from '@/components/typography/slogan'
+import BooksCarousel from '../components/landing/Carousel'
+import CustomSloganTypography from '@/components/landing/slogan'
 import {redirect} from 'next/navigation'
 
 export default function Home() {
