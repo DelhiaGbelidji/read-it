@@ -10,7 +10,6 @@ import {ComponentProps} from 'react'
 import {COLORS, stringToColor} from '@/utils/theme'
 import {Styled_IconButton} from '../buttons/IconButton.style'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
-import {redirect} from 'next/navigation'
 
 type Type_Props_AccountMenu = ComponentProps<typeof MuiAvatar> & {
   name: string

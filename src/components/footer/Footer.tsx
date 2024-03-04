@@ -1,5 +1,5 @@
 'use client'
-import {Box, Container} from '@mui/material'
+import {Box} from '@mui/material'
 import {COLORS} from '@/utils/theme'
 
 const Footer = () => {

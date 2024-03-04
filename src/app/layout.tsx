@@ -1,4 +1,4 @@
-import {CssBaseline, ThemeProvider, Box, Container} from '@mui/material'
+import {CssBaseline, ThemeProvider, Container} from '@mui/material'
 import {theme} from '@/utils/theme/'
 import Footer from '@/components/footer/Footer'
 import Providers from '@/components/Providers'

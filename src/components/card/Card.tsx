@@ -8,7 +8,6 @@ import {
   styled,
 } from '@mui/material'
 import {COLORS} from '@/utils/theme'
-import Image from 'next/image'
 
 type Type_Props_Card = {
   imageUrl?: string
@@ -35,6 +34,7 @@ export const Styled_CardContent = styled(CardContent)(() => ({
     },
   },
 }))
+
 const Rea_Card = ({imageUrl, title, description, onClick}: Type_Props_Card) => {
   return (
     <Styled_Card>
