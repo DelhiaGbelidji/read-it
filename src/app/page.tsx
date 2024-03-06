@@ -13,6 +13,7 @@ import {DefaultButton, ClearButton} from '@/components/buttons/Buttons'
 import BooksCarousel from '../components/landing/Carousel'
 import CustomSloganTypography from '@/components/landing/slogan'
 import {redirect} from 'next/navigation'
+import {COLORS} from '@/utils/theme'
 
 export default function Home() {
   const isMobile = useMediaQuery('(max-width:600px)')
@@ -86,11 +87,11 @@ export default function Home() {
           mt: spacing,
           mb: spacing,
         }}>
-        <Box sx={{flexGrow: 1, height: '1px', bgcolor: 'grey.500'}} />
-        <Typography sx={{mx: 2, bgcolor: 'background.paper', px: 1}}>
+        <Box sx={{flexGrow: 1, height: '1px', bgcolor: `${COLORS.grey500}`}} />
+        <Typography sx={{mx: 2, color: `${COLORS.neutral700}`, px: 1}}>
           Book recommendation
         </Typography>
-        <Box sx={{flexGrow: 1, height: '1px', bgcolor: 'grey.500'}} />
+        <Box sx={{flexGrow: 1, height: '1px', bgcolor: `${COLORS.grey500}`}} />
       </Box>
       <BooksCarousel />
     </Container>

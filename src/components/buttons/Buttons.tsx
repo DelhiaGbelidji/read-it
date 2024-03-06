@@ -47,3 +47,23 @@ export const Text_Button = styled(Button)(() => ({
     color: COLORS.black,
   },
 }))
+
+export const WarningButton = styled(Button)(() => ({
+  fontSize: '14px',
+  lineHeight: '16px',
+  backgroundColor: COLORS.red500,
+  color: COLORS.white,
+  borderRadius: '50px',
+  boxShadow: '0px 2px 4px rgba(25, 49, 84, 0.15)',
+  '&:hover:not(.Mui-disabled), &.Mui-focused': {
+    backgroundColor: COLORS.red800,
+    boxShadow: '0px 2px 4px rgba(25, 49, 84, 0.15)',
+  },
+  '&.Mui-disabled': {
+    color: COLORS.disabledTextButton,
+    backgroundColor: COLORS.disabledButton,
+  },
+  '&.MuiButtonBase-root': {
+    textTransform: 'none',
+  },
+}))

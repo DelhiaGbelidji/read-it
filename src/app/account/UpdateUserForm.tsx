@@ -1,39 +1,39 @@
+'use client'
 import React, {useState} from 'react'
-import {useForm, Controller} from 'react-hook-form'
 import {TextField, Grid, InputAdornment, IconButton} from '@mui/material'
-import {Visibility, VisibilityOff} from '@mui/icons-material'
 import * as Yup from 'yup'
-import {yupResolver} from '@hookform/resolvers/yup'
-
 import {DefaultButton} from '@/components/buttons/Buttons'
-import {useRouter} from 'next/navigation'
-import {registerUser} from '@/app/api/signup/route'
-import {notify} from '@/utils/constants'
+import {Controller, useForm} from 'react-hook-form'
+import {yupResolver} from '@hookform/resolvers/yup'
+import {Visibility, VisibilityOff} from '@mui/icons-material'
 
-export type Type_Signup = {
-  email: string
-  firstname: string
-  lastname: string
-  password: string
-  confirm_password: string
+export type Type_UpdateUser = {
+  id?: number
+  firstname?: string
+  lastname?: string
+  email?: string
+  current_password?: string
+  password?: string
+  confirm_password?: string
 }
+
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/
 // min 5 characters, 1 upper case letter, 1 lower case letter, 1 numeric digit.
-export const Schema_SignUp = Yup.object().shape({
-  email: Yup.string().email('Invalid email').required('Email is required'),
-  firstname: Yup.string().required('Firstname is required'),
-  lastname: Yup.string().required('Lastname is required'),
+
+const Schema_UpdateUserForm = Yup.object().shape({
+  email: Yup.string().email('Invalid email').optional(),
+  firstname: Yup.string().optional(),
+  lastname: Yup.string().optional(),
+  current_password: Yup.string().optional(),
   password: Yup.string()
     .matches(passwordRules, {message: 'Please create a stronger password'})
-    .required('Required'),
+    .optional(),
   confirm_password: Yup.string()
     .oneOf([Yup.ref('password')], 'Passwords must match')
-    .required('Required'),
+    .optional(),
 })
 
-const SignUpForm = () => {
-  const router = useRouter()
-
+const UpdateUserForm = () => {
   //Show/hide password
   const [showPassword, setShowPassword] = useState(false)
   const handleClickShowPassword = () => setShowPassword(show => !show)
@@ -49,30 +49,19 @@ const SignUpForm = () => {
     control,
     reset,
     formState: {errors},
-  } = useForm<Type_Signup>({
+  } = useForm<Omit<Type_UpdateUser, 'id'>>({
     defaultValues: {
       firstname: '',
       lastname: '',
       email: '',
+      current_password: '',
       password: '',
       confirm_password: '',
     },
-    resolver: yupResolver(Schema_SignUp),
+    resolver: yupResolver(Schema_UpdateUserForm),
   })
 
-  async function onSubmit(data: Type_Signup) {
-    const userData = {
-      firstname: data.firstname,
-      lastname: data.lastname,
-      email: data.email,
-      password: data.password,
-    }
-    const {error, response} = await registerUser(userData)
-
-    if (error) {
-      notify(error)
-    }
-  }
+  const onSubmit = () => {}
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -121,6 +110,35 @@ const SignUpForm = () => {
                 fullWidth
                 error={!!errors.email}
                 helperText={errors.email?.message}
+              />
+            )}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <Controller
+            name='current_password'
+            control={control}
+            render={({field}) => (
+              <TextField
+                {...field}
+                label='Current Password'
+                type={showPassword ? 'text' : 'password'}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position='end'>
+                      <IconButton
+                        aria-label='toggle password visibility'
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge='end'>
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+                error={!!errors.current_password}
+                helperText={errors.current_password?.message}
+                fullWidth
               />
             )}
           />
@@ -189,10 +207,10 @@ const SignUpForm = () => {
         variant='contained'
         fullWidth
         sx={{mt: 3, py: 2}}>
-        Sign up
+        Save changes{' '}
       </DefaultButton>
     </form>
   )
 }
 
-export default SignUpForm
+export default UpdateUserForm
