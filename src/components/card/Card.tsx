@@ -8,7 +8,6 @@ import {
   styled,
 } from '@mui/material'
 import {COLORS} from '@/utils/theme'
-import Image from 'next/image'
 
 type Type_Props_Card = {
   imageUrl?: string

@@ -1,21 +1,20 @@
 'use client'
-import React from 'react'
+import React, { Fragment } from 'react'
 import { useState } from 'react';
 import { Container, Typography, useMediaQuery} from '@mui/material'
-import { FaPlusCircle } from "react-icons/fa";
 import SearchBar from '@/components/searchbar/SearchBar'
 import Card from '@/components/card/Card'
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import {Styled_IconButton} from '@/components/buttons/IconButton.style';
 
-
-
-export default function MyProjects() {
+const Projects = () => {
 const isMobile = useMediaQuery('(max-width:600px)')
 const spacing = isMobile ? 2 : 4
 const [searchTerm, setSearchTerm] = useState('');
 const [projects, setProjects] = useState([
-    { imageUrl: '', title: 'Livre 1' },
-    { imageUrl: '', title: 'Bouquin 2' },
-    { imageUrl: '', title: 'Papier 3' }]);
+    { title: 'Livre 1' },
+    { title: 'Bouquin 2' },
+    { title: 'Papier 3' }]);
 
     const filteredProjects = projects.filter((project) =>
     project.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -26,7 +25,7 @@ const [projects, setProjects] = useState([
     
     
     return (
-        <div>
+        <Fragment>
             <Container
             sx={{ 
                 display: 'flex',
@@ -40,23 +39,31 @@ const [projects, setProjects] = useState([
                 sx={{
                     mt: spacing, 
                     mb: spacing,
-                    fontSize: isMobile ? 16 : 20, 
+                    fontSize: isMobile ? 16 : 25,
+                    fontWeight: 'bold',
                     textAlign: isMobile ? 'center' : 'left'}}
                 >
                     My Projects
                 </Typography>
                 <SearchBar onSearchChange={handleSearchChange} />
-                <FaPlusCircle style={{cursor:'pointer'}} onClick={() => {}} />  
+                <Styled_IconButton
+                    size='large'
+                    aria-haspopup='true'
+                    onClick={() => {}}
+                    color='inherit'>
+                    <AddCircleIcon />
+                </Styled_IconButton>
             </Container>
-            <Container sx={{ display: 'flex',gap: spacing }}>
+            <Container sx={{ display: 'flex',gap: spacing, mt:'50px' }}>
             {filteredProjects.map((project, index) => (
             <Card
                 key={index}
-                imageUrl={project.imageUrl}
                 title={project.title}
             />
             ))}
             </Container>
-        </div>
+        </Fragment>
     )
 }
+
+export default Projects
