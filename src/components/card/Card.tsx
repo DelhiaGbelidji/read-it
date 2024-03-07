@@ -19,7 +19,7 @@ type Type_Props_Card = {
 export const Styled_Card = styled(Card)(() => ({
   width: 300,
   height: 420,
-  borderColor: COLORS.gray600,
+  borderColor: COLORS.grey600,
   borderRadius: '8px',
 }))
 

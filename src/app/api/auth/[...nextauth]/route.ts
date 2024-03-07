@@ -5,7 +5,7 @@ import { JWT } from "next-auth/jwt";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-async function refreshToken(token: JWT): Promise<JWT> {
+async function refreshToken(token: JWT){
   const res = await fetch(BACKEND_URL + "/auth/refresh", {
     method: "POST",
     headers: {

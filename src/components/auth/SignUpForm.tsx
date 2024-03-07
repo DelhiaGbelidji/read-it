@@ -1,39 +1,41 @@
-'use client'
 import React, {useState} from 'react'
+import {useForm, Controller} from 'react-hook-form'
 import {TextField, Grid, InputAdornment, IconButton} from '@mui/material'
-import * as Yup from 'yup'
-import {DefaultButton} from '@/components/buttons/Buttons'
-import {Controller, useForm} from 'react-hook-form'
-import {yupResolver} from '@hookform/resolvers/yup'
 import {Visibility, VisibilityOff} from '@mui/icons-material'
+import * as Yup from 'yup'
+import {yupResolver} from '@hookform/resolvers/yup'
 
-export type Type_UpdateUser = {
-  id?: number
-  firstname?: string
-  lastname?: string
-  email?: string
-  current_password?: string
-  password?: string
-  confirm_password?: string
+import {DefaultButton} from '@/components/buttons/Buttons'
+import {useRouter} from 'next/navigation'
+import {registerUser} from '@/app/api/users/route'
+import {notify} from '@/utils/constants'
+import {Type_CreateUser} from '@/app/api/users/types'
+
+export type Type_SignupData = {
+  email: string
+  firstname: string
+  lastname: string
+  password: string
+  confirm_password: string
 }
 
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/
 // min 5 characters, 1 upper case letter, 1 lower case letter, 1 numeric digit.
-
-const Schema_UpdateUserForm = Yup.object().shape({
-  email: Yup.string().email('Invalid email').optional(),
-  firstname: Yup.string().optional(),
-  lastname: Yup.string().optional(),
-  current_password: Yup.string().optional(),
+export const Schema_SignUp = Yup.object().shape({
+  email: Yup.string().email('Invalid email').required('Email is required'),
+  firstname: Yup.string().required('Firstname is required'),
+  lastname: Yup.string().required('Lastname is required'),
   password: Yup.string()
     .matches(passwordRules, {message: 'Please create a stronger password'})
-    .optional(),
+    .required('Required'),
   confirm_password: Yup.string()
     .oneOf([Yup.ref('password')], 'Passwords must match')
-    .optional(),
+    .required('Required'),
 })
 
-const UpdateUserForm = () => {
+const SignUpForm = () => {
+  const router = useRouter()
+
   //Show/hide password
   const [showPassword, setShowPassword] = useState(false)
   const handleClickShowPassword = () => setShowPassword(show => !show)
@@ -49,19 +51,30 @@ const UpdateUserForm = () => {
     control,
     reset,
     formState: {errors},
-  } = useForm<Omit<Type_UpdateUser, 'id'>>({
+  } = useForm<Type_SignupData>({
     defaultValues: {
       firstname: '',
       lastname: '',
       email: '',
-      current_password: '',
       password: '',
       confirm_password: '',
     },
-    resolver: yupResolver(Schema_UpdateUserForm),
+    resolver: yupResolver(Schema_SignUp),
   })
 
-  const onSubmit = () => {}
+  async function onSubmit(data: Type_SignupData) {
+    const user: Type_CreateUser = {
+      firstname: data.firstname,
+      lastname: data.lastname,
+      email: data.email,
+      password: data.password,
+    }
+    const {error, response} = await registerUser(user)
+
+    if (error) {
+      notify(error)
+    }
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -110,35 +123,6 @@ const UpdateUserForm = () => {
                 fullWidth
                 error={!!errors.email}
                 helperText={errors.email?.message}
-              />
-            )}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <Controller
-            name='current_password'
-            control={control}
-            render={({field}) => (
-              <TextField
-                {...field}
-                label='Current Password'
-                type={showPassword ? 'text' : 'password'}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position='end'>
-                      <IconButton
-                        aria-label='toggle password visibility'
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge='end'>
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-                error={!!errors.current_password}
-                helperText={errors.current_password?.message}
-                fullWidth
               />
             )}
           />
@@ -207,10 +191,10 @@ const UpdateUserForm = () => {
         variant='contained'
         fullWidth
         sx={{mt: 3, py: 2}}>
-        Save changes{' '}
+        Sign up
       </DefaultButton>
     </form>
   )
 }
 
-export default UpdateUserForm
+export default SignUpForm

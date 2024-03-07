@@ -2,7 +2,7 @@ import React from 'react'
 import {Toaster} from 'react-hot-toast'
 
 import {Box} from '@mui/material'
-import AuthTabs from './components/AuthTabs'
+import AuthTabs from '../../components/auth/AuthTabs'
 
 const AuthPage = () => {
   return (

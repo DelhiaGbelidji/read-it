@@ -5,7 +5,7 @@ import {TabPanel, TabContext} from '@mui/lab'
 
 import LoginForm from './LoginForm'
 import SignUpForm from './SignUpForm'
-import {StyledTabList} from '@/components/tabs/Tabs.style'
+import {Styled_TabList, Styled_TabPanel} from '@/components/tabs/Tabs.style'
 
 const AuthTabs = () => {
   const [value, setValue] = useState('1')
@@ -22,20 +22,20 @@ const AuthTabs = () => {
 
       <TabContext value={value}>
         <Box>
-          <StyledTabList
+          <Styled_TabList
             onChange={handleChange}
             aria-label='auth tabs'
             centered>
             <Tab label='Login' value='1' />
             <Tab label='Sign Up' value='2' />
-          </StyledTabList>
+          </Styled_TabList>
         </Box>
-        <TabPanel value='1' style={{maxWidth: '500px', margin: 'auto'}}>
+        <Styled_TabPanel value='1'>
           <LoginForm />
-        </TabPanel>
-        <TabPanel value='2' style={{maxWidth: '500px', margin: 'auto'}}>
+        </Styled_TabPanel>
+        <Styled_TabPanel value='2'>
           <SignUpForm />
-        </TabPanel>
+        </Styled_TabPanel>
       </TabContext>
     </Stack>
   )

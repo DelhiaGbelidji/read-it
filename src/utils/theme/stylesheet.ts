@@ -15,7 +15,6 @@ export const COLORS = {
    neutral700: "#545E6E",
 
     red500: "#DF4B35",
-    red800: "#AF3428",
 
     blue100: "#BAD8F9",
     blue200: "#92C1F5",
@@ -52,7 +51,6 @@ export const COLORS = {
     magenta: "#EB52F8",
     orange: "#F09837",
     violet: "#882B8D",
-    red: "#EA4125",
     yellow: "#FEFB53",
 
   // action buttons
