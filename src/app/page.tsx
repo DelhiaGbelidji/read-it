@@ -12,10 +12,11 @@ import Image from 'next/image'
 import {DefaultButton, ClearButton} from '@/components/buttons/Buttons'
 import BooksCarousel from '../components/landing/Carousel'
 import CustomSloganTypography from '@/components/landing/slogan'
-import {redirect} from 'next/navigation'
 import {COLORS} from '@/utils/theme'
+import {useRouter} from 'next/navigation'
 
 export default function Home() {
+  const router = useRouter()
   const isMobile = useMediaQuery('(max-width:600px)')
   const spacing = isMobile ? 2 : 4
 
@@ -72,10 +73,12 @@ export default function Home() {
             direction={isMobile ? 'column' : 'row'}
             spacing={2}
             justifyContent='center'>
-            <DefaultButton onClick={() => redirect('/about-us')}>
+            <DefaultButton onClick={() => router.push('/about-us')}>
               About us
             </DefaultButton>
-            <ClearButton onClick={() => redirect('/auth')}>Join us</ClearButton>
+            <ClearButton onClick={() => router.push('/auth')}>
+              Join us
+            </ClearButton>
           </Stack>
         </Grid>
       </Grid>
@@ -93,7 +96,7 @@ export default function Home() {
         </Typography>
         <Box sx={{flexGrow: 1, height: '1px', bgcolor: `${COLORS.grey500}`}} />
       </Box>
-      <BooksCarousel  />
+      <BooksCarousel />
     </Container>
   )
 }
