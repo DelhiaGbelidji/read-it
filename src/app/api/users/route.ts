@@ -22,20 +22,20 @@ export const registerUser = async (data: Type_CreateUser) => {
     }
   };
 
-  export const changeUserPassword = async (data: Type_ChangePassword) => {
-    const response = await fetch('/api/user/change-password', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.NEXTAUTH_SECRET}`, 
-      },
-      body: JSON.stringify(data),
-    });
-  
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || 'Something went wrong');
-    }
-  
-    return await response.json();
-  };
+export const changeUserPassword = async (userId: number, data: Type_ChangePassword, token: string) => {
+  const response = await fetch(`${BACKEND_URL}/user/${userId}/change-password`, {
+    method: 'PATCH', // Utilisation de PATCH comme défini dans votre route NestJS
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`, // Inclure le token JWT pour l'authentification
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || 'Something went wrong');
+  }
+
+  return await response.json();
+};

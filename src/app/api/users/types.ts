@@ -6,6 +6,6 @@ export type Type_CreateUser = {
 }
 
 export type Type_ChangePassword = {
-        oldPassword: string;
-        newPassword: string;
+        old_password: string;
+        new_password: string;
 }

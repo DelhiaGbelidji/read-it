@@ -1,12 +1,15 @@
 'use client'
-import React, {useState} from 'react'
+import React, {FormEvent, useState} from 'react'
 import {TextField, Grid, InputAdornment, IconButton} from '@mui/material'
 import * as Yup from 'yup'
 import {DefaultButton} from '@/components/buttons/Buttons'
 import {Controller, useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import {Visibility, VisibilityOff} from '@mui/icons-material'
-import {passwordRules} from '@/utils/constants'
+import {notify, passwordRules} from '@/utils/constants'
+import {changeUserPassword} from '@/app/api/users/route'
+import {Type_ChangePassword} from '@/app/api/users/types'
+import {Rock_3D} from 'next/font/google'
 
 type Type_ChangePasswordData = {
   old_password?: string
@@ -48,7 +51,22 @@ const ChangePasswordForm = () => {
     resolver: yupResolver(Schema_ChangePasswordForm),
   })
 
-  const onSubmit = () => {}
+  const onSubmit = async (formData: Type_ChangePasswordData) => {
+    const data: Type_ChangePassword = {
+      old_password: formData.old_password!,
+      new_password: formData.new_password!,
+    }
+
+    try {
+      const {error} = await changeUserPassword(3, data, '')
+
+      if (error) {
+        notify(error)
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

@@ -8,7 +8,7 @@ import {yupResolver} from '@hookform/resolvers/yup'
 import {DefaultButton} from '@/components/buttons/Buttons'
 import {useRouter} from 'next/navigation'
 import {registerUser} from '@/app/api/users/route'
-import {notify} from '@/utils/constants'
+import {notify, passwordRules} from '@/utils/constants'
 import {Type_CreateUser} from '@/app/api/users/types'
 
 export type Type_SignupData = {
@@ -19,7 +19,6 @@ export type Type_SignupData = {
   confirm_password: string
 }
 
-const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/
 // min 5 characters, 1 upper case letter, 1 lower case letter, 1 numeric digit.
 export const Schema_SignUp = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),

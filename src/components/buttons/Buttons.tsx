@@ -57,6 +57,7 @@ export const WarningButton = styled(Button)(() => ({
   boxShadow: '0px 2px 4px rgba(25, 49, 84, 0.15)',
   '&:hover:not(.Mui-disabled), &.Mui-focused': {
     backgroundColor: COLORS.red500,
+    color: COLORS.white,
     boxShadow: '0px 2px 4px rgba(25, 49, 84, 0.15)',
   },
   '&.Mui-disabled': {

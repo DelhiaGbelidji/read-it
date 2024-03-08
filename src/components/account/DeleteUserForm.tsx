@@ -4,7 +4,6 @@ import * as Yup from 'yup'
 import {Checkbox, FormControlLabel, Grid, Typography} from '@mui/material'
 import {Controller, useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
-import {COLORS} from '@/utils/theme'
 
 type Type_DeleteUserData = {
   confirm_delete?: boolean
