@@ -1,4 +1,4 @@
-import {Box} from '@mui/material'
+import { Box } from '@mui/material'
 import '@fontsource/roboto/500.css'
 import AuthForm from './components/AuthForm'
 import React from 'react'

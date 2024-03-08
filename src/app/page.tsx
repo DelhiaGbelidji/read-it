@@ -90,9 +90,9 @@ export default function Home() {
         <Typography sx={{mx: 2, bgcolor: 'background.paper', px: 1}}>
           Book recommendation
         </Typography>
-        <Box sx={{flexGrow: 1, height: '1px', bgcolor: 'grey.500'}} />
+        <Box sx={{ flexGrow: 1, height: '1px', bgcolor: 'grey.500'}} />
       </Box>
-      <BooksCarousel />
+      <BooksCarousel  />
     </Container>
   )
 }
