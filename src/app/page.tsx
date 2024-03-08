@@ -93,7 +93,7 @@ export default function Home() {
         </Typography>
         <Box sx={{flexGrow: 1, height: '1px', bgcolor: `${COLORS.grey500}`}} />
       </Box>
-      <BooksCarousel />
+      <BooksCarousel  />
     </Container>
   )
 }
