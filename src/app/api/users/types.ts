@@ -1,4 +1,5 @@
-export type Type_CreateUser = {
+export type Type_User = {
+    id: number
     email: string
     firstname: string
     lastname: string

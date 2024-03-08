@@ -5,20 +5,25 @@ import { JWT } from "next-auth/jwt";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-async function refreshToken(token: JWT){
-  const res = await fetch(BACKEND_URL + "/auth/refresh", {
+async function refreshToken(token: JWT) {
+  const res = await fetch(`${BACKEND_URL}/auth/refresh`, {
     method: "POST",
     headers: {
-      authorization: `Refresh ${token.backendTokens.refreshToken}`,
+      authorization: `Bearer ${token.accessToken}`, // Assurez-vous que c'est bien accessToken qui est utilisé ici
     },
   });
-  console.log("refreshed");
+
+  if (!res.ok) {
+    throw new Error(`Failed to refresh token: ${res.statusText}`);
+  }
 
   const response = await res.json();
 
   return {
     ...token,
-    backendTokens: response,
+    accessToken: response.accessToken,
+    refreshToken: response.refreshToken,
+    expiresIn: response.expiresIn,
   };
 }
 
@@ -27,9 +32,8 @@ export const authOptions: NextAuthOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        username: {
-        },
-        password: {  },
+        username: {},
+        password: {},
       },
       async authorize(credentials, req) {
         if (!credentials?.username || !credentials?.password) return null;

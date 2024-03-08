@@ -7,7 +7,7 @@ import Card from '@/components/card/Card'
 import AddCircleIcon from '@mui/icons-material/AddCircle'
 import {Styled_IconButton} from '@/components/buttons/IconButton.style'
 
-const Projects = () => {
+const ProjectsPage = () => {
   const isMobile = useMediaQuery('(max-width:600px)')
   const spacing = isMobile ? 2 : 4
   const [searchTerm, setSearchTerm] = useState('')
@@ -62,4 +62,4 @@ const Projects = () => {
   )
 }
 
-export default Projects
+export default ProjectsPage

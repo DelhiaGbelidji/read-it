@@ -4,6 +4,7 @@ import * as Yup from 'yup'
 import {Checkbox, FormControlLabel, Grid, Typography} from '@mui/material'
 import {Controller, useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
+import {Type_Props_AccountTabs} from './AccountTabs'
 
 type Type_DeleteUserData = {
   confirm_delete?: boolean
@@ -16,7 +17,7 @@ const Schema_DeleteUserForm = Yup.object().shape({
   ),
 })
 
-const DeleteUserForm = () => {
+const DeleteUserForm = ({session}: Type_Props_AccountTabs) => {
   //Form handler
   const {
     handleSubmit,

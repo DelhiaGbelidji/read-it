@@ -5,6 +5,7 @@ import * as Yup from 'yup'
 import {DefaultButton} from '@/components/buttons/Buttons'
 import {Controller, useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
+import {Type_Props_AccountTabs} from './AccountTabs'
 
 type Type_UpdateUserData = {
   firstname?: string
@@ -18,7 +19,7 @@ const Schema_UpdateUserForm = Yup.object().shape({
   lastname: Yup.string().optional(),
 })
 
-const UpdateUserForm = () => {
+const UpdateUserForm = ({session}: Type_Props_AccountTabs) => {
   //Form handler
   const {
     handleSubmit,
@@ -26,9 +27,9 @@ const UpdateUserForm = () => {
     formState: {errors},
   } = useForm<Type_UpdateUserData>({
     defaultValues: {
-      firstname: '',
-      lastname: '',
-      email: '',
+      firstname: session.user.firstname,
+      lastname: session.user.lastname,
+      email: session.user.email,
     },
     resolver: yupResolver(Schema_UpdateUserForm),
   })

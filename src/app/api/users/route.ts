@@ -1,7 +1,7 @@
 import { BACKEND_URL } from "@/utils/constants";
-import { Type_ChangePassword, Type_CreateUser } from "./types";
+import { Type_ChangePassword, Type_User } from "./types";
 
-export const registerUser = async (data: Type_CreateUser) => {
+export const registerUser = async (data: Type_User) => {
     try {
       const res = await fetch(BACKEND_URL + '/auth/register', {
         method: "POST",
@@ -24,10 +24,10 @@ export const registerUser = async (data: Type_CreateUser) => {
 
 export const changeUserPassword = async (userId: number, data: Type_ChangePassword, token: string) => {
   const response = await fetch(`${BACKEND_URL}/user/${userId}/change-password`, {
-    method: 'PATCH', // Utilisation de PATCH comme défini dans votre route NestJS
+    method: 'PATCH', 
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`, // Inclure le token JWT pour l'authentification
+      'Authorization': `Bearer ${token}`,
     },
     body: JSON.stringify(data),
   });

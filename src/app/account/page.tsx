@@ -1,13 +1,23 @@
-import UpdateUserForm from '../../components/account/UpdateUserForm'
 import {getServerSession} from 'next-auth'
 import {authOptions} from '../api/auth/[...nextauth]/route'
-import {Box, Divider, Stack, Typography} from '@mui/material'
-import DeleteUser from '../../components/account/DeleteUserForm'
-import {COLORS} from '@/utils/theme'
+import {Box} from '@mui/material'
 import AccountTabs from '@/components/account/AccountTabs'
+import {BACKEND_URL} from '@/utils/constants'
+import {redirect} from 'next/navigation'
 
-export default async function PrivatePage() {
-  const session = getServerSession(authOptions)
+const AccountPage = async () => {
+  const session = await getServerSession(authOptions)
+  const response = await fetch(BACKEND_URL + `/user/${session?.user.id}`, {
+    method: 'GET',
+    headers: {
+      authorization: `Bearer ${session?.backendTokens.accessToken}`,
+      'Content-Type': 'application/json',
+    },
+  })
+
+  const user = await response.json()
+
+  if (!session) redirect('/auth')
 
   return (
     <Box
@@ -15,7 +25,9 @@ export default async function PrivatePage() {
       justifyContent='center'
       alignItems='center'
       minHeight='90vh'>
-      <AccountTabs />
+      <AccountTabs session={session} />
     </Box>
   )
 }
+
+export default AccountPage
