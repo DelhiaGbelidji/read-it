@@ -1,5 +1,5 @@
 'use client'
-import React, {Fragment} from 'react'
+import React from 'react'
 import {useState} from 'react'
 import {Container, Typography, useMediaQuery} from '@mui/material'
 import SearchBar from '@/components/searchbar/SearchBar'
@@ -25,7 +25,7 @@ const Projects = () => {
   }
 
   return (
-    <Fragment>
+    <>
       <Container
         sx={{
           display: 'flex',
@@ -58,7 +58,7 @@ const Projects = () => {
           <Card key={index} title={project.title} />
         ))}
       </Container>
-    </Fragment>
+    </>
   )
 }
 
