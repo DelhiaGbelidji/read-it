@@ -1,26 +1,24 @@
 'use client'
 import * as React from 'react'
-import {Styled_IconButton} from '../buttons/IconButton.style'
-import {Text_Button} from '../buttons/Buttons'
 import {useRouter} from 'next/navigation'
-import MenuIcon from '@mui/icons-material/Menu'
 import Image from 'next/image'
 
 import {
   Box,
   Container,
+  Link,
   Menu,
   MenuItem,
   Stack,
   Toolbar,
-  Tooltip,
   Typography,
 } from '@mui/material'
+import MenuIcon from '@mui/icons-material/Menu'
+
+import {Styled_IconButton} from '../buttons/IconButton.style'
+import {DefaultButton, Text_Button} from '../buttons/Buttons'
 import {Styled_AppBar} from './AppBar.style'
 import ThemeToggle from '../toggleTheme/ToggleTheme'
-import SignInButton from '../buttons/SigninButton'
-
-const pages = ['home', 'product', 'about-us']
 
 export const ImageLink = ({src, href}: {src: string; href: string}) => {
   return (
@@ -32,14 +30,14 @@ export const ImageLink = ({src, href}: {src: string; href: string}) => {
   )
 }
 
-export function TopBar() {
+export const PublicAppBar = () => {
   const router = useRouter()
+  const pages = ['home', 'product', 'about-us']
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget)
   }
-
   const handleCloseNavMenu = (page: string) => {
     setAnchorElNav(null)
     router.push(`/${page === 'home' ? '/' : page}`)
@@ -82,7 +80,9 @@ export function TopBar() {
               }}>
               {pages.map(page => (
                 <MenuItem key={page} onClick={() => handleCloseNavMenu(page)}>
-                  <Typography textAlign='center'>{page}</Typography>
+                  <Typography textAlign='center'>
+                    {page.replaceAll('-', ' ').toUpperCase()}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -97,16 +97,24 @@ export function TopBar() {
                 key={page}
                 onClick={() => handleCloseNavMenu(page)}
                 sx={{my: 2, color: 'white', display: 'block'}}>
-                {page}
+                {page.replaceAll('-', ' ')}
               </Text_Button>
             ))}
           </Box>
 
           <Stack direction={'row'} sx={{flexGrow: 0}} spacing={2}>
             <ThemeToggle />
-            <Tooltip title='Login'>
-              <SignInButton />
-            </Tooltip>
+
+            <DefaultButton>
+              <Link
+                href={'/auth'}
+                style={{
+                  textDecoration: 'none',
+                  color: 'inherit',
+                }}>
+                Login
+              </Link>
+            </DefaultButton>
           </Stack>
         </Toolbar>
       </Container>

@@ -5,7 +5,6 @@ import 'slick-carousel/slick/slick-theme.css'
 
 import useBookSearch from '@/utils/hooks/useBookSearch'
 import Card from '@/components/card/Card'
-import {Box} from '@mui/material'
 
 const BooksCarousel = () => {
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API_KEY!

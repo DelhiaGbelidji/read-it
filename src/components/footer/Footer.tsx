@@ -1,8 +1,8 @@
 'use client'
-import {Box, Container} from '@mui/material'
+import {Box} from '@mui/material'
 import {COLORS} from '@/utils/theme'
 
-export const Footer = () => {
+const Footer = () => {
   return (
     <Box
       position='static'
@@ -15,3 +15,4 @@ export const Footer = () => {
       }}></Box>
   )
 }
+export default Footer

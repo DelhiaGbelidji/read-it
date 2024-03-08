@@ -6,10 +6,12 @@ import * as Yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
 
 import {DefaultButton} from '@/components/buttons/Buttons'
-import {redirect, useRouter} from 'next/navigation'
-import {registerUser} from '@/app/api/signup/route'
+import {useRouter} from 'next/navigation'
+import {registerUser} from '@/app/api/users/route'
+import {notify, passwordRules} from '@/utils/constants'
+import {Type_CreateUser} from '@/app/api/users/types'
 
-export type Type_Signup = {
+export type Type_SignupData = {
   email: string
   firstname: string
   lastname: string
@@ -17,16 +19,17 @@ export type Type_Signup = {
   confirm_password: string
 }
 
+// min 5 characters, 1 upper case letter, 1 lower case letter, 1 numeric digit.
 export const Schema_SignUp = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
   firstname: Yup.string().required('Firstname is required'),
   lastname: Yup.string().required('Lastname is required'),
   password: Yup.string()
-    .required('Password is required')
-    .min(8, 'Password must be at least 8 characters'),
+    .matches(passwordRules, {message: 'Please create a stronger password'})
+    .required('Required'),
   confirm_password: Yup.string()
     .oneOf([Yup.ref('password')], 'Passwords must match')
-    .required('Confirm password is required'),
+    .required('Required'),
 })
 
 const SignUpForm = () => {
@@ -47,7 +50,7 @@ const SignUpForm = () => {
     control,
     reset,
     formState: {errors},
-  } = useForm<Type_Signup>({
+  } = useForm<Type_SignupData>({
     defaultValues: {
       firstname: '',
       lastname: '',
@@ -58,26 +61,24 @@ const SignUpForm = () => {
     resolver: yupResolver(Schema_SignUp),
   })
 
-  async function onSubmit(data: Type_Signup) {
-    console.log(data)
-    const userData = {
+  async function onSubmit(data: Type_SignupData) {
+    const user: Type_CreateUser = {
       firstname: data.firstname,
       lastname: data.lastname,
       email: data.email,
       password: data.password,
     }
-    const {error} = await registerUser(userData)
+    const {error, response} = await registerUser(user)
+
     if (error) {
-      alert(error)
-      return
+      notify(error)
     }
-    router.push('/account')
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={2}>
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           <Controller
             name='firstname'
             control={control}
@@ -93,7 +94,7 @@ const SignUpForm = () => {
             )}
           />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           <Controller
             name='lastname'
             control={control}
