@@ -41,7 +41,7 @@ const Rea_Card = ({imageUrl, title, description, onClick}: Type_Props_Card) => {
       <CardActionArea onClick={onClick}>
         <CardMedia
           component='img'
-          image={imageUrl ? imageUrl : '@public/assets/default.png'}
+          image={imageUrl ? imageUrl : '/assets/default.png'}
           alt={title}
           height={'380'}
         />

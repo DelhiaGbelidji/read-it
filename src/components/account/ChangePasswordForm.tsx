@@ -1,15 +1,15 @@
 'use client'
-import React, {FormEvent, useState} from 'react'
+import React, {useState} from 'react'
 import {TextField, Grid, InputAdornment, IconButton} from '@mui/material'
 import * as Yup from 'yup'
 import {DefaultButton} from '@/components/buttons/Buttons'
 import {Controller, useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import {Visibility, VisibilityOff} from '@mui/icons-material'
-import {notify, passwordRules} from '@/utils/constants'
+import {notifyError, notifySuccess, passwordRules} from '@/utils/constants'
 import {changeUserPassword} from '@/app/api/users/route'
 import {Type_ChangePassword} from '@/app/api/users/types'
-import {Rock_3D} from 'next/font/google'
+import {Type_Props_AccountTabs} from './AccountTabs'
 
 type Type_ChangePasswordData = {
   old_password?: string
@@ -23,12 +23,12 @@ const Schema_ChangePasswordForm = Yup.object().shape({
     message: 'Please create a stronger password',
   }),
   confirm_password: Yup.string().oneOf(
-    [Yup.ref('password')],
+    [Yup.ref('new_password')],
     'Passwords must match',
   ),
 })
 
-const ChangePasswordForm = () => {
+const ChangePasswordForm = ({session}: Type_Props_AccountTabs) => {
   //Show/hide password
   const [showPassword, setShowPassword] = useState(false)
   const handleClickShowPassword = () => setShowPassword(show => !show)
@@ -58,10 +58,16 @@ const ChangePasswordForm = () => {
     }
 
     try {
-      const {error} = await changeUserPassword(3, data, '')
+      const {error} = await changeUserPassword(
+        session.user.id,
+        data,
+        session.backendTokens.accessToken,
+      )
 
       if (error) {
-        notify(error)
+        notifyError(error)
+      } else {
+        notifySuccess('Password has been updated successfully')
       }
     } catch (error) {
       console.error(error)
