@@ -14,10 +14,9 @@ const AccountPage = async () => {
       'Content-Type': 'application/json',
     },
   })
+  if (!session) redirect('/auth')
 
   const user = await response.json()
-
-  if (!session) redirect('/auth')
 
   return (
     <Box

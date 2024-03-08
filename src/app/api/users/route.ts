@@ -1,5 +1,6 @@
 import { BACKEND_URL } from "@/utils/constants";
 import { Type_ChangePassword, Type_UpdateUser, Type_User } from "./types";
+import { signOut } from "next-auth/react";
 
 export const registerUser = async (data: Type_User) => {
     try {
@@ -55,5 +56,23 @@ export const updateUser = async (userId: number, data: Type_UpdateUser, token: s
     throw new Error(errorData.message || 'Something went wrong');
   }
 
+  return await response.json();
+};
+
+export const deleteUser = async (userId: number, token: string) => {
+  const response = await fetch(`${BACKEND_URL}/user/${userId}`, {
+    method: 'DELETE', 
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || 'Something went wrong');
+  }
+  signOut({ redirect: false });
+  window.location.href = '/';
   return await response.json();
 };

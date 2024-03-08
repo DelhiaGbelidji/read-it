@@ -27,7 +27,6 @@ const UpdateUserForm = ({session, user}: Type_Props_AccountTabs) => {
   const {
     handleSubmit,
     control,
-    reset,
     formState: {errors},
   } = useForm<Type_UpdateUserData>({
     defaultValues: {
