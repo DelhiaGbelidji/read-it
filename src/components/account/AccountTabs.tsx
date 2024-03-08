@@ -12,8 +12,9 @@ import {Session} from 'next-auth'
 
 export type Type_Props_AccountTabs = {
   session: Session
+  user?: Type_User
 }
-const AccountTabs = ({session}: Type_Props_AccountTabs) => {
+const AccountTabs = ({session, user}: Type_Props_AccountTabs) => {
   const [value, setValue] = useState('1')
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -38,7 +39,7 @@ const AccountTabs = ({session}: Type_Props_AccountTabs) => {
           </Styled_TabList>
         </Box>
         <Styled_TabPanel value='1'>
-          <UpdateUserForm session={session} />
+          <UpdateUserForm session={session} user={user} />
         </Styled_TabPanel>
         <Styled_TabPanel value='2'>
           <ChangePasswordForm session={session} />

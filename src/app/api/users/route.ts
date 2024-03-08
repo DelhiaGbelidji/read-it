@@ -1,5 +1,5 @@
 import { BACKEND_URL } from "@/utils/constants";
-import { Type_ChangePassword, Type_User } from "./types";
+import { Type_ChangePassword, Type_UpdateUser, Type_User } from "./types";
 
 export const registerUser = async (data: Type_User) => {
     try {
@@ -24,6 +24,24 @@ export const registerUser = async (data: Type_User) => {
 
 export const changeUserPassword = async (userId: number, data: Type_ChangePassword, token: string) => {
   const response = await fetch(`${BACKEND_URL}/user/${userId}/change-password`, {
+    method: 'PATCH', 
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || 'Something went wrong');
+  }
+
+  return await response.json();
+};
+
+export const updateUser = async (userId: number, data: Type_UpdateUser, token: string) => {
+  const response = await fetch(`${BACKEND_URL}/user/${userId}/update`, {
     method: 'PATCH', 
     headers: {
       'Content-Type': 'application/json',

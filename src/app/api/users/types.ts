@@ -10,3 +10,9 @@ export type Type_ChangePassword = {
         old_password: string;
         new_password: string;
 }
+
+export type Type_UpdateUser = {
+    email?: string
+    firstname?: string
+    lastname?: string
+}

@@ -25,7 +25,7 @@ const AccountPage = async () => {
       justifyContent='center'
       alignItems='center'
       minHeight='90vh'>
-      <AccountTabs session={session} />
+      <AccountTabs session={session} user={user} />
     </Box>
   )
 }

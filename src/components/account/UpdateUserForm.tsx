@@ -6,6 +6,9 @@ import {DefaultButton} from '@/components/buttons/Buttons'
 import {Controller, useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import {Type_Props_AccountTabs} from './AccountTabs'
+import {Type_UpdateUser} from '@/app/api/users/types'
+import {updateUser} from '@/app/api/users/route'
+import {notifyError, notifySuccess} from '@/utils/constants'
 
 type Type_UpdateUserData = {
   firstname?: string
@@ -19,22 +22,44 @@ const Schema_UpdateUserForm = Yup.object().shape({
   lastname: Yup.string().optional(),
 })
 
-const UpdateUserForm = ({session}: Type_Props_AccountTabs) => {
+const UpdateUserForm = ({session, user}: Type_Props_AccountTabs) => {
   //Form handler
   const {
     handleSubmit,
     control,
+    reset,
     formState: {errors},
   } = useForm<Type_UpdateUserData>({
     defaultValues: {
-      firstname: session.user.firstname,
-      lastname: session.user.lastname,
-      email: session.user.email,
+      firstname: user?.firstname,
+      lastname: user?.lastname,
+      email: user?.email,
     },
     resolver: yupResolver(Schema_UpdateUserForm),
   })
 
-  const onSubmit = () => {}
+  const onSubmit = async (formData: Type_UpdateUserData) => {
+    const data: Type_UpdateUser = {
+      firstname: formData.firstname,
+      lastname: formData.lastname,
+      email: formData.email,
+    }
+
+    try {
+      const {error, response} = await updateUser(
+        session.user.id,
+        data,
+        session.backendTokens.accessToken,
+      )
+
+      if (error) {
+        notifyError(error)
+      }
+      notifySuccess(response)
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -93,7 +118,7 @@ const UpdateUserForm = ({session}: Type_Props_AccountTabs) => {
         variant='contained'
         fullWidth
         sx={{mt: 3, py: 2}}>
-        Save changes{' '}
+        Save changes
       </DefaultButton>
     </form>
   )
