@@ -47,7 +47,7 @@ interface SearchBarProps {
     onSearchChange: (searchTerm: string) => void;
 }
 
-const SearchBar = ({ onSearchChange }) => {
+const SearchBar = ({ onSearchChange }: SearchBarProps) => {
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         onSearchChange(event.target.value);
     };    

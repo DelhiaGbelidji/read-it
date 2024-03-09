@@ -7,7 +7,7 @@ import {
   CardActionArea,
   styled,
 } from '@mui/material'
-import {COLORS} from '@/utils/theme'
+import {COLORS} from '../../utils/theme'
 
 type Type_Props_Card = {
   imageUrl?: string
