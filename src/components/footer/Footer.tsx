@@ -2,7 +2,7 @@
 import {Box} from '@mui/material'
 import {COLORS} from '@/utils/theme'
 
-const Footer = () => {
+const Footer = ({height}: {height: string}) => {
   return (
     <Box
       position='static'
@@ -10,7 +10,7 @@ const Footer = () => {
         top: 'auto',
         bottom: 0,
         width: '100%',
-        height: '70px',
+        height: height,
         backgroundColor: COLORS.lightGrey,
       }}></Box>
   )

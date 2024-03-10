@@ -26,7 +26,7 @@ export default async function RootLayout({
             <main>
               <Container sx={{minHeight: '90vH', p: 5}}>{children}</Container>
             </main>
-            <Footer />
+            <Footer height='70px' />
           </ThemeProvider>
         </Providers>
       </body>
