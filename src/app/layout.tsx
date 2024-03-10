@@ -13,9 +13,8 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const session = await getServerSession(authOptions)
-
   const fullName = `${session?.user?.firstname} + " " + ${session?.user.lastname}`
-
+  console.log(session)
   return (
     <html lang='en'>
       <CssBaseline />

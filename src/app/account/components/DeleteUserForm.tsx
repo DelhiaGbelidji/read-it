@@ -4,6 +4,10 @@ import * as Yup from 'yup'
 import {Checkbox, FormControlLabel, Grid, Typography} from '@mui/material'
 import {Controller, useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
+import {Type_Props_AccountTabs} from './AccountTabs'
+import {deleteUser} from '@/app/api/users/route'
+import {notifyError, notifySuccess} from '@/utils/constants'
+import {COLORS} from '@/utils/theme'
 
 type Type_DeleteUserData = {
   confirm_delete?: boolean
@@ -16,7 +20,7 @@ const Schema_DeleteUserForm = Yup.object().shape({
   ),
 })
 
-const DeleteUserForm = () => {
+const DeleteUserForm = ({session}: Type_Props_AccountTabs) => {
   //Form handler
   const {
     handleSubmit,
@@ -29,8 +33,19 @@ const DeleteUserForm = () => {
     resolver: yupResolver(Schema_DeleteUserForm),
   })
 
-  const onSubmit = () => {
-    console.log('user deleted')
+  const onSubmit = async () => {
+    try {
+      const {error, response} = await deleteUser(
+        session.user.id,
+        session.backendTokens.accessToken,
+      )
+      if (error) {
+        notifyError(error)
+      }
+      notifySuccess(response)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
@@ -68,9 +83,7 @@ const DeleteUserForm = () => {
               variant='caption'
               display='block'
               gutterBottom
-              sx={{color: 'red'}}>
-              {' '}
-              {/* Assurez-vous que la couleur est correctement référencée */}
+              sx={{color: COLORS.red500}}>
               {errors.confirm_delete.message}
             </Typography>
           )}
@@ -90,4 +103,3 @@ const DeleteUserForm = () => {
 }
 
 export default DeleteUserForm
-// Once you delete your account, there is no going back. Please be certain.

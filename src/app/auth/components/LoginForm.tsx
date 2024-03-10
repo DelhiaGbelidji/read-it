@@ -9,7 +9,7 @@ import {TextField, Grid, InputAdornment, IconButton} from '@mui/material'
 import {Visibility, VisibilityOff} from '@mui/icons-material'
 
 import {DefaultButton} from '@/components/buttons/Buttons'
-import {notify} from '@/utils/constants'
+import {notifyError} from '@/utils/constants'
 
 type Type_Login = {
   username: string
@@ -53,9 +53,9 @@ const LoginForm = () => {
       })
 
       if (result?.error) {
-        notify('Username or password is incorrect')
+        notifyError('Username or password is incorrect')
       }
-      router.push('/account')
+      router.push('/projects')
     } catch (error) {
       console.error(error)
     }

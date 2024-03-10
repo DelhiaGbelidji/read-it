@@ -7,8 +7,14 @@ import {Styled_TabList, Styled_TabPanel} from '@/components/tabs/Tabs.style'
 import UpdateUserForm from './UpdateUserForm'
 import ChangePasswordForm from './ChangePasswordForm'
 import DeleteUserForm from './DeleteUserForm'
+import {Type_User} from '@/app/api/users/types'
+import {Session} from 'next-auth'
 
-const AccountTabs = () => {
+export type Type_Props_AccountTabs = {
+  session: Session
+  user?: Type_User
+}
+const AccountTabs = ({session, user}: Type_Props_AccountTabs) => {
   const [value, setValue] = useState('1')
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -33,13 +39,13 @@ const AccountTabs = () => {
           </Styled_TabList>
         </Box>
         <Styled_TabPanel value='1'>
-          <UpdateUserForm />
+          <UpdateUserForm session={session} user={user} />
         </Styled_TabPanel>
         <Styled_TabPanel value='2'>
-          <ChangePasswordForm />
+          <ChangePasswordForm session={session} />
         </Styled_TabPanel>
         <Styled_TabPanel value='3'>
-          <DeleteUserForm />
+          <DeleteUserForm session={session} />
         </Styled_TabPanel>
       </TabContext>
     </Stack>

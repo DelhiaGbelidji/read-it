@@ -9,7 +9,7 @@ import Card from '@/components/card/Card'
 import {Styled_IconButton} from '@/components/buttons/IconButton.style'
 import CreateProjectForm from './components/CreateProjectForm'
 
-const Projects = () => {
+const ProjectsPage = () => {
   const isMobile = useMediaQuery('(max-width:600px)')
   const spacing = isMobile ? 2 : 6
   const [searchTerm, setSearchTerm] = useState('')
@@ -85,4 +85,4 @@ const Projects = () => {
   )
 }
 
-export default Projects
+export default ProjectsPage

@@ -8,8 +8,8 @@ import {yupResolver} from '@hookform/resolvers/yup'
 import {DefaultButton} from '@/components/buttons/Buttons'
 import {useRouter} from 'next/navigation'
 import {registerUser} from '@/app/api/users/route'
-import {notify, passwordRules} from '@/utils/constants'
-import {Type_CreateUser} from '@/app/api/users/types'
+import {notifyError, passwordRules} from '@/utils/constants'
+import {Type_User} from '@/app/api/users/types'
 
 export type Type_SignupData = {
   email: string
@@ -62,16 +62,30 @@ const SignUpForm = () => {
   })
 
   async function onSubmit(data: Type_SignupData) {
-    const user: Type_CreateUser = {
-      firstname: data.firstname,
-      lastname: data.lastname,
-      email: data.email,
-      password: data.password,
-    }
-    const {error, response} = await registerUser(user)
+    try {
+      const user: Type_User = {
+        firstname: data.firstname,
+        lastname: data.lastname,
+        email: data.email,
+        password: data.password,
+      }
+      const {error} = await registerUser(user)
 
-    if (error) {
-      notify(error)
+      if (error) {
+        notifyError(error)
+      }
+
+      reset({
+        firstname: '',
+        lastname: '',
+        email: '',
+        password: '',
+        confirm_password: '',
+      })
+
+      router.refresh()
+    } catch (error) {
+      console.error(error)
     }
   }
 
