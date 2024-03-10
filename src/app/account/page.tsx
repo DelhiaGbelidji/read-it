@@ -1,10 +1,7 @@
-import UpdateUserForm from '../../components/account/UpdateUserForm'
 import {getServerSession} from 'next-auth'
 import {authOptions} from '../api/auth/[...nextauth]/route'
-import {Box, Divider, Stack, Typography} from '@mui/material'
-import DeleteUser from '../../components/account/DeleteUserForm'
-import {COLORS} from '@/utils/theme'
-import AccountTabs from '@/components/account/AccountTabs'
+import {Box} from '@mui/material'
+import AccountTabs from './components/AccountTabs'
 
 export default async function PrivatePage() {
   const session = getServerSession(authOptions)

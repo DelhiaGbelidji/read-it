@@ -3,12 +3,11 @@ import {useState} from 'react'
 import {Box, Stack, Tab, Typography} from '@mui/material'
 import {TabContext} from '@mui/lab'
 
-import {Styled_TabList, Styled_TabPanel} from '../tabs/Tabs.style'
-import UpdateUserForm from './UpdateUserForm'
-import ChangePasswordForm from './ChangePasswordForm'
-import DeleteUserForm from './DeleteUserForm'
+import LoginForm from './LoginForm'
+import SignUpForm from './SignUpForm'
+import {Styled_TabList, Styled_TabPanel} from '@/components/tabs/Tabs.style'
 
-const AccountTabs = () => {
+const AuthTabs = () => {
   const [value, setValue] = useState('1')
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -18,32 +17,28 @@ const AccountTabs = () => {
   return (
     <Stack direction='column' spacing={2} alignItems='center'>
       <Typography fontSize={33} sx={{fontWeight: 700}}>
-        Update your information 👀
+        Good to see you ! 🤗
       </Typography>
 
       <TabContext value={value}>
         <Box>
           <Styled_TabList
             onChange={handleChange}
-            aria-label='account-tabs'
+            aria-label='auth tabs'
             centered>
-            <Tab label='Personal information' value='1' />
-            <Tab label='Change password' value='2' />
-            <Tab label='Delete profile' value='3' />
+            <Tab label='Login' value='1' />
+            <Tab label='Sign Up' value='2' />
           </Styled_TabList>
         </Box>
         <Styled_TabPanel value='1'>
-          <UpdateUserForm />
+          <LoginForm />
         </Styled_TabPanel>
         <Styled_TabPanel value='2'>
-          <ChangePasswordForm />
-        </Styled_TabPanel>
-        <Styled_TabPanel value='3'>
-          <DeleteUserForm />
+          <SignUpForm />
         </Styled_TabPanel>
       </TabContext>
     </Stack>
   )
 }
 
-export default AccountTabs
+export default AuthTabs

@@ -85,10 +85,10 @@ const CreateProjectForm = () => {
                 />
               )}
             />
-            {/* <Grid item xs={8}>
+            <Grid item xs={8}>
               {' '}
               <ImageUploadArea onImageSelect={handleImageSelect} />
-            </Grid> */}
+            </Grid>
             <Grid item xs={8}>
               {' '}
               <PdfUploadArea onFileSelect={handlePDFSelect} />
