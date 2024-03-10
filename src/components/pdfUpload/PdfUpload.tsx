@@ -17,8 +17,8 @@ const onDrop = useCallback((acceptedFiles: File[], fileRejections: any) => {
     if (acceptedFiles.length > 0) {
         const file = acceptedFiles[0];
         console.log("Accepted file:", file);
-      setFileName(file.name); // Update the state with the new file name
-      onFileSelect(file); // Call the callback with the selected file
+        setFileName(file.name);
+        onFileSelect(file);
     }
 }, [onFileSelect]);
 
@@ -28,7 +28,6 @@ const { getRootProps, getInputProps, isDragActive, fileRejections } = useDropzon
     maxFiles: 1,
 });
 
-// Define your inline styles
 const style = {
     border: '2px dashed #cccccc',
     borderRadius: '5px',
@@ -43,7 +42,7 @@ return (
     <div style={style} {...getRootProps()} >
         <input {...getInputProps()} />
             {isDragActive && <p>Drop the PDF here...</p>}
-            {!isDragActive && <p>Drag 'n' drop a PDF file here, or click to select files</p>}
+            {!isDragActive && <p>Drag or click to upload your manuscript</p>}
             {fileName && <p>Selected file: {fileName}</p>}
             {fileRejections.length > 0 && <p style={{ color: 'red' }}>File type not accepted, please upload a PDF.</p>}
     </div>

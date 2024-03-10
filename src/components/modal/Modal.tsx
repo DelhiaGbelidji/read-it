@@ -10,40 +10,36 @@ import * as yup from 'yup';
 import ImageUploadArea from '../imageUpload/ImageUpload';
 import PdfUploadArea from '../pdfUpload/PdfUpload';
 import { useState } from 'react';
+import { DefaultButton, ClearButton } from '../buttons/Buttons';
 
+
+// Définition des props pour le composant Modal
 interface ModalProps {
     open: boolean;
     handleClose: () => void;
 }
 
+// interface est une manière de définire la forme(le contenue) d'un object
 interface IFormInput {
     projectName: string;
 }
 
+// Shema de Validation avec YUP
 const schema_project = yup.object({
-    projectName: yup.string().required('Project name is required'),
-    image: yup.mixed()
-        .test('fileSize', 'The file is too large', value => !value)
-        .test('fileType', 'Unsupported file format', value => !value)
-        // You can add more tests as needed.
+    projectName: yup.string().required('Project name is required')
 }).required();
 
 
 
 
 const Modal = ({open, handleClose}: ModalProps) => {
-
+// State pour gérer l'etat de l'image et du pdf
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [pdfFile, setPDFFile] = useState<File | null>(null);
-
-    const handleImageSelect = (file: File) => {
-        setImageFile(file);
-    };
-
-    const handlePDFSelect = (file: File) => {
-        setPDFFile(file);
-    };
-
+// Handler -> gestionnaires d'événements qui mettent à jour l'état du composant avec l'image et le pdf sélectioné
+    const handleImageSelect = (file: File) => {setImageFile(file);};
+    const handlePDFSelect = (file: File) => {setPDFFile(file);};
+// Set up de yup pour utilisé le shema de validation mis en place plus
     const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>({
         resolver: yupResolver(schema_project),
         });
@@ -53,7 +49,17 @@ const onSubmit: SubmitHandler<IFormInput> = (data) => {
     formData.append('projectName', data.projectName);
     if (imageFile) {
         formData.append('image', imageFile);
+    } else {
+        // Fetch and append the default image as a blob
+        fetch('/src/assets/logo.png')
+            .then(response => response.blob())
+            .then(blob => {
+                const defaultImageFile = new File([blob], 'default.jpg', { type: 'image/jpeg' });
+                formData.append('image', defaultImageFile);
+            })
+            .catch(error => console.error('Error fetching default image:', error));
     }
+
     if (pdfFile) {
         formData.append('pdf', pdfFile);
     }
@@ -61,8 +67,7 @@ const onSubmit: SubmitHandler<IFormInput> = (data) => {
         console.log(key, value);
     }
 
-    // Here, you would handle the form data submission to your backend.
-    // For example, using fetch to send it to a server endpoint:
+    // Ici tu peux gerer la connexion avec le back ex:
     // fetch('your-endpoint', {
     //     method: 'POST',
     //     body: formData,
@@ -84,8 +89,8 @@ return (
             <PdfUploadArea onFileSelect={handlePDFSelect} />
         </DialogContent>
         <DialogActions>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button type="submit">Add</Button>
+            <DefaultButton onClick={handleClose}>Cancel</DefaultButton>
+            <ClearButton type="submit">Create</ClearButton>
         </DialogActions>
         </form>
         </Dialog>

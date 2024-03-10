@@ -20,7 +20,6 @@ const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: 'image/*' as any,
 });
 
-// Define your inline styles
 const style = {
     border: '2px dashed #cccccc',
     borderRadius: '5px',
