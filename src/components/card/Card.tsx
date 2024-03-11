@@ -18,21 +18,15 @@ type Type_Props_Card = {
 
 export const Styled_Card = styled(Card)(() => ({
   width: 300,
-  height: 420,
   borderColor: COLORS.grey600,
   borderRadius: '8px',
 }))
 
 export const Styled_CardContent = styled(CardContent)(() => ({
-  height: 130,
+  height: '100%',
   padding: '8px',
   display: 'flex',
-  flexDirection: 'row',
-  '&.MuiCardContent-root': {
-    '&:last-child': {
-      paddingBottom: '8px',
-    },
-  },
+  flexDirection: 'column',
 }))
 
 const Rea_Card = ({imageUrl, title, description, onClick}: Type_Props_Card) => {
@@ -43,12 +37,20 @@ const Rea_Card = ({imageUrl, title, description, onClick}: Type_Props_Card) => {
           component='img'
           image={imageUrl ? imageUrl : '/assets/default.png'}
           alt={title}
-          height={'380'}
+          sx={{height: 200}}
         />
         {(title || description) && (
           <Styled_CardContent>
-            {title && <Typography noWrap>{title}</Typography>}
-            {description && <Typography noWrap>{description}</Typography>}
+            {title && (
+              <Typography variant='subtitle2' noWrap>
+                {title}
+              </Typography>
+            )}
+            {description && (
+              <Typography variant='caption' noWrap>
+                {description}
+              </Typography>
+            )}
           </Styled_CardContent>
         )}
       </CardActionArea>
