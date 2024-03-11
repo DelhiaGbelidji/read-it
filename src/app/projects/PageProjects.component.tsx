@@ -5,6 +5,8 @@ import AddCircleIcon from '@mui/icons-material/AddCircle'
 import {Type_Project} from '../api/projects/types'
 import Rea_Card from '@/components/card/Card'
 import {useState} from 'react'
+import Modal from '@/components/modal/Modal'
+import CreateProjectForm from './components/CreateProjectForm'
 
 type Type_Props_PageProjectComponent = {
   projects: Type_Project[]
@@ -27,6 +29,17 @@ const PageProjectComponent = ({
   //RESPONSIVE
   const isMobile = useMediaQuery('(max-width:600px)')
   const spacing = isMobile ? 2 : 4
+
+  //MODAL
+  const [openFormDialog, setOpenFormDialog] = useState(false)
+
+  const handleOpenFormDialog = () => {
+    setOpenFormDialog(true)
+  }
+
+  const handleCloseFormDialog = () => {
+    setOpenFormDialog(false)
+  }
 
   return (
     <>
@@ -56,7 +69,7 @@ const PageProjectComponent = ({
             <Styled_IconButton
               size='large'
               aria-haspopup='true'
-              onClick={() => {}}
+              onClick={handleOpenFormDialog}
               color='inherit'>
               <AddCircleIcon />
             </Styled_IconButton>
@@ -73,6 +86,10 @@ const PageProjectComponent = ({
           </Grid>
         </>
       )}
+
+      <Modal open={openFormDialog} handleClose={handleCloseFormDialog}>
+        <CreateProjectForm />
+      </Modal>
     </>
   )
 }

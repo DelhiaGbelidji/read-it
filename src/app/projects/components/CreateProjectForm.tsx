@@ -1,3 +1,4 @@
+import {ClearButton} from '@/components/buttons/Buttons'
 import ImageUploadArea from '@/components/imageUpload/ImageUpload'
 import PdfUploadArea from '@/components/pdfUpload/PdfUpload'
 import {yupResolver} from '@hookform/resolvers/yup'
@@ -58,8 +59,8 @@ const CreateProjectForm = () => {
     // //     method: 'POST',
     // //     body: formData,
     // // });
-    // handleClose()
   }
+
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -85,16 +86,22 @@ const CreateProjectForm = () => {
                 />
               )}
             />
-            <Grid item xs={8}>
-              {' '}
+            {/* <Grid item xs={8}>
               <ImageUploadArea onImageSelect={handleImageSelect} />
             </Grid>
             <Grid item xs={8}>
-              {' '}
               <PdfUploadArea onFileSelect={handlePDFSelect} />
-            </Grid>
+            </Grid> */}
           </Grid>
         </Grid>
+
+        <ClearButton
+          type='submit'
+          variant='contained'
+          fullWidth
+          sx={{mt: 3, py: 2}}>
+          Create
+        </ClearButton>
       </form>
     </>
   )

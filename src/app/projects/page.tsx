@@ -9,16 +9,8 @@ const ProjectsPage = () => {
   const {data: session} = useSession()
   const [data, setData] = useState<Type_Project[]>([])
   const [error, setError] = useState<string | null>(null)
-  const [openFormDialog, setOpenFormDialog] = useState(false)
 
-  const handleOpenFormDialog = () => {
-    setOpenFormDialog(true)
-  }
-
-  const handleCloseFormDialog = () => {
-    setOpenFormDialog(false)
-  }
- useEffect(() => {
+  useEffect(() => {
     const fetchProjects = async () => {
       if (session?.backendTokens?.accessToken) {
         const {data: projects, error} = await getProjects(
@@ -35,13 +27,8 @@ const ProjectsPage = () => {
 
     fetchProjects()
   }, [session])
-    
-  return  (<><PageProjectComponent projects={data} error={error} />      <Modal open={openFormDialog} handleClose={handleCloseFormDialog}>
-        <CreateProjectForm />
-      </Modal></>
-  )
- 
 
+  return <PageProjectComponent projects={data} error={error} />
 }
 
 export default ProjectsPage
