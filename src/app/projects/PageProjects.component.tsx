@@ -1,6 +1,6 @@
 import {Styled_IconButton} from '@/components/buttons/IconButton.style'
 import SearchBar from '@/components/searchbar/SearchBar'
-import {useMediaQuery, Container, Typography, Card} from '@mui/material'
+import {useMediaQuery, Container, Typography, Grid} from '@mui/material'
 import AddCircleIcon from '@mui/icons-material/AddCircle'
 import {Type_Project} from '../api/projects/types'
 import Rea_Card from '@/components/card/Card'
@@ -61,15 +61,16 @@ const PageProjectComponent = ({
               <AddCircleIcon />
             </Styled_IconButton>
           </Container>
-          <Container sx={{display: 'flex', gap: spacing, mt: '50px'}}>
-            {projects.map((project, index) => (
-              <Rea_Card
-                key={index}
-                title={project.name}
-                description={project.author}
-              />
+          <Grid
+            container
+            spacing={{xs: 2, sm: 3}}
+            columns={{xs: 4, sm: 8, md: 12}}>
+            {filteredProjects.map((project, index) => (
+              <Grid item xs={4} sm={4} md={4} key={index}>
+                <Rea_Card title={project.name} description={project.author} />
+              </Grid>
             ))}
-          </Container>
+          </Grid>
         </>
       )}
     </>
