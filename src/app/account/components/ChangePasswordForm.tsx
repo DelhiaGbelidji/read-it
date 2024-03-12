@@ -1,6 +1,6 @@
 'use client'
 import React, {useState} from 'react'
-import {TextField, Grid, InputAdornment, IconButton} from '@mui/material'
+import {Grid, InputAdornment, IconButton} from '@mui/material'
 import * as Yup from 'yup'
 import {DefaultButton} from '@/components/buttons/Buttons'
 import {Controller, useForm} from 'react-hook-form'
@@ -10,6 +10,7 @@ import {notifyError, notifySuccess, passwordRules} from '@/utils/constants'
 import {changeUserPassword} from '@/app/api/users/route'
 import {Type_ChangePassword} from '@/app/api/users/types'
 import {Type_Props_AccountTabs} from './AccountTabs'
+import {Styled_TextField} from '@/components/inputText/TextField.style'
 
 type Type_ChangePasswordData = {
   old_password?: string
@@ -82,7 +83,7 @@ const ChangePasswordForm = ({session}: Type_Props_AccountTabs) => {
             name='old_password'
             control={control}
             render={({field}) => (
-              <TextField
+              <Styled_TextField
                 {...field}
                 label='Current Password'
                 type={showPassword ? 'text' : 'password'}
@@ -111,7 +112,7 @@ const ChangePasswordForm = ({session}: Type_Props_AccountTabs) => {
             name='new_password'
             control={control}
             render={({field}) => (
-              <TextField
+              <Styled_TextField
                 {...field}
                 label='Password'
                 type={showPassword ? 'text' : 'password'}
@@ -140,7 +141,7 @@ const ChangePasswordForm = ({session}: Type_Props_AccountTabs) => {
             name='confirm_password'
             control={control}
             render={({field}) => (
-              <TextField
+              <Styled_TextField
                 {...field}
                 label='Confirm password'
                 type={showPassword ? 'text' : 'password'}

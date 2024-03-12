@@ -3,13 +3,14 @@ import {useForm, Controller} from 'react-hook-form'
 import * as Yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
 import {signIn} from 'next-auth/react'
-import {redirect, useRouter} from 'next/navigation'
+import {useRouter} from 'next/navigation'
 
-import {TextField, Grid, InputAdornment, IconButton} from '@mui/material'
+import {Grid, InputAdornment, IconButton} from '@mui/material'
 import {Visibility, VisibilityOff} from '@mui/icons-material'
 
 import {DefaultButton} from '@/components/buttons/Buttons'
 import {notifyError} from '@/utils/constants'
+import {Styled_TextField} from '@/components/inputText/TextField.style'
 
 type Type_Login = {
   username: string
@@ -69,7 +70,7 @@ const LoginForm = () => {
             name='username'
             control={control}
             render={({field}) => (
-              <TextField
+              <Styled_TextField
                 autoComplete='off'
                 {...field}
                 label='Email'
@@ -86,7 +87,7 @@ const LoginForm = () => {
             name='password'
             control={control}
             render={({field}) => (
-              <TextField
+              <Styled_TextField
                 autoComplete='off'
                 {...field}
                 label='Password'

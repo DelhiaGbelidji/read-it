@@ -21,6 +21,7 @@ const Schema_DeleteUserForm = Yup.object().shape({
 })
 
 const DeleteUserForm = ({session}: Type_Props_AccountTabs) => {
+  console.log(session)
   //Form handler
   const {
     handleSubmit,

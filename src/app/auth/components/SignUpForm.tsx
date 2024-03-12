@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {useForm, Controller} from 'react-hook-form'
-import {TextField, Grid, InputAdornment, IconButton} from '@mui/material'
+import {Grid, InputAdornment, IconButton} from '@mui/material'
 import {Visibility, VisibilityOff} from '@mui/icons-material'
 import * as Yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
@@ -10,6 +10,7 @@ import {useRouter} from 'next/navigation'
 import {registerUser} from '@/app/api/users/route'
 import {notifyError, passwordRules} from '@/utils/constants'
 import {Type_User} from '@/app/api/users/types'
+import {Styled_TextField} from '@/components/inputText/TextField.style'
 
 export type Type_SignupData = {
   email: string
@@ -83,7 +84,7 @@ const SignUpForm = () => {
         confirm_password: '',
       })
 
-      router.refresh()
+      router.push('/auth')
     } catch (error) {
       console.error(error)
     }
@@ -97,7 +98,7 @@ const SignUpForm = () => {
             name='firstname'
             control={control}
             render={({field}) => (
-              <TextField
+              <Styled_TextField
                 {...field}
                 label='Firstname'
                 variant='outlined'
@@ -113,7 +114,7 @@ const SignUpForm = () => {
             name='lastname'
             control={control}
             render={({field}) => (
-              <TextField
+              <Styled_TextField
                 {...field}
                 label='Lastname'
                 variant='outlined'
@@ -129,7 +130,7 @@ const SignUpForm = () => {
             name='email'
             control={control}
             render={({field}) => (
-              <TextField
+              <Styled_TextField
                 {...field}
                 label='Email'
                 variant='outlined'
@@ -145,7 +146,7 @@ const SignUpForm = () => {
             name='password'
             control={control}
             render={({field}) => (
-              <TextField
+              <Styled_TextField
                 {...field}
                 label='Password'
                 type={showPassword ? 'text' : 'password'}
@@ -174,7 +175,7 @@ const SignUpForm = () => {
             name='confirm_password'
             control={control}
             render={({field}) => (
-              <TextField
+              <Styled_TextField
                 {...field}
                 label='Confirm password'
                 type={showPassword ? 'text' : 'password'}

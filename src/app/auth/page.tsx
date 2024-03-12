@@ -11,7 +11,6 @@ const AuthPage = () => {
       justifyContent='center'
       alignItems='center'
       minHeight='90vh'>
-      <Toaster />
       <AuthTabs />
     </Box>
   )

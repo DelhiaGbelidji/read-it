@@ -4,7 +4,7 @@ import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
 import CloseIcon from '@mui/icons-material/Close'
 import {IconButton, styled, useMediaQuery} from '@mui/material'
-import {theme} from '@/utils/theme'
+import {COLORS, theme} from '@/utils/theme'
 
 type Type_ModalProps = {
   open: boolean
@@ -26,7 +26,9 @@ const Modal = ({open, handleClose, children}: Type_ModalProps) => {
   return (
     <>
       <Styled_Dialog open={open} fullScreen={fullScreen}>
-        <DialogTitle>New project </DialogTitle>
+        <DialogTitle sx={{backgroundColor: COLORS.lightGrey}}>
+          New project{' '}
+        </DialogTitle>
         <IconButton
           aria-label='close'
           onClick={handleClose}
@@ -34,9 +36,8 @@ const Modal = ({open, handleClose, children}: Type_ModalProps) => {
             position: 'absolute',
             right: 8,
             top: 8,
-            color: theme => theme.palette.grey[500],
+            color: COLORS.black,
           }}>
-          {' '}
           <CloseIcon />
         </IconButton>
         <DialogContent>{children}</DialogContent>

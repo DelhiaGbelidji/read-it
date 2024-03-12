@@ -1,12 +1,22 @@
-import {ClearButton} from '@/components/buttons/Buttons'
-import ImageUploadArea from '@/components/imageUpload/ImageUpload'
-import PdfUploadArea from '@/components/pdfUpload/PdfUpload'
+import {formatterProject} from '@/app/api/projects/formatters'
+import {createProject} from '@/app/api/projects/route'
+import {Type_CreateProject, Type_Project} from '@/app/api/projects/types'
+import {DefaultButton} from '@/components/buttons/Buttons'
+import {Styled_TextField} from '@/components/inputText/TextField.style'
+import {notifyError, notifySuccess} from '@/utils/constants'
 import {yupResolver} from '@hookform/resolvers/yup'
-import {Grid, TextField} from '@mui/material'
-import {useState} from 'react'
+import {Grid} from '@mui/material'
+import {Session} from 'next-auth'
+import {Dispatch, SetStateAction} from 'react'
 import {Controller, useForm} from 'react-hook-form'
-
 import * as Yup from 'yup'
+
+type Type_Props_CreateProjectForm = {
+  session: Session
+  setOpenFormDialog: Dispatch<SetStateAction<boolean>>
+  setData: Dispatch<SetStateAction<Type_Project[]>>
+}
+
 type Type_CreateProjectData = {
   name: string
 }
@@ -14,17 +24,11 @@ const Schema_Project = Yup.object().shape({
   name: Yup.string().required('Project name is required'),
 })
 
-const CreateProjectForm = () => {
-  const [imageFile, setImageFile] = useState<File | null>(null)
-  const [pdfFile, setPDFFile] = useState<File | null>(null)
-
-  const handleImageSelect = (file: File) => {
-    setImageFile(file)
-  }
-  const handlePDFSelect = (file: File) => {
-    setPDFFile(file)
-  }
-
+const CreateProjectForm = ({
+  session,
+  setOpenFormDialog,
+  setData,
+}: Type_Props_CreateProjectForm) => {
   const {
     control,
     handleSubmit,
@@ -36,46 +40,38 @@ const CreateProjectForm = () => {
     resolver: yupResolver(Schema_Project),
   })
 
-  const onSubmit = () => {
-    // if (imageFile) {
-    //   formData.append('image', imageFile)
-    // } else {
-    //   // Fetch and append the default image as a blob
-    //   fetch('/src/assets/logo.png')
-    //     .then(response => response.blob())
-    //     .then(blob => {
-    //       const defaultImageFile = new File([blob], 'default.jpg', {
-    //         type: 'image/jpeg',
-    //       })
-    //       formData.append('image', defaultImageFile)
-    //     })
-    //     .catch(error => console.error('Error fetching default image:', error))
-    // }
-    // if (pdfFile) {
-    //   formData.append('pdf', pdfFile)
-    // }
-    // // Ici tu peux gerer la connexion avec le back ex:
-    // // fetch('your-endpoint', {
-    // //     method: 'POST',
-    // //     body: formData,
-    // // });
+  const onSubmit = async (data: Type_CreateProjectData) => {
+    try {
+      const projectData: Type_CreateProject = {name: data.name}
+      const {error, response} = await createProject(
+        projectData,
+        session.backendTokens.accessToken,
+      )
+
+      if (error) {
+        notifyError(error)
+        return
+      }
+
+      notifySuccess('Project has been created successfully')
+      setOpenFormDialog(false)
+      setData(prevProjects => [...prevProjects, formatterProject(response)])
+    } catch (error) {
+      console.error(error)
+      notifyError('An unexpected error occurred')
+    }
   }
 
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Grid container spacing={3} justifyContent='center'>
-          <Grid
-            item
-            xs={8}
-            display='flex'
-            flexDirection='column'
-            alignItems='center'>
+        <Grid container spacing={2} justifyContent='center'>
+          <Grid item xs={12} md={8}>
             <Controller
               name='name'
               control={control}
               render={({field}) => (
-                <TextField
+                <Styled_TextField
                   autoComplete='off'
                   {...field}
                   label='Project name'
@@ -86,22 +82,20 @@ const CreateProjectForm = () => {
                 />
               )}
             />
-            {/* <Grid item xs={8}>
-              <ImageUploadArea onImageSelect={handleImageSelect} />
-            </Grid>
-            <Grid item xs={8}>
-              <PdfUploadArea onFileSelect={handlePDFSelect} />
-            </Grid> */}
           </Grid>
         </Grid>
-
-        <ClearButton
-          type='submit'
-          variant='contained'
-          fullWidth
-          sx={{mt: 3, py: 2}}>
-          Create
-        </ClearButton>
+        <Grid
+          item
+          xs={12}
+          md={8}
+          sx={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+          }}>
+          <DefaultButton type='submit' variant='contained' sx={{mt: 3, py: 2}}>
+            Create
+          </DefaultButton>
+        </Grid>
       </form>
     </>
   )
