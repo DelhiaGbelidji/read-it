@@ -1,13 +1,12 @@
 'use client'
 import React, {useEffect, useState} from 'react'
 import {Type_Project} from '../api/projects/types'
-import {getProjects} from '../api/projects/route'
+import {deleteProject, getProjects} from '../api/projects/route'
 import {useSession} from 'next-auth/react'
 import PageProjectsComponent from './PageProjects.component'
 import {Session} from 'next-auth'
-import {Alert, CircularProgress, Stack, Typography} from '@mui/material'
-import {COLORS} from '@/utils/theme'
 import Loading from '@/components/loading/Loading'
+import {notifyError, notifySuccess} from '@/utils/constants'
 
 const PageProjectsContainer = () => {
   const {data: session} = useSession()
@@ -38,6 +37,17 @@ const PageProjectsContainer = () => {
     fetchProjects()
   }, [session])
 
+  const updateProjects = (project: Type_Project) => {
+    const index = data.map(r => r.id).indexOf(project.id)
+    const newData = [...data]
+    newData[index] = project
+    setData(newData)
+  }
+  const removeProject = async (id: number) => {
+    session && (await deleteProject(id, session.backendTokens.accessToken))
+    notifySuccess('Project has been deleted successfully')
+    setData(data.filter((project: Type_Project): boolean => project.id != id))
+  }
   return (
     <>
       {isLoading ? (
@@ -47,6 +57,8 @@ const PageProjectsContainer = () => {
           setData={setData}
           projects={data}
           session={session as Session}
+          updateProjects={updateProjects}
+          removeProject={removeProject}
         />
       )}
     </>

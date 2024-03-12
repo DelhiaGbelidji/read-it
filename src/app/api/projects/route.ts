@@ -1,6 +1,6 @@
 import { BACKEND_URL } from "@/utils/constants"
 import { formatterProjects } from "./formatters";
-import { Type_CreateProject, Type_api_project } from "./types";
+import { Type_CreateProject, Type_UpdateProject, Type_api_project } from "./types";
 
 export const getProjects = async (token: string) => {
     try {
@@ -45,3 +45,40 @@ export const getProjects = async (token: string) => {
       return { error: "An error occurred." };
     }
   };
+
+  export const updateProject = async (data: Type_UpdateProject, id: number, token: string) => {
+    try {
+      const res = await fetch(`${BACKEND_URL}/projects/${id}`, {
+      method: 'PATCH', 
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    });
+    
+    if (!res.ok) {
+      return { error: res.statusText };
+    }
+
+    const response = await res.json();
+    return response;
+    
+  } catch (error) {
+    return { error: "An error occurred." };
+  }
+  };
+  
+  export const deleteProject = async (id: number, token: string) => {
+    const response = await fetch(`${BACKEND_URL}/projects/${id}`, {
+      method: 'DELETE', 
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+  
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Something went wrong');
+    }}

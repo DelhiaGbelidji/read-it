@@ -20,3 +20,8 @@ export type Type_CreateProject = {
     name: string,
     image_url?: string 
 }
+
+export type Type_UpdateProject = {
+    name?: string,
+    image_url?: string 
+}
