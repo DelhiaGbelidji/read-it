@@ -3,7 +3,7 @@ import {useState} from 'react'
 import {Box, Stack, Tab, Typography} from '@mui/material'
 import {TabContext} from '@mui/lab'
 
-import {Styled_TabList, Styled_TabPanel} from '../tabs/Tabs.style'
+import {Styled_TabList, Styled_TabPanel} from '@/components/tabs/Tabs.style'
 import UpdateUserForm from './UpdateUserForm'
 import ChangePasswordForm from './ChangePasswordForm'
 import DeleteUserForm from './DeleteUserForm'

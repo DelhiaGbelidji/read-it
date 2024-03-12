@@ -15,3 +15,8 @@ export type Type_Project = {
     image: string | null,
     author: string
 }
+
+export type Type_CreateProject = {
+    name: string,
+    image_url?: string 
+}

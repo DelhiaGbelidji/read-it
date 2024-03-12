@@ -1,7 +1,7 @@
 import {getServerSession} from 'next-auth'
 import {authOptions} from '../api/auth/[...nextauth]/route'
 import {Box} from '@mui/material'
-import AccountTabs from '@/components/account/AccountTabs'
+import AccountTabs from './components/AccountTabs'
 import {BACKEND_URL} from '@/utils/constants'
 import {redirect} from 'next/navigation'
 

@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import {TextField, Grid} from '@mui/material'
+import {Grid} from '@mui/material'
 import * as Yup from 'yup'
 import {DefaultButton} from '@/components/buttons/Buttons'
 import {Controller, useForm} from 'react-hook-form'
@@ -9,6 +9,7 @@ import {Type_Props_AccountTabs} from './AccountTabs'
 import {Type_UpdateUser} from '@/app/api/users/types'
 import {updateUser} from '@/app/api/users/route'
 import {notifyError, notifySuccess} from '@/utils/constants'
+import {Styled_TextField} from '@/components/inputText/TextField.style'
 
 type Type_UpdateUserData = {
   firstname?: string
@@ -68,7 +69,7 @@ const UpdateUserForm = ({session, user}: Type_Props_AccountTabs) => {
             name='firstname'
             control={control}
             render={({field}) => (
-              <TextField
+              <Styled_TextField
                 {...field}
                 label='Firstname'
                 variant='outlined'
@@ -84,7 +85,7 @@ const UpdateUserForm = ({session, user}: Type_Props_AccountTabs) => {
             name='lastname'
             control={control}
             render={({field}) => (
-              <TextField
+              <Styled_TextField
                 {...field}
                 label='Lastname'
                 variant='outlined'
@@ -100,7 +101,7 @@ const UpdateUserForm = ({session, user}: Type_Props_AccountTabs) => {
             name='email'
             control={control}
             render={({field}) => (
-              <TextField
+              <Styled_TextField
                 {...field}
                 label='Email'
                 variant='outlined'

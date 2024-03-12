@@ -5,7 +5,7 @@ import {styled} from '@mui/material'
 export const Styled_TabList = styled(TabList)(() => ({
   '& .MuiTab-root': {
     '&.Mui-selected': {
-      color: COLORS.pink,
+      color: COLORS.black,
       backgroundColor: COLORS.white,
     },
   },

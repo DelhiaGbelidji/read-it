@@ -6,6 +6,7 @@ import {getServerSession} from 'next-auth'
 import {authOptions} from './api/auth/[...nextauth]/route'
 import PrivateAppBar from '@/components/header/PrivateAppBar'
 import {PublicAppBar} from '@/components/header/PublicAppBar'
+import {Toaster} from 'react-hot-toast'
 
 export default async function RootLayout({
   children,
@@ -23,9 +24,10 @@ export default async function RootLayout({
           <ThemeProvider theme={theme}>
             {session ? <PrivateAppBar name={fullName} /> : <PublicAppBar />}
             <main>
+              <Toaster />
               <Container sx={{minHeight: '90vH', p: 5}}>{children}</Container>
             </main>
-            <Footer />
+            <Footer height='70px' />
           </ThemeProvider>
         </Providers>
       </body>

@@ -1,7 +1,7 @@
 'use client'
 import {useState} from 'react'
 import {Box, Stack, Tab, Typography} from '@mui/material'
-import {TabPanel, TabContext} from '@mui/lab'
+import {TabContext} from '@mui/lab'
 
 import LoginForm from './LoginForm'
 import SignUpForm from './SignUpForm'
