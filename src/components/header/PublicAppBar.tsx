@@ -100,7 +100,7 @@ export const PublicAppBar = () => {
           ))}
         </Box>
 
-        <Stack direction={'row'} sx={{flexGrow: 0}} spacing={2}>
+        <Stack direction={'row'} sx={{flexGrow: 0}} spacing={2} marginRight={2}>
           <ThemeToggle />
 
           <DefaultButton>

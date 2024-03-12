@@ -9,6 +9,7 @@ export const Styled_IconButton = styled(IconButton)(() => ({
     boxShadow: "0px 2px 4px rgba(25, 49, 84, 0.15)",
     "&:hover:not(.Mui-disabled), &.Mui-focused": {
       boxShadow: "0px 2px 4px rgba(25, 49, 84, 0.15)",
+      color: COLORS.pink,
     },
     "&.Mui-disabled": {
       color: COLORS.disabledTextButton,
