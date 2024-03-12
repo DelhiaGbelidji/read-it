@@ -24,6 +24,16 @@ export const getProjects = async (token: string) => {
     }
   };
   
+  export const getProjectById = async (id: number, token: string) =>{ 
+    await fetch(`${BACKEND_URL}/projects/${id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    },
+  });}
+
+
   export const createProject = async (data: Type_CreateProject, token: string) => {
     try {
       const res = await fetch(BACKEND_URL + '/projects/create', {

@@ -10,6 +10,7 @@ import Modal from '@/components/modal/Modal'
 import CreateProjectForm from './components/CreateProjectForm'
 import {Session} from 'next-auth'
 import UpdateProjectForm from './components/UpdateProjectForm'
+import {useRouter} from 'next/navigation'
 
 type Type_Props_PageProjectComponent = {
   projects: Type_Project[]
@@ -26,6 +27,7 @@ const PageProjectsComponent = ({
   updateProjects,
   removeProject,
 }: Type_Props_PageProjectComponent) => {
+  const router = useRouter()
   //SEARCH
   const [searchTerm, setSearchTerm] = useState('')
   const filteredProjects = projects.filter(project =>
@@ -98,6 +100,7 @@ const PageProjectsComponent = ({
         {filteredProjects.map((project, index) => (
           <Grid item xs={4} sm={4} md={4} key={index}>
             <Rea_Card
+              onClick={() => router.push(`/projects/${project.id}`)}
               title={project.name}
               description={project.author}
               actions={[
