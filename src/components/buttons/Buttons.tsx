@@ -1,6 +1,6 @@
 import {Button, styled} from '@mui/material'
 
-import {COLORS} from '@/utils/theme/'
+import {COLORS} from '../../utils/theme/stylesheet.ts'
 
 export const DefaultButton = styled(Button)(() => ({
   fontSize: '14px',

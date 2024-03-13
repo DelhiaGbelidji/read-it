@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -11,7 +10,6 @@ import ImageUploadArea from '../imageUpload/ImageUpload';
 import PdfUploadArea from '../pdfUpload/PdfUpload';
 import { useState } from 'react';
 import { DefaultButton, ClearButton } from '../buttons/Buttons';
-
 
 // Définition des props pour le composant Modal
 interface ModalProps {
