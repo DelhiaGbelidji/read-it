@@ -80,8 +80,8 @@ const PageProjectsComponent = ({
             }}>
               My Projects
             </Typography>
-          </Grid> 
-          <Grid item xs={2} sm={3} md={3} lg={4} order={{ xs: 3, sm: 2, md: 2 }}
+          </Grid>
+          <Grid  order={{ xs: 3, sm: 2, md: 2 }}
             sx={{
             flexGrow: 1,
             display: 'flex',
@@ -90,7 +90,7 @@ const PageProjectsComponent = ({
           }}>
             <SearchBar onSearchChange={handleSearchChange} />
           </Grid>
-          <Grid item xs={2} sm={3} md={3} lg={4} order={{ xs: 2, sm: 3, md: 3 }}
+          <Grid item xs={2} md={3} lg={4} order={{ xs: 2, sm: 3, md: 3 }}
             sx={{
             display: 'flex',
             justifyContent: { xs: 'right', sm: 'center', md: 'flex-end' }
