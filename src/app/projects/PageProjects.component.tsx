@@ -67,32 +67,43 @@ const PageProjectsComponent = ({
 
   return (
     <>
-      <Container
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          fontSize: isMobile ? 16 : 20,
-          textAlign: isMobile ? 'center' : 'left',
-        }}>
-        <Typography
-          sx={{
-            mt: spacing,
-            mb: spacing,
-            fontSize: isMobile ? 16 : 25,
-            fontWeight: 'bold',
-            textAlign: isMobile ? 'center' : 'left',
+      <Container>
+        <Grid container spacing={{}} alignItems="center">
+          <Grid item xs={10} sm={3} md={3} lg={4} order={{ xs: 1, sm: 1, md: 1 }}>
+            <Typography
+              sx={{
+              mt: spacing,
+              mb: spacing,
+              fontSize: { xs: 20, sm: 20, md: 25 },
+              fontWeight: 'bold',
+              textAlign: { xs: 'left', sm: 'left' },
+            }}>
+              My Projects
+            </Typography>
+          </Grid> 
+          <Grid item xs={2} sm={3} md={3} lg={4} order={{ xs: 3, sm: 2, md: 2 }}
+            sx={{
+            flexGrow: 1,
+            display: 'flex',
+            justifyContent: { xs: 'center', sm: 'center', md: 'center' },
+            mt: { xs: '28px', sm: 0, md: 0, lg: 0},
           }}>
-          My Projects
-        </Typography>
-        <SearchBar onSearchChange={handleSearchChange} />
-        <Styled_IconButton
-          size='large'
-          aria-haspopup='true'
-          onClick={handleOpenFormDialog}
-          color='inherit'>
-          <AddCircleIcon />
-        </Styled_IconButton>
+            <SearchBar onSearchChange={handleSearchChange} />
+          </Grid>
+          <Grid item xs={2} sm={3} md={3} lg={4} order={{ xs: 2, sm: 3, md: 3 }}
+            sx={{
+            display: 'flex',
+            justifyContent: { xs: 'right', sm: 'center', md: 'flex-end' }
+          }}>
+            <Styled_IconButton
+              size="large"
+              onClick={handleOpenFormDialog}
+              color="inherit"
+            >
+              <AddCircleIcon />
+            </Styled_IconButton>
+          </Grid>
+        </Grid>
       </Container>
       <Grid container spacing={{xs: 2, sm: 3}} columns={{xs: 4, sm: 8, md: 12}}>
         {filteredProjects.map((project, index) => (

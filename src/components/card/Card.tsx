@@ -23,6 +23,8 @@ type Type_Props_Card = {
 
 export const Styled_Card = styled(Card)(() => ({
   width: 300,
+  height: 240,
+  marginBottom: 16,
   borderColor: COLORS.grey600,
   borderRadius: '8px',
   position: 'relative',
@@ -30,7 +32,7 @@ export const Styled_Card = styled(Card)(() => ({
 
 export const Styled_CardContent = styled(CardContent)(() => ({
   height: '100%',
-  padding: '8px',
+  padding: '10px',
   display: 'flex',
   flexDirection: 'column',
 }))
