@@ -1,4 +1,4 @@
-import {CssBaseline, ThemeProvider, Container} from '@mui/material'
+import {CssBaseline, ThemeProvider, Container, Box} from '@mui/material'
 import {theme} from '@/utils/theme/'
 import Footer from '@/components/footer/Footer'
 import Providers from '@/components/Providers'
@@ -15,7 +15,6 @@ export default async function RootLayout({
 }) {
   const session = await getServerSession(authOptions)
   const fullName = `${session?.user?.firstname} + " " + ${session?.user.lastname}`
-  console.log(session)
   return (
     <html lang='en'>
       <CssBaseline />
@@ -25,7 +24,7 @@ export default async function RootLayout({
             {session ? <PrivateAppBar name={fullName} /> : <PublicAppBar />}
             <main>
               <Toaster />
-              <Container sx={{minHeight: 'auto'}}>{children}</Container>
+              <Box>{children}</Box>
             </main>
             <Footer />
           </ThemeProvider>

@@ -7,8 +7,8 @@ export type Type_User = {
 }
 
 export type Type_ChangePassword = {
-        old_password: string;
-        new_password: string;
+    old_password: string;
+    new_password: string;
 }
 
 export type Type_UpdateUser = {
