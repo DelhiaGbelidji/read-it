@@ -69,64 +69,62 @@ const PageProjectsComponent = ({
 
   return (
     <>
-      <Container maxWidth='lg'>
+      <Grid
+        container
+        alignItems='center'
+        justifyContent='space-between'
+        width={'100%'}
+        padding={3}>
+        <Grid item xs={12} sm={4} md={4} lg={3}>
+          <Typography
+            variant='h6'
+            sx={{
+              mt: spacing,
+              mb: spacing,
+              fontWeight: 'bold',
+            }}>
+            My Projects
+          </Typography>
+        </Grid>
         <Grid
-          container
-          spacing={2}
-          alignItems='center'
-          justifyContent='space-between'>
-          <Grid item xs={12} sm={4} md={4} lg={3}>
-            <Typography
-              variant='h6'
-              sx={{
-                mt: spacing,
-                mb: spacing,
-                fontWeight: 'bold',
-              }}>
-              My Projects
-            </Typography>
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            sm={4}
-            md={4}
-            lg={5}
-            sx={{display: 'flex', justifyContent: 'center'}}>
-            <SearchBar onSearchChange={handleSearchChange} />
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            sm={4}
-            md={4}
-            lg={3}
-            sx={{display: 'flex', justifyContent: 'flex-end'}}>
-            <Styled_IconButton onClick={handleOpenFormDialog} color='inherit'>
-              <AddCircleIcon />
-            </Styled_IconButton>
-          </Grid>
+          item
+          xs={12}
+          sm={4}
+          md={4}
+          lg={5}
+          sx={{display: 'flex', justifyContent: 'center'}}>
+          <SearchBar onSearchChange={handleSearchChange} />
         </Grid>
-      </Container>
-      <Container maxWidth='lg'>
-        <Grid container spacing={4} justifyContent='center'>
-          {filteredProjects.map((project, index) => (
-            <Grid item key={index}>
-              <Rea_Card
-                title={project.name}
-                description={project.author}
-                actions={[
-                  {
-                    label: 'Update',
-                    action: () => handleOpenUpdateModal(project),
-                  },
-                  {label: 'Delete', action: () => removeProject(project.id)},
-                ]}
-              />
-            </Grid>
-          ))}
+        <Grid
+          item
+          xs={12}
+          sm={4}
+          md={4}
+          lg={3}
+          sx={{display: 'flex', justifyContent: 'flex-end'}}>
+          <Styled_IconButton onClick={handleOpenFormDialog} color='inherit'>
+            <AddCircleIcon />
+          </Styled_IconButton>
         </Grid>
-      </Container>
+      </Grid>
+      <Grid container spacing={4} justifyContent='center' width={'100%'} m={0}>
+        {filteredProjects.map((project, index) => (
+          <Grid item key={index}>
+            <Rea_Card
+              onClick={() => router.push(`/projects/${project.id}`)}
+              title={project.name}
+              description={project.author}
+              actions={[
+                {
+                  label: 'Update',
+                  action: () => handleOpenUpdateModal(project),
+                },
+                {label: 'Delete', action: () => removeProject(project.id)},
+              ]}
+            />
+          </Grid>
+        ))}
+      </Grid>
 
       <Modal open={isUpdateModalOpen} handleClose={handleCloseUpdateModal}>
         <UpdateProjectForm
