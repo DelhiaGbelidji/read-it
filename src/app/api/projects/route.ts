@@ -1,6 +1,8 @@
 import { BACKEND_URL } from "@/utils/constants"
-import { formatterProjects } from "./formatters";
+import { formatterProject, formatterProjects } from "./formatters";
 import { Type_CreateProject, Type_UpdateProject, Type_api_project } from "./types";
+import { authOptions } from "../auth/[...nextauth]/route";
+import { getServerSession } from "next-auth";
 
 export const getProjects = async (token: string) => {
     try {
@@ -24,14 +26,22 @@ export const getProjects = async (token: string) => {
     }
   };
   
-  export const getProjectById = async (id: number, token: string) =>{ 
-    await fetch(`${BACKEND_URL}/projects/${id}`, {
+  export const getProjectById = async (id: number) =>{ 
+    const session = await getServerSession(authOptions)
+
+    const res = await fetch(`${BACKEND_URL}/projects/${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`,
+      "Authorization": `Bearer ${session?.backendTokens.accessToken}`,
     },
-  });}
+
+  })
+  const project: Type_api_project = await res.json()
+
+  return { data: formatterProject(project), error: null };
+
+  ;}
 
 
   export const createProject = async (data: Type_CreateProject, token: string) => {

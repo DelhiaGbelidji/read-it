@@ -4,9 +4,10 @@ export type Type_api_project= {
     id: number,
     name: string,
     image: string | null,
-    createdAt:string,
+    created_at:string,
     userId: number,
     user: Type_User
+    manuscript: any
 }
 
 export type Type_Project = {
@@ -14,6 +15,7 @@ export type Type_Project = {
     name: string, 
     image: string | null,
     author: string
+    manuscript: any
 }
 
 export type Type_CreateProject = {
