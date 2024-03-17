@@ -5,7 +5,7 @@ import 'slick-carousel/slick/slick-theme.css'
 import useBookSearch from '@/utils/hooks/useBookSearch'
 import Card from '@/components/card/Card'
 import Loading from '../loading/Loading'
-import { Container } from '@mui/material'
+import {Box} from '@mui/material'
 
 const BooksCarousel = () => {
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API_KEY!
@@ -13,12 +13,11 @@ const BooksCarousel = () => {
   const {bookData, isLoading} = useBookSearch(apiKey, query)
 
   const settings = {
+    dots: true,
     autoplay: true,
     autoplaySpeed: 4000,
     slidesToShow: 3,
     slidesToScroll: 1,
-    centerMode: true,
-    centerPadding: '-40px',
     responsive: [
       {
         breakpoint: 1115,
@@ -26,8 +25,6 @@ const BooksCarousel = () => {
           autoplay: true,
           autoplaySpeed: 4000,
           slidesToShow: 2,
-          centerMode: true,
-          centerPadding: '-40px',
         },
       },
       {
@@ -36,28 +33,28 @@ const BooksCarousel = () => {
           autoplay: true,
           autoplaySpeed: 4000,
           slidesToShow: 1,
-          centerMode: true,
         },
       },
     ],
   }
 
   return (
-    <Container>
+    <Box>
       {isLoading ? (
         <Loading />
       ) : (
         <Slider {...settings}>
           {bookData.map((book, index) => (
-            <Card
-              key={`${index}-${book.id}`}
-              imageUrl={book.volumeInfo.imageLinks?.thumbnail}
-              title={book.volumeInfo.title}
-            />
+            <Box key={`${index}-${book.id}`}>
+              <Card
+                imageUrl={book.volumeInfo.imageLinks?.thumbnail}
+                title={book.volumeInfo.title}
+              />
+            </Box>
           ))}
         </Slider>
       )}
-    </Container>
+    </Box>
   )
 }
 

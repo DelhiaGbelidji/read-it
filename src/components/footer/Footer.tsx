@@ -2,15 +2,15 @@
 import {Box} from '@mui/material'
 import {COLORS} from '@/utils/theme'
 
-const Footer = ({height}: {height: string}) => {
+const Footer = () => {
   return (
     <Box
-      position='static'
+      position='fixed'
       sx={{
         top: 'auto',
         bottom: 0,
         width: '100%',
-        height: height,
+        height: '60px',
         backgroundColor: COLORS.lightGrey,
       }}></Box>
   )

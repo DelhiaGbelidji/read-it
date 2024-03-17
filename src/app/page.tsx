@@ -21,12 +21,8 @@ export default function Home() {
   const spacing = isMobile ? 2 : 4
 
   return (
-    <Container sx={{mt: spacing, mb: spacing}}>
-      <Grid
-        container
-        spacing={spacing}
-        alignItems='center'
-        justifyContent='center'>
+    <Container sx={{mt: 5}}>
+      <Grid container spacing={3} alignItems='center' justifyContent='center'>
         <Grid
           item
           xs={12}

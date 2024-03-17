@@ -22,8 +22,6 @@ type Type_Props_Card = {
 }
 
 export const Styled_Card = styled(Card)(() => ({
-  width: 300,
-  height: 240,
   marginBottom: 16,
   borderColor: COLORS.grey600,
   borderRadius: '8px',
