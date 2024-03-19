@@ -12,6 +12,8 @@ import {
 import {COLORS} from '../../utils/theme'
 import {Styled_IconButton} from '../buttons/IconButton.style'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
+import { SxProps } from '@mui/system';
+
 
 type Type_Props_Card = {
   imageUrl?: string
@@ -19,6 +21,7 @@ type Type_Props_Card = {
   description?: string
   onClick?: () => void
   actions?: {label: string; action: any}[]
+  sx?: SxProps;
 }
 
 export const Styled_Card = styled(Card)(() => ({
@@ -41,6 +44,7 @@ const Rea_Card = ({
   description,
   onClick,
   actions,
+  sx,
 }: Type_Props_Card) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
@@ -53,7 +57,7 @@ const Rea_Card = ({
   }
 
   return (
-    <Styled_Card>
+    <Styled_Card sx={{ ...sx }}>
       <CardActionArea onClick={onClick}>
         <CardMedia
           component='img'
