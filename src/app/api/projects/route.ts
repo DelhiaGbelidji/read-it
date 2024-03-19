@@ -66,13 +66,15 @@ export const getProjects = async (token: string) => {
     }
   };
 
-  export const updateProject = async (data: Type_UpdateProject, id: number, token: string) => {
+  export const updateProject = async (data: Type_UpdateProject) => {
+    const session = await getServerSession(authOptions)
+
     try {
-      const res = await fetch(`${BACKEND_URL}/projects/${id}`, {
+      const res = await fetch(`${BACKEND_URL}/projects/${data.id}`, {
       method: 'PATCH', 
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
+        'Authorization': `Bearer ${session?.backendTokens.accessToken}`,
       },
       body: JSON.stringify(data),
     });

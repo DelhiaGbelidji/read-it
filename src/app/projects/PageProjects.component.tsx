@@ -128,7 +128,6 @@ const PageProjectsComponent = ({
 
       <Modal open={isUpdateModalOpen} handleClose={handleCloseUpdateModal}>
         <UpdateProjectForm
-          session={session}
           setOpenFormDialog={setIsUpdateModalOpen}
           project={selectedProject as Type_Project}
           updateProjects={updateProjects}

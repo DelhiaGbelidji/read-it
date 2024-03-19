@@ -12,7 +12,6 @@ import {Controller, useForm} from 'react-hook-form'
 import * as Yup from 'yup'
 
 type Type_Props_UpdateProjectForm = {
-  session: Session
   setOpenFormDialog: Dispatch<SetStateAction<boolean>>
   project: Type_Project
   updateProjects: (project: Type_Project) => void
@@ -21,12 +20,12 @@ type Type_Props_UpdateProjectForm = {
 type Type_UpdateProjectData = {
   name?: string
 }
+
 const Schema_UpdateProject = Yup.object().shape({
   name: Yup.string().optional(),
 })
 
 const UpdateProjectForm = ({
-  session,
   setOpenFormDialog,
   project,
   updateProjects,
@@ -45,22 +44,19 @@ const UpdateProjectForm = ({
   const onSubmit = async (data: Type_UpdateProjectData) => {
     try {
       const projectData: Type_UpdateProject = {
+        id: project.id,
         name: data.name,
       }
-      const {error, response} = await updateProject(
-        projectData,
-        project.id,
-        session.backendTokens.accessToken,
-      )
+      const {error, response} = await updateProject(projectData)
 
       if (error) {
         notifyError(error)
         return
       }
-
-      notifySuccess('Project has been updated successfully')
-      updateProjects(formatterProject(response))
+      console.log('response', response)
       setOpenFormDialog(false)
+      updateProjects(formatterProject(response))
+      notifySuccess('Project has been updated successfully')
     } catch (error) {
       console.error(error)
       notifyError('An unexpected error occurred')

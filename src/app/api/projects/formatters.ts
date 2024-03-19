@@ -1,12 +1,12 @@
 import { Type_Project, Type_api_project } from "./types";
 
 export const formatterProject = (project: Type_api_project): Type_Project => {
+    console.log(project)
     return {
         id: project.id,
         name: project.name,
         image: project.image,
         author: project.user.firstname + ' ' + project.user.lastname,
-        manuscript: project.manuscript
     }
 }
 

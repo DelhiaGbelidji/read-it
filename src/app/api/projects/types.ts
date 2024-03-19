@@ -22,6 +22,7 @@ export type Type_CreateProject = {
 }
 
 export type Type_UpdateProject = {
+    id?: number,
     name?: string,
     image_url?: string 
 }
