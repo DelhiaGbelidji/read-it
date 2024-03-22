@@ -1,12 +1,11 @@
-
-import { BACKEND_URL } from "@/utils/constants";
+import { backendUrl } from "@/utils/constants";
 import { NextAuthOptions } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 async function refreshToken(token: JWT) {
-  const res = await fetch(`${BACKEND_URL}/auth/refresh`, {
+  const res = await fetch(`${backendUrl}/auth/refresh`, {
     method: "POST",
     headers: {
       authorization: `Bearer ${token.accessToken}`, // Assurez-vous que c'est bien accessToken qui est utilisé ici
@@ -38,7 +37,7 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials, req) {
         if (!credentials?.username || !credentials?.password) return null;
         const { username, password } = credentials;
-        const res = await fetch(BACKEND_URL + "/auth/login", {
+        const res = await fetch(backendUrl + "/auth/login", {
           method: "POST",
           body: JSON.stringify({
             username,

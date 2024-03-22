@@ -1,4 +1,4 @@
-import {BACKEND_URL} from '@/utils/constants'
+import {backendUrl} from '@/utils/constants'
 import {Type_CreateManuscript} from './types'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '../auth/[...nextauth]/route'
@@ -8,7 +8,7 @@ export const createManuscript = async (
 ) => {
     const session = await getServerSession(authOptions);
   try {
-    const res = await fetch(BACKEND_URL + '/manuscripts/create', {
+    const res = await fetch(backendUrl + '/manuscripts/create', {
       method: 'POST',
       body: JSON.stringify({
         title: data.title,
