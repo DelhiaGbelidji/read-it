@@ -14,4 +14,3 @@ export const theme = createTheme({
     fontFamily: roboto.style.fontFamily,
   },
 });
-
