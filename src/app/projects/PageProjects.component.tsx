@@ -126,7 +126,10 @@ const PageProjectsComponent = ({
         ))}
       </Grid>
 
-      <Modal open={isUpdateModalOpen} handleClose={handleCloseUpdateModal}>
+      <Modal
+        title={'Create project'}
+        open={isUpdateModalOpen}
+        handleClose={handleCloseUpdateModal}>
         <UpdateProjectForm
           session={session}
           setOpenFormDialog={setIsUpdateModalOpen}
@@ -134,7 +137,10 @@ const PageProjectsComponent = ({
           updateProjects={updateProjects}
         />
       </Modal>
-      <Modal open={openFormDialog} handleClose={handleCloseFormDialog}>
+      <Modal
+        title={'Update project'}
+        open={openFormDialog}
+        handleClose={handleCloseFormDialog}>
         <CreateProjectForm
           session={session}
           setOpenFormDialog={setOpenFormDialog}

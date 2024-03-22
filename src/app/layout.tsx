@@ -1,4 +1,4 @@
-import {CssBaseline, ThemeProvider, Container, Box} from '@mui/material'
+import {CssBaseline, ThemeProvider, Box} from '@mui/material'
 import {theme} from '@/utils/theme/'
 import Footer from '@/components/footer/Footer'
 import Providers from '@/components/Providers'
@@ -21,7 +21,7 @@ export default async function RootLayout({
       <body>
         <Providers>
           <ThemeProvider theme={theme}>
-            {session ? <PrivateAppBar name={fullName} /> : <PublicAppBar />}
+            {!session ? <PublicAppBar /> : <PrivateAppBar name={fullName} />}
             <main>
               <Toaster />
               <Box>{children}</Box>

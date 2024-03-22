@@ -55,8 +55,9 @@ const LoginForm = () => {
 
       if (result?.error) {
         notifyError('Username or password is incorrect')
+      } else {
+        router.push('/projects')
       }
-      router.push('/projects')
     } catch (error) {
       console.error(error)
     }
