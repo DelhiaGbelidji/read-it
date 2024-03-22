@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# READ IT
 
-## Getting Started
+Welcome to the front-end repository of the READ IT project, a dynamic web application designed with Next.js, React.js, and TypeScript. This guide will help you set up, run, and contribute to the development of the READ IT user interface.
 
-First, run the development server:
+## Technologies Used
+
+- **Next.js** : A React framework for production that allows features such as server-side rendering and static site generation.
+- **React.js** : A JavaScript library for building interactive user interfaces.
+- **TypeScript** : A typed superset of JavaScript, which adds static types.
+- **MUI (Material-UI)** : A library of React UI components that implements Google's Material Design to facilitate the construction of consistent and aesthetically pleasing user interfaces.
+
+## Prerequisites
+
+- Node.js (Version v18.13.0 or higher)
+- npm (Version 9.6.7 or higher) or Yarn
+
+## Installation
+
+Clone the Git repository to your local machine:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/DelhiaGbelidji/read-it.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Access the project folder:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cd read-it
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Install the project dependencies:
 
-## Learn More
+With npm :
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm install
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Or with Yarn :
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```bash
+yarn install
+```
 
-## Deploy on Vercel
+## Running in Development
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To start the development server and begin working on the user interface:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+With npm :
+```bash
+npm run dev
+```
+
+Or with Yarn :
+```bash
+yarn dev
+```
+
+Open http://localhost:3000 in your browser to see the result.
