@@ -2,7 +2,7 @@
 import {Dispatch, SetStateAction, useState} from 'react'
 import {Styled_IconButton} from '@/components/buttons/IconButton.style'
 import SearchBar from '@/components/searchbar/SearchBar'
-import {useMediaQuery, Container, Typography, Grid} from '@mui/material'
+import {useMediaQuery, Typography, Grid} from '@mui/material'
 import AddCircleIcon from '@mui/icons-material/AddCircle'
 import {Type_Project} from '../api/projects/types'
 import Rea_Card from '@/components/card/Card'

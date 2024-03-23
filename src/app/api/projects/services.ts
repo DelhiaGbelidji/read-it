@@ -1,12 +1,11 @@
-import { backendUrl } from "@/utils/constants"
+import { authOptions } from "../auth/[...nextauth]/options";
 import { formatterProject, formatterProjects } from "./formatters";
 import { Type_CreateProject, Type_UpdateProject, Type_api_project } from "./types";
-import { authOptions } from "../auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 
 export const getProjects = async (token: string) => {
     try {
-      const res = await fetch(`${backendUrl}/projects`, {
+      const res = await fetch(`${process.env.BACKEND_URL }/projects`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -29,7 +28,7 @@ export const getProjects = async (token: string) => {
   export const getProjectById = async (id: number) =>{ 
     const session = await getServerSession(authOptions)
 
-    const res = await fetch(`${backendUrl}/projects/${id}`, {
+    const res = await fetch(`${process.env.BACKEND_URL }/projects/${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -46,7 +45,7 @@ export const getProjects = async (token: string) => {
 
   export const createProject = async (data: Type_CreateProject, token: string) => {
     try {
-      const res = await fetch(backendUrl + '/projects/create', {
+      const res = await fetch(`${process.env.BACKEND_URL}/projects/create`, {
         method: "POST",
         body: JSON.stringify({name: data.name}),
         headers: {
@@ -68,7 +67,7 @@ export const getProjects = async (token: string) => {
 
   export const updateProject = async (data: Type_UpdateProject, id: number, token: string) => {
     try {
-      const res = await fetch(`${backendUrl}/projects/${id}`, {
+      const res = await fetch(`${process.env.BACKEND_URL }/projects/${id}`, {
       method: 'PATCH', 
       headers: {
         'Content-Type': 'application/json',
@@ -90,7 +89,7 @@ export const getProjects = async (token: string) => {
   };
   
   export const deleteProject = async (id: number, token: string) => {
-    const response = await fetch(`${backendUrl}/projects/${id}`, {
+    const response = await fetch(`${process.env.BACKEND_URL }/projects/${id}`, {
       method: 'DELETE', 
       headers: {
         'Content-Type': 'application/json',

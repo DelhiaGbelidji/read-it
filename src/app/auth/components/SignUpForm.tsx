@@ -7,10 +7,10 @@ import {yupResolver} from '@hookform/resolvers/yup'
 
 import {DefaultButton} from '@/components/buttons/Buttons'
 import {useRouter} from 'next/navigation'
-import {registerUser} from '@/app/api/users/route'
 import {notifyError, passwordRules} from '@/utils/constants'
-import {Type_User} from '@/app/api/users/types'
 import {Styled_TextField} from '@/components/inputText/TextField.style'
+import {Type_User} from '@/app/api/users/types'
+import {registerUser} from '@/app/api/users/services'
 
 export type Type_SignupData = {
   email: string

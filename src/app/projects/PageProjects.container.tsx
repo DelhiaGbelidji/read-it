@@ -1,12 +1,12 @@
 'use client'
 import React, {useEffect, useState} from 'react'
 import {Type_Project} from '../api/projects/types'
-import {deleteProject, getProjects} from '../api/projects/route'
+import {deleteProject, getProjects} from '../api/projects/services'
 import {useSession} from 'next-auth/react'
 import PageProjectsComponent from './PageProjects.component'
 import {Session} from 'next-auth'
 import Loading from '@/components/loading/Loading'
-import {notifyError, notifySuccess} from '@/utils/constants'
+import {notifySuccess} from '@/utils/constants'
 
 const PageProjectsContainer = () => {
   const {data: session} = useSession()

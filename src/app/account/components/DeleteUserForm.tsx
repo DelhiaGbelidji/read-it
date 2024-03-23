@@ -5,7 +5,7 @@ import {Checkbox, FormControlLabel, Grid, Typography} from '@mui/material'
 import {Controller, useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import {Type_Props_AccountTabs} from './AccountTabs'
-import {deleteUser} from '@/app/api/users/route'
+import {deleteUser} from '@/app/api/users/services'
 import {notifyError, notifySuccess} from '@/utils/constants'
 import {COLORS} from '@/utils/theme'
 

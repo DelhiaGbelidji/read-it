@@ -7,10 +7,10 @@ import {Controller, useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import {Visibility, VisibilityOff} from '@mui/icons-material'
 import {notifyError, notifySuccess, passwordRules} from '@/utils/constants'
-import {changeUserPassword} from '@/app/api/users/route'
-import {Type_ChangePassword} from '@/app/api/users/types'
+import {changeUserPassword} from '@/app/api/users/services'
 import {Type_Props_AccountTabs} from './AccountTabs'
 import {Styled_TextField} from '@/components/inputText/TextField.style'
+import {Type_ChangePassword} from '@/app/api/users/types'
 
 type Type_ChangePasswordData = {
   old_password?: string

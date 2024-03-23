@@ -7,8 +7,8 @@ import {Styled_TabList, Styled_TabPanel} from '@/components/tabs/Tabs.style'
 import UpdateUserForm from './UpdateUserForm'
 import ChangePasswordForm from './ChangePasswordForm'
 import DeleteUserForm from './DeleteUserForm'
-import {Type_User} from '@/app/api/users/types'
 import {Session} from 'next-auth'
+import {Type_User} from '@/app/api/users/types'
 
 export type Type_Props_AccountTabs = {
   session: Session

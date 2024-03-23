@@ -1,14 +1,10 @@
-import {backendUrl} from '@/utils/constants'
 import {Type_CreateManuscript} from './types'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '../auth/[...nextauth]/route'
 
 export const createManuscript = async (
-  data: Type_CreateManuscript,
+  data: Type_CreateManuscript, token: string
 ) => {
-    const session = await getServerSession(authOptions);
   try {
-    const res = await fetch(backendUrl + '/manuscripts/create', {
+    const res = await fetch(`${process.env.BACKEND_URL}/manuscripts/create`, {
       method: 'POST',
       body: JSON.stringify({
         title: data.title,
@@ -17,7 +13,7 @@ export const createManuscript = async (
       }),
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${session?.backendTokens.accessToken}`,
+        Authorization: `Bearer ${token}`,
       },
     })
 
@@ -31,3 +27,7 @@ export const createManuscript = async (
     return {error: 'An error occurred.'}
   }
 }
+
+const buildRuntime = () => 'edge';
+
+export const runtime = buildRuntime();

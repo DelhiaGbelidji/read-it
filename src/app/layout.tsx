@@ -3,10 +3,10 @@ import {theme} from '@/utils/theme/'
 import Footer from '@/components/footer/Footer'
 import Providers from '@/components/Providers'
 import {getServerSession} from 'next-auth'
-import {authOptions} from './api/auth/[...nextauth]/route'
 import PrivateAppBar from '@/components/header/PrivateAppBar'
 import {PublicAppBar} from '@/components/header/PublicAppBar'
 import {Toaster} from 'react-hot-toast'
+import {authOptions} from './api/auth/[...nextauth]/options'
 
 export default async function RootLayout({
   children,

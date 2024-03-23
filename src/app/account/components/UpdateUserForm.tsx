@@ -6,10 +6,10 @@ import {DefaultButton} from '@/components/buttons/Buttons'
 import {Controller, useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import {Type_Props_AccountTabs} from './AccountTabs'
-import {Type_UpdateUser} from '@/app/api/users/types'
-import {updateUser} from '@/app/api/users/route'
+import {updateUser} from '@/app/api/users/services'
 import {notifyError, notifySuccess} from '@/utils/constants'
 import {Styled_TextField} from '@/components/inputText/TextField.style'
+import {Type_UpdateUser} from '@/app/api/users/types'
 
 type Type_UpdateUserData = {
   firstname?: string
