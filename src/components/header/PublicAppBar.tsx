@@ -15,9 +15,8 @@ import {
 import MenuIcon from '@mui/icons-material/Menu'
 
 import {Styled_IconButton} from '../buttons/IconButton.style'
-import {DefaultButton, Text_Button} from '../buttons/Buttons'
+import {DefaultButton, TextButton} from '../buttons/Buttons'
 import {Styled_AppBar} from './AppBar.style'
-import ThemeToggle from '../toggleTheme/ToggleTheme'
 
 export const ImageLink = ({src, href}: {src: string; href: string}) => {
   return (
@@ -45,7 +44,7 @@ export const PublicAppBar = () => {
   return (
     <Styled_AppBar position='static'>
       <Toolbar disableGutters>
-        <Box sx={{display: {xs: 'none', md: 'flex'}, mr: 1}}>
+        <Box sx={{display: {xs: 'none', md: 'flex'}, mr: 1}} marginLeft={5}>
           <ImageLink src={'/assets/logo.png'} href='/' />
         </Box>
 
@@ -91,18 +90,16 @@ export const PublicAppBar = () => {
 
         <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
           {pages.map(page => (
-            <Text_Button
+            <TextButton
               key={page}
               onClick={() => handleCloseNavMenu(page)}
               sx={{my: 2, color: 'white', display: 'block'}}>
               {page.replaceAll('-', ' ')}
-            </Text_Button>
+            </TextButton>
           ))}
         </Box>
 
-        <Stack direction={'row'} sx={{flexGrow: 0}} spacing={2} marginRight={2}>
-          <ThemeToggle />
-
+        <Stack direction={'row'} sx={{flexGrow: 0}} spacing={2} marginRight={5}>
           <DefaultButton>
             <Link
               href={'/auth'}

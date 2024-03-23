@@ -2,13 +2,12 @@
 import {Box, Menu, MenuItem, Stack, Toolbar, Typography} from '@mui/material'
 import {Styled_AppBar} from './AppBar.style'
 import AccountMenu from './AccountMenu'
-import ThemeToggle from '../toggleTheme/ToggleTheme'
 import {ImageLink} from './PublicAppBar'
 import {useRouter} from 'next/navigation'
 import MenuIcon from '@mui/icons-material/Menu'
 import React from 'react'
 import {Styled_IconButton} from '../buttons/IconButton.style'
-import {Text_Button} from '../buttons/Buttons'
+import {TextButton} from '../buttons/Buttons'
 
 const PrivateAppBar = ({name}: {name: string}) => {
   const router = useRouter()
@@ -25,7 +24,7 @@ const PrivateAppBar = ({name}: {name: string}) => {
   return (
     <Styled_AppBar position='static'>
       <Toolbar disableGutters>
-        <Box sx={{display: {xs: 'none', md: 'flex'}, mr: 1}}>
+        <Box sx={{display: {xs: 'none', md: 'flex'}, mr: 1}} marginLeft={5}>
           <ImageLink src={'/assets/logo.png'} href='/' />
         </Box>
         <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
@@ -69,17 +68,16 @@ const PrivateAppBar = ({name}: {name: string}) => {
         </Box>
         <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
           {pages.map(page => (
-            <Text_Button
+            <TextButton
               key={page}
               onClick={() => handleCloseNavMenu(page)}
               sx={{my: 2, color: 'white', display: 'block'}}>
               {page.replaceAll('-', ' ')}
-            </Text_Button>
+            </TextButton>
           ))}
         </Box>
         <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}></Box>
-        <Stack direction={'row'} sx={{flexGrow: 0}} spacing={2} marginRight={2}>
-          <ThemeToggle />
+        <Stack direction={'row'} sx={{flexGrow: 0}} spacing={2} marginRight={5}>
           <AccountMenu name={name} />
         </Stack>
       </Toolbar>

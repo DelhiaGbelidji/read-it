@@ -42,7 +42,7 @@ export const ClearButton = styled(Button)(() => ({
   },
 }))
 
-export const Text_Button = styled(Button)(() => ({
+export const TextButton = styled(Button)(() => ({
   '&.MuiButtonBase-root, .MuiButton-text': {
     color: COLORS.black,
   },
