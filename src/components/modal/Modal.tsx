@@ -7,6 +7,7 @@ import {IconButton, styled, useMediaQuery} from '@mui/material'
 import {COLORS, theme} from '@/utils/theme'
 
 type Type_ModalProps = {
+  title: string
   open: boolean
   handleClose: () => void
   children: ReactNode
@@ -21,13 +22,13 @@ const Styled_Dialog = styled(Dialog)(() => ({
   },
 }))
 
-const Modal = ({open, handleClose, children}: Type_ModalProps) => {
+const Modal = ({open, handleClose, children, title}: Type_ModalProps) => {
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
   return (
     <>
       <Styled_Dialog open={open} fullScreen={fullScreen}>
         <DialogTitle sx={{backgroundColor: COLORS.lightGrey}}>
-          New project{' '}
+          {title}
         </DialogTitle>
         <IconButton
           aria-label='close'

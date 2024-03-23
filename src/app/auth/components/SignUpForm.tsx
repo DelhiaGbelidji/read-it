@@ -74,6 +74,8 @@ const SignUpForm = () => {
 
       if (error) {
         notifyError(error)
+      } else {
+        router.push('/auth')
       }
 
       reset({
@@ -83,8 +85,6 @@ const SignUpForm = () => {
         password: '',
         confirm_password: '',
       })
-
-      router.push('/auth')
     } catch (error) {
       console.error(error)
     }

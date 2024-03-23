@@ -5,7 +5,7 @@ export const formatterProject = (project: Type_api_project): Type_Project => {
         id: project.id,
         name: project.name,
         image: project.image,
-        author: project.user.firstname + ' ' + project.user.lastname,
+        author: `${project.user?.firstname ?? 'Unknown firstname'} ${project.user?.lastname ?? 'Unknown lastname'}`,
         manuscript: project.manuscript
     }
 }
