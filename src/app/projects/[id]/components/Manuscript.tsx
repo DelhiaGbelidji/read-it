@@ -1,16 +1,16 @@
-'use client'
-import {Type_Manuscript} from '@/app/api/manuscripts/types'
-import {Type_Project} from '@/app/api/projects/types'
-import {useState} from 'react'
-import CreateManuscriptForm from './CreateManuscript'
-import Modal from '@/components/modal/Modal'
-import {Grid, Typography, useMediaQuery} from '@mui/material'
-import {Styled_IconButton} from '@/components/buttons/IconButton.style'
-import AddCircleIcon from '@mui/icons-material/AddCircle'
+'use client';
+import {Type_Manuscript} from '@/app/api/manuscripts/types';
+import {Type_Project} from '@/app/api/projects/types';
+import {useState} from 'react';
+import CreateManuscriptForm from './CreateManuscript';
+import Modal from '@/components/modal/Modal';
+import {Grid, Typography, useMediaQuery} from '@mui/material';
+import {Styled_IconButton} from '@/components/buttons/IconButton.style';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 type Type_Props_Manuscript = {
-  project: Type_Project
-}
+  project: Type_Project;
+};
 
 const Manuscript = ({project}: Type_Props_Manuscript) => {
   const [data, setData] = useState<Type_Manuscript>({
@@ -18,22 +18,22 @@ const Manuscript = ({project}: Type_Props_Manuscript) => {
     title: '',
     file_url: '',
     project_id: project?.id,
-  })
+  });
 
   //RESPONSIVE
-  const isMobile = useMediaQuery('(max-width:600px)')
-  const spacing = isMobile ? 2 : 4
+  const isMobile = useMediaQuery('(max-width:600px)');
+  const spacing = isMobile ? 2 : 4;
 
   //MODAL
-  const [openFormDialog, setOpenFormDialog] = useState(false)
+  const [openFormDialog, setOpenFormDialog] = useState(false);
 
   const handleOpenFormDialog = () => {
-    setOpenFormDialog(true)
-  }
+    setOpenFormDialog(true);
+  };
 
   const handleCloseFormDialog = () => {
-    setOpenFormDialog(false)
-  }
+    setOpenFormDialog(false);
+  };
 
   return (
     <>
@@ -83,6 +83,6 @@ const Manuscript = ({project}: Type_Props_Manuscript) => {
         />
       </Modal>
     </>
-  )
-}
-export default Manuscript
+  );
+};
+export default Manuscript;

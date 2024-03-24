@@ -1,17 +1,17 @@
-import React, {ReactNode} from 'react'
-import Dialog from '@mui/material/Dialog'
-import DialogContent from '@mui/material/DialogContent'
-import DialogTitle from '@mui/material/DialogTitle'
-import CloseIcon from '@mui/icons-material/Close'
-import {IconButton, styled, useMediaQuery} from '@mui/material'
-import {COLORS, theme} from '@/utils/theme'
+import React, {ReactNode} from 'react';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import CloseIcon from '@mui/icons-material/Close';
+import {IconButton, styled, useMediaQuery} from '@mui/material';
+import {COLORS, theme} from '@/utils/theme';
 
 type Type_ModalProps = {
-  title: string
-  open: boolean
-  handleClose: () => void
-  children: ReactNode
-}
+  title: string;
+  open: boolean;
+  handleClose: () => void;
+  children: ReactNode;
+};
 
 const Styled_Dialog = styled(Dialog)(() => ({
   '& .MuiDialog-container': {
@@ -20,10 +20,10 @@ const Styled_Dialog = styled(Dialog)(() => ({
       width: '100%',
     },
   },
-}))
+}));
 
 const Modal = ({open, handleClose, children, title}: Type_ModalProps) => {
-  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   return (
     <>
       <Styled_Dialog open={open} fullScreen={fullScreen}>
@@ -44,7 +44,7 @@ const Modal = ({open, handleClose, children, title}: Type_ModalProps) => {
         <DialogContent>{children}</DialogContent>
       </Styled_Dialog>
     </>
-  )
-}
+  );
+};
 
-export default Modal
+export default Modal;

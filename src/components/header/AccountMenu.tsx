@@ -1,19 +1,19 @@
-import * as React from 'react'
-import Menu from '@mui/material/Menu'
-import MenuItem from '@mui/material/MenuItem'
-import Divider from '@mui/material/Divider'
-import Tooltip from '@mui/material/Tooltip'
-import Logout from '@mui/icons-material/Logout'
+import * as React from 'react';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Divider from '@mui/material/Divider';
+import Tooltip from '@mui/material/Tooltip';
+import Logout from '@mui/icons-material/Logout';
 
-import {Link, Avatar as MuiAvatar, Stack, Typography} from '@mui/material'
-import {ComponentProps} from 'react'
-import {COLORS, stringToColor} from '@/utils/theme'
-import {Styled_IconButton} from '../buttons/IconButton.style'
-import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import {Link, Avatar as MuiAvatar, Stack, Typography} from '@mui/material';
+import {ComponentProps} from 'react';
+import {COLORS, stringToColor} from '@/utils/theme';
+import {Styled_IconButton} from '../buttons/IconButton.style';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 type Type_Props_AccountMenu = ComponentProps<typeof MuiAvatar> & {
-  name: string
-}
+  name: string;
+};
 
 const Avatar = ({name, ...props}: Type_Props_AccountMenu) => {
   const stringInitials = (string: any): string => {
@@ -21,8 +21,8 @@ const Avatar = ({name, ...props}: Type_Props_AccountMenu) => {
       .match(/(\b\S)?/g)
       .join('')
       .match(/(^\S|\S$)?/g)
-      .join('')
-  }
+      .join('');
+  };
 
   const stringAvatar = (
     name: string,
@@ -35,21 +35,21 @@ const Avatar = ({name, ...props}: Type_Props_AccountMenu) => {
         ...props.sx,
       },
       children: stringInitials(name),
-    }
-  }
+    };
+  };
 
-  return <MuiAvatar {...stringAvatar(name, props)} alt={name} />
-}
+  return <MuiAvatar {...stringAvatar(name, props)} alt={name} />;
+};
 
 const AccountMenu = ({name}: Type_Props_AccountMenu) => {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-  const open = Boolean(anchorEl)
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget)
-  }
+    setAnchorEl(event.currentTarget);
+  };
   const handleClose = () => {
-    setAnchorEl(null)
-  }
+    setAnchorEl(null);
+  };
   return (
     <>
       <Tooltip title='Account settings'>
@@ -129,7 +129,7 @@ const AccountMenu = ({name}: Type_Props_AccountMenu) => {
         </MenuItem>
       </Menu>
     </>
-  )
-}
+  );
+};
 
-export default AccountMenu
+export default AccountMenu;

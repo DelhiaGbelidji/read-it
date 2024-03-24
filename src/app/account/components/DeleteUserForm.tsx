@@ -1,27 +1,27 @@
-'use client'
-import {WarningButton} from '@/components/buttons/Buttons'
-import * as Yup from 'yup'
-import {Checkbox, FormControlLabel, Grid, Typography} from '@mui/material'
-import {Controller, useForm} from 'react-hook-form'
-import {yupResolver} from '@hookform/resolvers/yup'
-import {Type_Props_AccountTabs} from './AccountTabs'
-import {deleteUser} from '@/app/api/users/route'
-import {notifyError, notifySuccess} from '@/utils/constants'
-import {COLORS} from '@/utils/theme'
+'use client';
+import {WarningButton} from '@/components/buttons/Buttons';
+import * as Yup from 'yup';
+import {Checkbox, FormControlLabel, Grid, Typography} from '@mui/material';
+import {Controller, useForm} from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
+import {Type_Props_AccountTabs} from './AccountTabs';
+import {deleteUser} from '@/app/api/users/route';
+import {notifyError, notifySuccess} from '@/utils/constants';
+import {COLORS} from '@/utils/theme';
 
 type Type_DeleteUserData = {
-  confirm_delete?: boolean
-}
+  confirm_delete?: boolean;
+};
 
 const Schema_DeleteUserForm = Yup.object().shape({
   confirm_delete: Yup.boolean().oneOf(
     [true],
     'You must confirm that you agree to delete your profile',
   ),
-})
+});
 
 const DeleteUserForm = ({session}: Type_Props_AccountTabs) => {
-  console.log(session)
+  console.log(session);
   //Form handler
   const {
     handleSubmit,
@@ -32,22 +32,22 @@ const DeleteUserForm = ({session}: Type_Props_AccountTabs) => {
       confirm_delete: false,
     },
     resolver: yupResolver(Schema_DeleteUserForm),
-  })
+  });
 
   const onSubmit = async () => {
     try {
       const {error, response} = await deleteUser(
         session.user.id,
         session.backendTokens.accessToken,
-      )
+      );
       if (error) {
-        notifyError(error)
+        notifyError(error);
       }
-      notifySuccess(response)
+      notifySuccess(response);
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -100,7 +100,7 @@ const DeleteUserForm = ({session}: Type_Props_AccountTabs) => {
         </Grid>
       </Grid>
     </form>
-  )
-}
+  );
+};
 
-export default DeleteUserForm
+export default DeleteUserForm;

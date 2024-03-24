@@ -1,6 +1,6 @@
-'use client'
-import {Box} from '@mui/material'
-import {COLORS} from '@/utils/theme'
+'use client';
+import {Box} from '@mui/material';
+import {COLORS} from '@/utils/theme';
 
 const Footer = () => {
   return (
@@ -13,6 +13,6 @@ const Footer = () => {
         height: '60px',
         backgroundColor: COLORS.lightGrey,
       }}></Box>
-  )
-}
-export default Footer
+  );
+};
+export default Footer;

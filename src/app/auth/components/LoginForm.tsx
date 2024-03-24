@@ -1,38 +1,38 @@
-import React, {useState} from 'react'
-import {useForm, Controller} from 'react-hook-form'
-import * as Yup from 'yup'
-import {yupResolver} from '@hookform/resolvers/yup'
-import {signIn} from 'next-auth/react'
-import {useRouter} from 'next/navigation'
+import React, {useState} from 'react';
+import {useForm, Controller} from 'react-hook-form';
+import * as Yup from 'yup';
+import {yupResolver} from '@hookform/resolvers/yup';
+import {signIn} from 'next-auth/react';
+import {useRouter} from 'next/navigation';
 
-import {Grid, InputAdornment, IconButton} from '@mui/material'
-import {Visibility, VisibilityOff} from '@mui/icons-material'
+import {Grid, InputAdornment, IconButton} from '@mui/material';
+import {Visibility, VisibilityOff} from '@mui/icons-material';
 
-import {DefaultButton} from '@/components/buttons/Buttons'
-import {notifyError} from '@/utils/constants'
-import {Styled_TextField} from '@/components/inputText/TextField.style'
+import {DefaultButton} from '@/components/buttons/Buttons';
+import {notifyError} from '@/utils/constants';
+import {Styled_TextField} from '@/components/inputText/TextField.style';
 
 type Type_Login = {
-  username: string
-  password: string
-}
+  username: string;
+  password: string;
+};
 
 export const Schema_Login = Yup.object().shape({
   username: Yup.string().email('Invalid email').required('Email is required'),
   password: Yup.string().required('Password is required'),
-})
+});
 
 const LoginForm = () => {
-  const router = useRouter()
+  const router = useRouter();
 
-  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
 
-  const handleClickShowPassword = () => setShowPassword(show => !show)
+  const handleClickShowPassword = () => setShowPassword(show => !show);
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>,
   ) => {
-    event.preventDefault()
-  }
+    event.preventDefault();
+  };
   const {
     handleSubmit,
     control,
@@ -43,7 +43,7 @@ const LoginForm = () => {
       password: '',
     },
     resolver: yupResolver(Schema_Login),
-  })
+  });
 
   const onSubmit = async (data: Type_Login) => {
     try {
@@ -51,17 +51,17 @@ const LoginForm = () => {
         redirect: false,
         username: data.username,
         password: data.password,
-      })
+      });
 
       if (result?.error) {
-        notifyError('Username or password is incorrect')
+        notifyError('Username or password is incorrect');
       } else {
-        router.push('/projects')
+        router.push('/projects');
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -122,7 +122,7 @@ const LoginForm = () => {
         Login
       </DefaultButton>
     </form>
-  )
-}
+  );
+};
 
-export default LoginForm
+export default LoginForm;

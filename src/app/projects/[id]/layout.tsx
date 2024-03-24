@@ -1,10 +1,10 @@
-'use client'
-import {Grid, Typography, useMediaQuery} from '@mui/material'
+'use client';
+import {Grid, Typography, useMediaQuery} from '@mui/material';
 
 export default function LayoutProject({children}: {children: React.ReactNode}) {
   //RESPONSIVE
-  const isMobile = useMediaQuery('(max-width:600px)')
-  const spacing = isMobile ? 2 : 4
+  const isMobile = useMediaQuery('(max-width:600px)');
+  const spacing = isMobile ? 2 : 4;
 
   return (
     <>
@@ -38,5 +38,5 @@ export default function LayoutProject({children}: {children: React.ReactNode}) {
         {children}
       </Grid>
     </>
-  )
+  );
 }

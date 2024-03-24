@@ -1,15 +1,15 @@
-import React from 'react'
-import {Typography, useTheme, useMediaQuery} from '@mui/material'
-import {Barrio} from 'next/font/google'
+import React from 'react';
+import {Typography, useTheme, useMediaQuery} from '@mui/material';
+import {Barrio} from 'next/font/google';
 const barrio = Barrio({
   weight: ['400'],
   subsets: ['latin'],
   display: 'swap',
-})
+});
 
 export default function CustomSloganTypography() {
-  const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <Typography
@@ -27,5 +27,5 @@ export default function CustomSloganTypography() {
       <span>Reading</span>
       embraces all differences!
     </Typography>
-  )
+  );
 }

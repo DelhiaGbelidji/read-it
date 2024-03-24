@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 import {
   Card,
   CardContent,
@@ -8,35 +8,34 @@ import {
   Menu,
   CardMedia,
   Typography,
-} from '@mui/material'
-import {COLORS} from '../../utils/theme'
-import {Styled_IconButton} from '../buttons/IconButton.style'
-import MoreVertIcon from '@mui/icons-material/MoreVert'
-import { SxProps } from '@mui/system';
-
+} from '@mui/material';
+import {COLORS} from '../../utils/theme';
+import {Styled_IconButton} from '../buttons/IconButton.style';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import {SxProps} from '@mui/system';
 
 type Type_Props_Card = {
-  imageUrl?: string
-  title?: string
-  description?: string
-  onClick?: () => void
-  actions?: {label: string; action: any}[]
+  imageUrl?: string;
+  title?: string;
+  description?: string;
+  onClick?: () => void;
+  actions?: {label: string; action: any}[];
   sx?: SxProps;
-}
+};
 
 export const Styled_Card = styled(Card)(() => ({
   marginBottom: 16,
   borderColor: COLORS.grey600,
   borderRadius: '8px',
   position: 'relative',
-}))
+}));
 
 export const Styled_CardContent = styled(CardContent)(() => ({
   height: '100%',
   padding: '10px',
   display: 'flex',
   flexDirection: 'column',
-}))
+}));
 
 const Rea_Card = ({
   imageUrl,
@@ -46,18 +45,18 @@ const Rea_Card = ({
   actions,
   sx,
 }: Type_Props_Card) => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleClickMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget)
-  }
+    setAnchorEl(event.currentTarget);
+  };
 
   const handleCloseMenu = () => {
-    setAnchorEl(null)
-  }
+    setAnchorEl(null);
+  };
 
   return (
-    <Styled_Card sx={{ ...sx }}>
+    <Styled_Card sx={{...sx}}>
       <CardActionArea onClick={onClick}>
         <CardMedia
           component='img'
@@ -101,8 +100,8 @@ const Rea_Card = ({
               <MenuItem
                 key={index}
                 onClick={() => {
-                  action.action()
-                  handleCloseMenu()
+                  action.action();
+                  handleCloseMenu();
                 }}>
                 {action.label}
               </MenuItem>
@@ -111,6 +110,6 @@ const Rea_Card = ({
         </>
       )}
     </Styled_Card>
-  )
-}
-export default Rea_Card
+  );
+};
+export default Rea_Card;

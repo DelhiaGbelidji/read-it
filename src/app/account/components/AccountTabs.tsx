@@ -1,25 +1,25 @@
-'use client'
-import {useState} from 'react'
-import {Box, Stack, Tab, Typography} from '@mui/material'
-import {TabContext} from '@mui/lab'
+'use client';
+import {useState} from 'react';
+import {Box, Stack, Tab, Typography} from '@mui/material';
+import {TabContext} from '@mui/lab';
 
-import {Styled_TabList, Styled_TabPanel} from '@/components/tabs/Tabs.style'
-import UpdateUserForm from './UpdateUserForm'
-import ChangePasswordForm from './ChangePasswordForm'
-import DeleteUserForm from './DeleteUserForm'
-import {Type_User} from '@/app/api/users/types'
-import {Session} from 'next-auth'
+import {Styled_TabList, Styled_TabPanel} from '@/components/tabs/Tabs.style';
+import UpdateUserForm from './UpdateUserForm';
+import ChangePasswordForm from './ChangePasswordForm';
+import DeleteUserForm from './DeleteUserForm';
+import {Type_User} from '@/app/api/users/types';
+import {Session} from 'next-auth';
 
 export type Type_Props_AccountTabs = {
-  session: Session
-  user?: Type_User
-}
+  session: Session;
+  user?: Type_User;
+};
 const AccountTabs = ({session, user}: Type_Props_AccountTabs) => {
-  const [value, setValue] = useState('1')
+  const [value, setValue] = useState('1');
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue)
-  }
+    setValue(newValue);
+  };
 
   return (
     <Stack direction='column' spacing={2} alignItems='center'>
@@ -49,7 +49,7 @@ const AccountTabs = ({session, user}: Type_Props_AccountTabs) => {
         </Styled_TabPanel>
       </TabContext>
     </Stack>
-  )
-}
+  );
+};
 
-export default AccountTabs
+export default AccountTabs;
