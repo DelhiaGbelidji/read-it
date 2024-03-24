@@ -1,45 +1,57 @@
-import { render, fireEvent } from '@testing-library/react';
+// src/app/test/page.test.tsx
+import {render, fireEvent} from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Page from '../page'; // Correct the import path according to your project structure
-import * as nextRouter from 'next/router';
+import Page from '../page'; // Ajustez le chemin selon la structure de votre projet
+import * as nextNavigation from 'next/navigation';
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
 
-// Setup a mock for useRouter
-jest.mock('next/router', () => ({
-useRouter: () => ({
-    push: jest.fn(),
-    }),
+// Mock pour Axios
+const mockAxios = new MockAdapter(axios);
+
+// Configuration du mock pour useRouter
+jest.mock('next/navigation', () => ({
+  useRouter: jest.fn(),
 }));
 
 describe('Page', () => {
-    let push: jest.Mock<any, any>;
+  let pushMock: jest.Mock;
 
-beforeEach(() => {
-    // Create a new mock function for each test
-    push = jest.fn();
-    // Cast to jest.Mock to make TypeScript happy
-    (nextRouter.useRouter as jest.Mock).mockReturnValue({
-        push,
+  beforeEach(() => {
+    // Réinitialisation du mock Axios pour chaque test
+    mockAxios.reset();
+
+    // Mock de réponse spécifique si nécessaire
+    // Exemple : Mock toutes les requêtes GET vers un certain URL pour retourner une réponse spécifique
+    mockAxios
+      .onGet('https://www.googleapis.com/books/v1/volumes')
+      .reply(200, {});
+
+    // Réinitialisation du mock pour useRouter pour chaque test
+    pushMock = jest.fn();
+    (nextNavigation.useRouter as jest.Mock).mockReturnValue({
+      push: pushMock,
     });
-});
+  });
 
-it('renders without crashing', () => {
+  it('renders without crashing', () => {
     render(<Page />);
-});
+  });
 
-it('redirects to /about-us when clicking the About us button', () => {
-    const { getByText } = render(<Page />);
+  it('redirects to /about-us when clicking the About us button', () => {
+    const {getByText} = render(<Page />);
     fireEvent.click(getByText('About us'));
-    expect(push).toHaveBeenCalledWith('/about-us');
-});
+    expect(pushMock).toHaveBeenCalledWith('/about-us');
+  });
 
-it('redirects to /auth when clicking the Join us button', () => {
-    const { getByText } = render(<Page />);
+  it('redirects to /auth when clicking the Join us button', () => {
+    const {getByText} = render(<Page />);
     fireEvent.click(getByText('Join us'));
-    expect(push).toHaveBeenCalledWith('/auth');
-});
+    expect(pushMock).toHaveBeenCalledWith('/auth');
+  });
 
-  // Reset the mock after each test
-afterEach(() => {
-        jest.clearAllMocks();
-    });
+  // Réinitialisez les mocks après chaque test
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
 });

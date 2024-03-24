@@ -1,7 +1,7 @@
-import PageProjectsContainer from './PageProjects.container'
+import PageProjectsContainer from './PageProjects.container';
 
 const ProjectsPage = () => {
-  return <PageProjectsContainer />
-}
+  return <PageProjectsContainer />;
+};
 
-export default ProjectsPage
+export default ProjectsPage;

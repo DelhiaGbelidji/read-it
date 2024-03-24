@@ -1,8 +1,8 @@
-import '@fontsource/roboto/500.css'
-import React from 'react'
-import {Toaster} from 'react-hot-toast'
-import {Box} from '@mui/material'
-import AuthTabs from './components/AuthTabs'
+import '@fontsource/roboto/500.css';
+import React from 'react';
+import {Toaster} from 'react-hot-toast';
+import {Box} from '@mui/material';
+import AuthTabs from './components/AuthTabs';
 
 const AuthPage = () => {
   return (
@@ -13,7 +13,7 @@ const AuthPage = () => {
       minHeight='90vh'>
       <AuthTabs />
     </Box>
-  )
-}
+  );
+};
 
-export default AuthPage
+export default AuthPage;

@@ -1,24 +1,24 @@
-import React, {useState} from 'react'
-import {useForm, Controller} from 'react-hook-form'
-import {Grid, InputAdornment, IconButton} from '@mui/material'
-import {Visibility, VisibilityOff} from '@mui/icons-material'
-import * as Yup from 'yup'
-import {yupResolver} from '@hookform/resolvers/yup'
+import React, {useState} from 'react';
+import {useForm, Controller} from 'react-hook-form';
+import {Grid, InputAdornment, IconButton} from '@mui/material';
+import {Visibility, VisibilityOff} from '@mui/icons-material';
+import * as Yup from 'yup';
+import {yupResolver} from '@hookform/resolvers/yup';
 
-import {DefaultButton} from '@/components/buttons/Buttons'
-import {useRouter} from 'next/navigation'
-import {registerUser} from '@/app/api/users/route'
-import {notifyError, passwordRules} from '@/utils/constants'
-import {Type_User} from '@/app/api/users/types'
-import {Styled_TextField} from '@/components/inputText/TextField.style'
+import {DefaultButton} from '@/components/buttons/Buttons';
+import {useRouter} from 'next/navigation';
+import {registerUser} from '@/app/api/users/route';
+import {notifyError, passwordRules} from '@/utils/constants';
+import {Type_User} from '@/app/api/users/types';
+import {Styled_TextField} from '@/components/inputText/TextField.style';
 
 export type Type_SignupData = {
-  email: string
-  firstname: string
-  lastname: string
-  password: string
-  confirm_password: string
-}
+  email: string;
+  firstname: string;
+  lastname: string;
+  password: string;
+  confirm_password: string;
+};
 
 // min 5 characters, 1 upper case letter, 1 lower case letter, 1 numeric digit.
 export const Schema_SignUp = Yup.object().shape({
@@ -31,19 +31,19 @@ export const Schema_SignUp = Yup.object().shape({
   confirm_password: Yup.string()
     .oneOf([Yup.ref('password')], 'Passwords must match')
     .required('Required'),
-})
+});
 
 const SignUpForm = () => {
-  const router = useRouter()
+  const router = useRouter();
 
   //Show/hide password
-  const [showPassword, setShowPassword] = useState(false)
-  const handleClickShowPassword = () => setShowPassword(show => !show)
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword(show => !show);
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>,
   ) => {
-    event.preventDefault()
-  }
+    event.preventDefault();
+  };
 
   //Form handler
   const {
@@ -60,7 +60,7 @@ const SignUpForm = () => {
       confirm_password: '',
     },
     resolver: yupResolver(Schema_SignUp),
-  })
+  });
 
   async function onSubmit(data: Type_SignupData) {
     try {
@@ -69,13 +69,13 @@ const SignUpForm = () => {
         lastname: data.lastname,
         email: data.email,
         password: data.password,
-      }
-      const {error} = await registerUser(user)
+      };
+      const {error} = await registerUser(user);
 
       if (error) {
-        notifyError(error)
+        notifyError(error);
       } else {
-        router.push('/auth')
+        router.push('/auth');
       }
 
       reset({
@@ -84,9 +84,9 @@ const SignUpForm = () => {
         email: '',
         password: '',
         confirm_password: '',
-      })
+      });
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   }
 
@@ -208,7 +208,7 @@ const SignUpForm = () => {
         Sign up
       </DefaultButton>
     </form>
-  )
-}
+  );
+};
 
-export default SignUpForm
+export default SignUpForm;

@@ -1,18 +1,18 @@
-'use client'
-import {useState} from 'react'
-import {Box, Stack, Tab, Typography} from '@mui/material'
-import {TabContext} from '@mui/lab'
+'use client';
+import {useState} from 'react';
+import {Box, Stack, Tab, Typography} from '@mui/material';
+import {TabContext} from '@mui/lab';
 
-import LoginForm from './LoginForm'
-import SignUpForm from './SignUpForm'
-import {Styled_TabList, Styled_TabPanel} from '@/components/tabs/Tabs.style'
+import LoginForm from './LoginForm';
+import SignUpForm from './SignUpForm';
+import {Styled_TabList, Styled_TabPanel} from '@/components/tabs/Tabs.style';
 
 const AuthTabs = () => {
-  const [value, setValue] = useState('1')
+  const [value, setValue] = useState('1');
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue)
-  }
+    setValue(newValue);
+  };
 
   return (
     <Stack direction='column' spacing={2} alignItems='center'>
@@ -38,7 +38,7 @@ const AuthTabs = () => {
         </Styled_TabPanel>
       </TabContext>
     </Stack>
-  )
-}
+  );
+};
 
-export default AuthTabs
+export default AuthTabs;

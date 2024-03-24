@@ -1,26 +1,28 @@
-'use client'
-import {Box, Menu, MenuItem, Stack, Toolbar, Typography} from '@mui/material'
-import {Styled_AppBar} from './AppBar.style'
-import AccountMenu from './AccountMenu'
-import {ImageLink} from './PublicAppBar'
-import {useRouter} from 'next/navigation'
-import MenuIcon from '@mui/icons-material/Menu'
-import React from 'react'
-import {Styled_IconButton} from '../buttons/IconButton.style'
-import {TextButton} from '../buttons/Buttons'
+'use client';
+import {Box, Menu, MenuItem, Stack, Toolbar, Typography} from '@mui/material';
+import {Styled_AppBar} from './AppBar.style';
+import AccountMenu from './AccountMenu';
+import {ImageLink} from './PublicAppBar';
+import {useRouter} from 'next/navigation';
+import MenuIcon from '@mui/icons-material/Menu';
+import React from 'react';
+import {Styled_IconButton} from '../buttons/IconButton.style';
+import {TextButton} from '../buttons/Buttons';
 
 const PrivateAppBar = ({name}: {name: string}) => {
-  const router = useRouter()
-  const pages = ['projects']
+  const router = useRouter();
+  const pages = ['projects'];
 
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+    null,
+  );
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget)
-  }
+    setAnchorElNav(event.currentTarget);
+  };
   const handleCloseNavMenu = (page: string) => {
-    setAnchorElNav(null)
-    router.push(`/${page === 'home' ? '/' : page}`)
-  }
+    setAnchorElNav(null);
+    router.push(`/${page === 'home' ? '/' : page}`);
+  };
   return (
     <Styled_AppBar position='static'>
       <Toolbar disableGutters>
@@ -82,7 +84,7 @@ const PrivateAppBar = ({name}: {name: string}) => {
         </Stack>
       </Toolbar>
     </Styled_AppBar>
-  )
-}
+  );
+};
 
-export default PrivateAppBar
+export default PrivateAppBar;

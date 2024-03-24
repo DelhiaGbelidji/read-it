@@ -1,29 +1,29 @@
-import {formatterProject} from '@/app/api/projects/formatters'
-import {updateProject} from '@/app/api/projects/route'
-import {Type_Project, Type_UpdateProject} from '@/app/api/projects/types'
-import {DefaultButton} from '@/components/buttons/Buttons'
-import {Styled_TextField} from '@/components/inputText/TextField.style'
-import {notifyError, notifySuccess} from '@/utils/constants'
-import {yupResolver} from '@hookform/resolvers/yup'
-import {Grid} from '@mui/material'
-import {Session} from 'next-auth'
-import {Dispatch, SetStateAction} from 'react'
-import {Controller, useForm} from 'react-hook-form'
-import * as Yup from 'yup'
+import {formatterProject} from '@/app/api/projects/formatters';
+import {updateProject} from '@/app/api/projects/route';
+import {Type_Project, Type_UpdateProject} from '@/app/api/projects/types';
+import {DefaultButton} from '@/components/buttons/Buttons';
+import {Styled_TextField} from '@/components/inputText/TextField.style';
+import {notifyError, notifySuccess} from '@/utils/constants';
+import {yupResolver} from '@hookform/resolvers/yup';
+import {Grid} from '@mui/material';
+import {Session} from 'next-auth';
+import {Dispatch, SetStateAction} from 'react';
+import {Controller, useForm} from 'react-hook-form';
+import * as Yup from 'yup';
 
 type Type_Props_UpdateProjectForm = {
-  session: Session
-  setOpenFormDialog: Dispatch<SetStateAction<boolean>>
-  project: Type_Project
-  updateProjects: (project: Type_Project) => void
-}
+  session: Session;
+  setOpenFormDialog: Dispatch<SetStateAction<boolean>>;
+  project: Type_Project;
+  updateProjects: (project: Type_Project) => void;
+};
 
 type Type_UpdateProjectData = {
-  name?: string
-}
+  name?: string;
+};
 const Schema_UpdateProject = Yup.object().shape({
   name: Yup.string().optional(),
-})
+});
 
 const UpdateProjectForm = ({
   session,
@@ -40,32 +40,32 @@ const UpdateProjectForm = ({
       name: project.name,
     },
     resolver: yupResolver(Schema_UpdateProject),
-  })
+  });
 
   const onSubmit = async (data: Type_UpdateProjectData) => {
     try {
       const projectData: Type_UpdateProject = {
         name: data.name,
-      }
+      };
       const {error, response} = await updateProject(
         projectData,
         project.id,
         session.backendTokens.accessToken,
-      )
+      );
 
       if (error) {
-        notifyError(error)
-        return
+        notifyError(error);
+        return;
       }
 
-      notifySuccess('Project has been updated successfully')
-      updateProjects(formatterProject(response))
-      setOpenFormDialog(false)
+      notifySuccess('Project has been updated successfully');
+      updateProjects(formatterProject(response));
+      setOpenFormDialog(false);
     } catch (error) {
-      console.error(error)
-      notifyError('An unexpected error occurred')
+      console.error(error);
+      notifyError('An unexpected error occurred');
     }
-  }
+  };
 
   return (
     <>
@@ -103,7 +103,7 @@ const UpdateProjectForm = ({
         </Grid>
       </form>
     </>
-  )
-}
+  );
+};
 
-export default UpdateProjectForm
+export default UpdateProjectForm;
