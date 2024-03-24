@@ -1,7 +1,7 @@
-'use client'
-import * as React from 'react'
-import {useRouter} from 'next/navigation'
-import Image from 'next/image'
+'use client';
+import * as React from 'react';
+import {useRouter} from 'next/navigation';
+import Image from 'next/image';
 
 import {
   Box,
@@ -11,12 +11,12 @@ import {
   Stack,
   Toolbar,
   Typography,
-} from '@mui/material'
-import MenuIcon from '@mui/icons-material/Menu'
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 
-import {Styled_IconButton} from '../buttons/IconButton.style'
-import {DefaultButton, TextButton} from '../buttons/Buttons'
-import {Styled_AppBar} from './AppBar.style'
+import {Styled_IconButton} from '../buttons/IconButton.style';
+import {DefaultButton, TextButton} from '../buttons/Buttons';
+import {Styled_AppBar} from './AppBar.style';
 
 export const ImageLink = ({src, href}: {src: string; href: string}) => {
   return (
@@ -25,21 +25,23 @@ export const ImageLink = ({src, href}: {src: string; href: string}) => {
         <Image src={src} alt='Logo' width={140} height={50} />
       </a>
     </Box>
-  )
-}
+  );
+};
 
 export const PublicAppBar = () => {
-  const router = useRouter()
-  const pages = ['home', 'product', 'about-us']
+  const router = useRouter();
+  const pages = ['home', 'product', 'about-us'];
 
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+    null,
+  );
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget)
-  }
+    setAnchorElNav(event.currentTarget);
+  };
   const handleCloseNavMenu = (page: string) => {
-    setAnchorElNav(null)
-    router.push(`/${page === 'home' ? '/' : page}`)
-  }
+    setAnchorElNav(null);
+    router.push(`/${page === 'home' ? '/' : page}`);
+  };
 
   return (
     <Styled_AppBar position='static'>
@@ -113,5 +115,5 @@ export const PublicAppBar = () => {
         </Stack>
       </Toolbar>
     </Styled_AppBar>
-  )
-}
+  );
+};

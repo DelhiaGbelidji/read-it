@@ -1,5 +1,5 @@
-'use client'
-import React from 'react'
+'use client';
+import React from 'react';
 import {
   Box,
   Container,
@@ -7,18 +7,18 @@ import {
   Stack,
   Typography,
   useMediaQuery,
-} from '@mui/material'
-import Image from 'next/image'
-import {DefaultButton, ClearButton} from '@/components/buttons/Buttons'
-import BooksCarousel from '../components/landing/Carousel'
-import CustomSloganTypography from '@/components/landing/slogan'
-import {COLORS} from '@/utils/theme'
-import {useRouter} from 'next/navigation'
+} from '@mui/material';
+import Image from 'next/image';
+import {DefaultButton, ClearButton} from '@/components/buttons/Buttons';
+import BooksCarousel from '../components/landing/Carousel';
+import CustomSloganTypography from '@/components/landing/slogan';
+import {COLORS} from '@/utils/theme';
+import {useRouter} from 'next/navigation';
 
 export default function Home() {
-  const router = useRouter()
-  const isMobile = useMediaQuery('(max-width:600px)')
-  const spacing = isMobile ? 2 : 4
+  const router = useRouter();
+  const isMobile = useMediaQuery('(max-width:600px)');
+  const spacing = isMobile ? 2 : 4;
 
   return (
     <Container sx={{mt: 5}}>
@@ -94,5 +94,5 @@ export default function Home() {
       </Box>
       <BooksCarousel />
     </Container>
-  )
+  );
 }

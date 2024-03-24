@@ -1,5 +1,5 @@
-import {COLORS} from '@/utils/theme'
-import {Stack, CircularProgress, Typography} from '@mui/material'
+import {COLORS} from '@/utils/theme';
+import {Stack, CircularProgress, Typography} from '@mui/material';
 
 const Loading = () => {
   return (
@@ -12,6 +12,6 @@ const Loading = () => {
       <CircularProgress color='inherit' />
       <Typography variant='subtitle2'>Loading...</Typography>
     </Stack>
-  )
-}
-export default Loading
+  );
+};
+export default Loading;

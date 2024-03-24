@@ -1,6 +1,6 @@
-import {Button, styled} from '@mui/material'
+import {Button, styled} from '@mui/material';
 
-import {COLORS} from '@/utils/theme/'
+import {COLORS} from '@/utils/theme/';
 
 export const DefaultButton = styled(Button)(() => ({
   fontSize: '14px',
@@ -20,7 +20,7 @@ export const DefaultButton = styled(Button)(() => ({
   '&.MuiButtonBase-root': {
     textTransform: 'none',
   },
-}))
+}));
 
 export const ClearButton = styled(Button)(() => ({
   fontSize: '14px',
@@ -40,13 +40,13 @@ export const ClearButton = styled(Button)(() => ({
   '&.MuiButtonBase-root': {
     textTransform: 'none',
   },
-}))
+}));
 
 export const TextButton = styled(Button)(() => ({
   '&.MuiButtonBase-root, .MuiButton-text': {
     color: COLORS.black,
   },
-}))
+}));
 
 export const WarningButton = styled(Button)(() => ({
   fontSize: '14px',
@@ -67,4 +67,4 @@ export const WarningButton = styled(Button)(() => ({
   '&.MuiButtonBase-root': {
     textTransform: 'none',
   },
-}))
+}));

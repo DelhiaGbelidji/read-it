@@ -1,6 +1,6 @@
-'use client'
+'use client';
 const AboutUs = () => {
-  return <>ABOUT US PAGE</>
-}
+  return <>ABOUT US PAGE</>;
+};
 
-export default AboutUs
+export default AboutUs;

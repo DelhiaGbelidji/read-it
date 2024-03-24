@@ -1,24 +1,24 @@
-'use client'
-import {Dispatch, SetStateAction, useState} from 'react'
-import {Styled_IconButton} from '@/components/buttons/IconButton.style'
-import SearchBar from '@/components/searchbar/SearchBar'
-import {useMediaQuery, Container, Typography, Grid} from '@mui/material'
-import AddCircleIcon from '@mui/icons-material/AddCircle'
-import {Type_Project} from '../api/projects/types'
-import Rea_Card from '@/components/card/Card'
-import Modal from '@/components/modal/Modal'
-import CreateProjectForm from './components/CreateProjectForm'
-import {Session} from 'next-auth'
-import UpdateProjectForm from './components/UpdateProjectForm'
-import {useRouter} from 'next/navigation'
+'use client';
+import {Dispatch, SetStateAction, useState} from 'react';
+import {Styled_IconButton} from '@/components/buttons/IconButton.style';
+import SearchBar from '@/components/searchbar/SearchBar';
+import {useMediaQuery, Container, Typography, Grid} from '@mui/material';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import {Type_Project} from '../api/projects/types';
+import Rea_Card from '@/components/card/Card';
+import Modal from '@/components/modal/Modal';
+import CreateProjectForm from './components/CreateProjectForm';
+import {Session} from 'next-auth';
+import UpdateProjectForm from './components/UpdateProjectForm';
+import {useRouter} from 'next/navigation';
 
 type Type_Props_PageProjectComponent = {
-  projects: Type_Project[]
-  session: Session
-  setData: Dispatch<SetStateAction<Type_Project[]>>
-  updateProjects: (project: Type_Project) => void
-  removeProject: (id: number) => void
-}
+  projects: Type_Project[];
+  session: Session;
+  setData: Dispatch<SetStateAction<Type_Project[]>>;
+  updateProjects: (project: Type_Project) => void;
+  removeProject: (id: number) => void;
+};
 
 const PageProjectsComponent = ({
   projects,
@@ -27,45 +27,45 @@ const PageProjectsComponent = ({
   updateProjects,
   removeProject,
 }: Type_Props_PageProjectComponent) => {
-  const router = useRouter()
+  const router = useRouter();
   //SEARCH
-  const [searchTerm, setSearchTerm] = useState('')
+  const [searchTerm, setSearchTerm] = useState('');
   const filteredProjects = projects.filter(project =>
     project.name.toLowerCase().includes(searchTerm.toLowerCase()),
-  )
+  );
   const handleSearchChange = (value: string) => {
-    setSearchTerm(value)
-  }
+    setSearchTerm(value);
+  };
 
   //RESPONSIVE
-  const isMobile = useMediaQuery('(max-width:600px)')
-  const spacing = isMobile ? 2 : 4
+  const isMobile = useMediaQuery('(max-width:600px)');
+  const spacing = isMobile ? 2 : 4;
 
   //MODAL
-  const [openFormDialog, setOpenFormDialog] = useState(false)
+  const [openFormDialog, setOpenFormDialog] = useState(false);
 
   const handleOpenFormDialog = () => {
-    setOpenFormDialog(true)
-  }
+    setOpenFormDialog(true);
+  };
 
   const handleCloseFormDialog = () => {
-    setOpenFormDialog(false)
-  }
+    setOpenFormDialog(false);
+  };
 
   const [selectedProject, setSelectedProject] = useState<Type_Project | null>(
     null,
-  )
+  );
 
-  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false)
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
 
   const handleOpenUpdateModal = (project: Type_Project) => {
-    setSelectedProject(project)
-    setIsUpdateModalOpen(true)
-  }
+    setSelectedProject(project);
+    setIsUpdateModalOpen(true);
+  };
 
   const handleCloseUpdateModal = () => {
-    setIsUpdateModalOpen(false)
-  }
+    setIsUpdateModalOpen(false);
+  };
 
   return (
     <>
@@ -148,6 +148,6 @@ const PageProjectsComponent = ({
         />
       </Modal>
     </>
-  )
-}
-export default PageProjectsComponent
+  );
+};
+export default PageProjectsComponent;

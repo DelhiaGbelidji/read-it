@@ -1,33 +1,33 @@
-'use client'
-import {createManuscript} from '@/app/api/manuscripts/route'
+'use client';
+import {createManuscript} from '@/app/api/manuscripts/route';
 import {
   Type_CreateManuscript,
   Type_Manuscript,
-} from '@/app/api/manuscripts/types'
-import {Type_Project} from '@/app/api/projects/types'
-import {DefaultButton} from '@/components/buttons/Buttons'
-import {Styled_TextField} from '@/components/inputText/TextField.style'
-import {notifyError, notifySuccess} from '@/utils/constants'
-import {yupResolver} from '@hookform/resolvers/yup'
-import {Grid} from '@mui/material'
-import {Dispatch, SetStateAction} from 'react'
-import {Controller, useForm} from 'react-hook-form'
-import * as Yup from 'yup'
+} from '@/app/api/manuscripts/types';
+import {Type_Project} from '@/app/api/projects/types';
+import {DefaultButton} from '@/components/buttons/Buttons';
+import {Styled_TextField} from '@/components/inputText/TextField.style';
+import {notifyError, notifySuccess} from '@/utils/constants';
+import {yupResolver} from '@hookform/resolvers/yup';
+import {Grid} from '@mui/material';
+import {Dispatch, SetStateAction} from 'react';
+import {Controller, useForm} from 'react-hook-form';
+import * as Yup from 'yup';
 
 type Type_Props_CreateManuscriptForm = {
-  setOpenFormDialog: Dispatch<SetStateAction<boolean>>
-  setData: Dispatch<SetStateAction<Type_Manuscript>>
-  projectId: number
-}
+  setOpenFormDialog: Dispatch<SetStateAction<boolean>>;
+  setData: Dispatch<SetStateAction<Type_Manuscript>>;
+  projectId: number;
+};
 
 type Type_CreateManuscriptData = {
-  title: string
-  file_url: string
-}
+  title: string;
+  file_url: string;
+};
 const Schema_Manuscript = Yup.object().shape({
   title: Yup.string().required('A title is required'),
   file_url: Yup.string().required('A file url is required'),
-})
+});
 
 const CreateManuscriptForm = ({
   setOpenFormDialog,
@@ -44,7 +44,7 @@ const CreateManuscriptForm = ({
       file_url: '',
     },
     resolver: yupResolver(Schema_Manuscript),
-  })
+  });
 
   const onSubmit = async (data: Type_CreateManuscriptData) => {
     try {
@@ -52,22 +52,22 @@ const CreateManuscriptForm = ({
         title: data.title,
         file_url: data.file_url,
         project_id: projectId,
-      }
-      const {error, response} = await createManuscript(manuscriptData)
+      };
+      const {error, response} = await createManuscript(manuscriptData);
 
       if (error) {
-        notifyError(error)
-        return
+        notifyError(error);
+        return;
       }
 
-      notifySuccess('Manuscript has been created successfully')
-      setOpenFormDialog(false)
-      setData(prevManuscript => ({...prevManuscript, response}))
+      notifySuccess('Manuscript has been created successfully');
+      setOpenFormDialog(false);
+      setData(prevManuscript => ({...prevManuscript, response}));
     } catch (error) {
-      console.error(error)
-      notifyError('An unexpected error occurred')
+      console.error(error);
+      notifyError('An unexpected error occurred');
     }
-  }
+  };
 
   return (
     <>
@@ -125,7 +125,7 @@ const CreateManuscriptForm = ({
         </Grid>
       </form>
     </>
-  )
-}
+  );
+};
 
-export default CreateManuscriptForm
+export default CreateManuscriptForm;

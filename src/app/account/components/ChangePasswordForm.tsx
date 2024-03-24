@@ -1,22 +1,22 @@
-'use client'
-import React, {useState} from 'react'
-import {Grid, InputAdornment, IconButton} from '@mui/material'
-import * as Yup from 'yup'
-import {DefaultButton} from '@/components/buttons/Buttons'
-import {Controller, useForm} from 'react-hook-form'
-import {yupResolver} from '@hookform/resolvers/yup'
-import {Visibility, VisibilityOff} from '@mui/icons-material'
-import {notifyError, notifySuccess, passwordRules} from '@/utils/constants'
-import {changeUserPassword} from '@/app/api/users/route'
-import {Type_ChangePassword} from '@/app/api/users/types'
-import {Type_Props_AccountTabs} from './AccountTabs'
-import {Styled_TextField} from '@/components/inputText/TextField.style'
+'use client';
+import React, {useState} from 'react';
+import {Grid, InputAdornment, IconButton} from '@mui/material';
+import * as Yup from 'yup';
+import {DefaultButton} from '@/components/buttons/Buttons';
+import {Controller, useForm} from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
+import {Visibility, VisibilityOff} from '@mui/icons-material';
+import {notifyError, notifySuccess, passwordRules} from '@/utils/constants';
+import {changeUserPassword} from '@/app/api/users/route';
+import {Type_ChangePassword} from '@/app/api/users/types';
+import {Type_Props_AccountTabs} from './AccountTabs';
+import {Styled_TextField} from '@/components/inputText/TextField.style';
 
 type Type_ChangePasswordData = {
-  old_password?: string
-  new_password?: string
-  confirm_password?: string
-}
+  old_password?: string;
+  new_password?: string;
+  confirm_password?: string;
+};
 
 const Schema_ChangePasswordForm = Yup.object().shape({
   old_password: Yup.string(),
@@ -27,17 +27,17 @@ const Schema_ChangePasswordForm = Yup.object().shape({
     [Yup.ref('new_password')],
     'Passwords must match',
   ),
-})
+});
 
 const ChangePasswordForm = ({session}: Type_Props_AccountTabs) => {
   //Show/hide password
-  const [showPassword, setShowPassword] = useState(false)
-  const handleClickShowPassword = () => setShowPassword(show => !show)
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword(show => !show);
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>,
   ) => {
-    event.preventDefault()
-  }
+    event.preventDefault();
+  };
   //Form handler
   const {
     handleSubmit,
@@ -50,30 +50,30 @@ const ChangePasswordForm = ({session}: Type_Props_AccountTabs) => {
       confirm_password: '',
     },
     resolver: yupResolver(Schema_ChangePasswordForm),
-  })
+  });
 
   const onSubmit = async (formData: Type_ChangePasswordData) => {
     const data: Type_ChangePassword = {
       old_password: formData.old_password!,
       new_password: formData.new_password!,
-    }
+    };
 
     try {
       const {error} = await changeUserPassword(
         session.user.id,
         data,
         session.backendTokens.accessToken,
-      )
+      );
 
       if (error) {
-        notifyError(error)
+        notifyError(error);
       } else {
-        notifySuccess('Password has been updated successfully')
+        notifySuccess('Password has been updated successfully');
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -174,7 +174,7 @@ const ChangePasswordForm = ({session}: Type_Props_AccountTabs) => {
         </DefaultButton>
       </Grid>
     </form>
-  )
-}
+  );
+};
 
-export default ChangePasswordForm
+export default ChangePasswordForm;
