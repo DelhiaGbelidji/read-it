@@ -1,4 +1,5 @@
 'use client';
+import {authOptions} from '@/app/api/auth/[...nextauth]/options';
 import {createManuscript} from '@/app/api/manuscripts/route';
 import {
   Type_CreateManuscript,
@@ -10,6 +11,7 @@ import {Styled_TextField} from '@/components/inputText/TextField.style';
 import {notifyError, notifySuccess} from '@/utils/constants';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {Grid} from '@mui/material';
+import {getServerSession} from 'next-auth';
 import {Dispatch, SetStateAction} from 'react';
 import {Controller, useForm} from 'react-hook-form';
 import * as Yup from 'yup';
@@ -48,12 +50,19 @@ const CreateManuscriptForm = ({
 
   const onSubmit = async (data: Type_CreateManuscriptData) => {
     try {
+      const session = await getServerSession(authOptions);
+
       const manuscriptData: Type_CreateManuscript = {
         title: data.title,
         file_url: data.file_url,
         project_id: projectId,
       };
-      const {error, response} = await createManuscript(manuscriptData);
+      if (!session) return;
+
+      const {error, response} = await createManuscript(
+        manuscriptData,
+        session?.backendTokens.accessToken,
+      );
 
       if (error) {
         notifyError(error);

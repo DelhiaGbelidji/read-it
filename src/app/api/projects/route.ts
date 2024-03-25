@@ -1,8 +1,8 @@
 import { BACKEND_URL } from "@/utils/constants"
 import { formatterProject, formatterProjects } from "./formatters";
 import { Type_CreateProject, Type_UpdateProject, Type_api_project } from "./types";
-import { authOptions } from "../auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]/options";
 
 export const getProjects = async (token: string) => {
     try {
