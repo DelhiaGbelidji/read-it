@@ -1,12 +1,10 @@
 import {BACKEND_URL} from '@/utils/constants'
 import {Type_CreateManuscript} from './types'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '../auth/[...nextauth]/route'
 
 export const createManuscript = async (
   data: Type_CreateManuscript,
+  token: string
 ) => {
-    const session = await getServerSession(authOptions);
   try {
     const res = await fetch(BACKEND_URL + '/manuscripts/create', {
       method: 'POST',
@@ -17,7 +15,7 @@ export const createManuscript = async (
       }),
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${session?.backendTokens.accessToken}`,
+        Authorization: `Bearer ${token}`,
       },
     })
 

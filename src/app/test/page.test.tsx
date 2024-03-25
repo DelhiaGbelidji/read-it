@@ -22,7 +22,6 @@ describe('Page', () => {
     mockAxios.reset();
 
     // Mock de réponse spécifique si nécessaire
-    // Exemple : Mock toutes les requêtes GET vers un certain URL pour retourner une réponse spécifique
     mockAxios
       .onGet('https://www.googleapis.com/books/v1/volumes')
       .reply(200, {});

@@ -4,7 +4,7 @@ import { signOut } from "next-auth/react";
 
 export const registerUser = async (data: Type_User) => {
     try {
-      const res = await fetch(BACKEND_URL + '/auth/register', {
+      const res = await fetch(`${BACKEND_URL}/auth/register`, {
         method: "POST",
         body: JSON.stringify(data),
         headers: {

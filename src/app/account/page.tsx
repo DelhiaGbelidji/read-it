@@ -1,5 +1,5 @@
 import {getServerSession} from 'next-auth';
-import {authOptions} from '../api/auth/[...nextauth]/route';
+import {authOptions} from '../api/auth/[...nextauth]/options';
 import {Box} from '@mui/material';
 import AccountTabs from './components/AccountTabs';
 import {BACKEND_URL} from '@/utils/constants';
