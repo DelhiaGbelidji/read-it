@@ -43,7 +43,7 @@ const DeleteUserForm = ({session}: Type_Props_AccountTabs) => {
       if (error) {
         notifyError(error);
       }
-      notifySuccess(response);
+      notifySuccess('Your account has been successfully deleted.');
     } catch (error) {
       console.error(error);
     }

@@ -55,7 +55,7 @@ const UpdateUserForm = ({session, user}: Type_Props_AccountTabs) => {
       if (error) {
         notifyError(error);
       }
-      notifySuccess(response);
+      notifySuccess('Your information have been successfully updated.');
     } catch (error) {
       console.error(error);
     }
