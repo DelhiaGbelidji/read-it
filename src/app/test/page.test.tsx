@@ -1,4 +1,3 @@
-// src/app/test/page.test.tsx
 import {render, fireEvent} from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Page from '../page'; // Ajustez le chemin selon la structure de votre projet
