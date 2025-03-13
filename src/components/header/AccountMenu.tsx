@@ -16,12 +16,17 @@ type Type_Props_AccountMenu = ComponentProps<typeof MuiAvatar> & {
 };
 
 const Avatar = ({name, ...props}: Type_Props_AccountMenu) => {
-  const stringInitials = (string: any): string => {
-    return string
-      .match(/(\b\S)?/g)
-      .join('')
-      .match(/(^\S|\S$)?/g)
-      .join('');
+  const stringInitials = (str: string): string => {
+    if (!str || typeof str !== 'string') return 'U';
+
+    const matches = str.match(/(\b\S)?/g);
+    if (!matches) return 'U';
+
+    const initials = matches.join('').match(/(^\S|\S$)?/g);
+
+    if (!initials) return 'U';
+
+    return initials.join('').toUpperCase() || 'U';
   };
 
   const stringAvatar = (
@@ -31,7 +36,7 @@ const Avatar = ({name, ...props}: Type_Props_AccountMenu) => {
     return {
       ...props,
       sx: {
-        bgcolor: stringToColor(name),
+        bgcolor: stringToColor(name || 'User'),
         ...props.sx,
       },
       children: stringInitials(name),
@@ -121,7 +126,7 @@ const AccountMenu = ({name}: Type_Props_AccountMenu) => {
               direction={'row'}
               spacing={1}
               justifyContent={'center'}
-              sx={{color: COLORS.red500}}>
+              sx={{color: COLORS.red}}>
               <Logout fontSize='small' />
               <Typography>Sign out</Typography>
             </Stack>

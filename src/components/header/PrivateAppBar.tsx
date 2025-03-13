@@ -9,7 +9,7 @@ import React from 'react';
 import {Styled_IconButton} from '../buttons/IconButton.style';
 import {TextButton} from '../buttons/Buttons';
 
-const PrivateAppBar = ({name}: {name: string}) => {
+const PrivateAppBar = ({name}: {name?: string}) => {
   const router = useRouter();
   const pages = ['projects'];
 
@@ -80,7 +80,7 @@ const PrivateAppBar = ({name}: {name: string}) => {
         </Box>
         <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}></Box>
         <Stack direction={'row'} sx={{flexGrow: 0}} spacing={2} marginRight={5}>
-          <AccountMenu name={name} />
+          <AccountMenu name={name || 'User'} />
         </Stack>
       </Toolbar>
     </Styled_AppBar>

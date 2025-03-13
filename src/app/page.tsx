@@ -37,8 +37,10 @@ export default function Home() {
             <Image
               src={'/assets/landing.jpg'}
               alt='Landing'
-              layout='fill'
-              objectFit='cover'
+              fill
+              style={{objectFit: 'cover'}}
+              sizes='(max-width: 600px) 100vw, (max-width: 900px) 50vw, 40vw'
+              priority
             />
           </Box>
         </Grid>
@@ -57,7 +59,7 @@ export default function Home() {
             textAlign={isMobile ? 'center' : 'left'}
             sx={{mt: spacing, mb: spacing}}>
             At{' '}
-            <span style={{fontWeight: 'bold', color: '#F7195C'}}>READ-it</span>,
+            <span style={{fontWeight: 'bold', color: '#F7195C'}}>READ-IT</span>,
             we hold the conviction that words possess the power to inspire,
             forge connections, and evoke emotions. Our mission is to establish a
             conduit between avid readers and gifted authors. We transcend the
@@ -87,7 +89,7 @@ export default function Home() {
           mb: spacing,
         }}>
         <Box sx={{flexGrow: 1, height: '1px', bgcolor: `${COLORS.grey500}`}} />
-        <Typography sx={{mx: 2, color: `${COLORS.neutral700}`, px: 1}}>
+        <Typography sx={{mx: 2, color: `${COLORS.neutral}`, px: 1}}>
           Book recommendation
         </Typography>
         <Box sx={{flexGrow: 1, height: '1px', bgcolor: `${COLORS.grey500}`}} />

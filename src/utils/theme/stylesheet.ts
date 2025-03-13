@@ -12,47 +12,19 @@ export const COLORS = {
   moon500: "#8595AD",
 
    // neutral
-   neutral700: "#545E6E",
+   neutral: "#545E6E",
 
-    red500: "#DF4B35",
+  red: "#DF4B35",
 
-    blue100: "#BAD8F9",
-    blue200: "#92C1F5",
-    blue300: "#6EA9F1",
-    blue400: "#5698EF",
-    blue500: "#4488ED",
-    blue600: "#3E7ADD",
-    blue700: "#3669C8",
-    blue800: "#2F58B4",
-    blue900: "#00101B",
-
-    green100: "#C6E1C3",
-    green200: "#A3CE9F",
-    green300: "#82BD7D",
-    green400: "#6BB064",
-    green500: "#57A34D",
-    green600: "#4D9344",
-    green700: "#42803A",
-    green800: "#387031",
-
-    grey100: "#FAFAFA",
-    grey200: "#EBEBEB",
-    grey300: "#DCDCDC",
-    grey400: "#B5B5B5",
-    grey500: "#949494",
-    grey600: "#6A6A6A",
-    grey700: "#565656",
-    grey800: "#3A3A3A",
-
-    blue: "#1432F5",
-    brown: "#A27B4C",
-    cyan: "#74F9FD",
-    green: "#72F54A",
-    magenta: "#EB52F8",
-    orange: "#F09837",
-    violet: "#882B8D",
-    yellow: "#FEFB53",
-
+  grey100: "#FAFAFA",
+  grey200: "#EBEBEB",
+  grey300: "#DCDCDC",
+  grey400: "#B5B5B5",
+  grey500: "#949494",
+  grey600: "#6A6A6A",
+  grey700: "#565656",
+  grey800: "#3A3A3A",
+  
   // action buttons
   borderButton: '#FDDFD9',
   disabledButton: '#F7F7F8',

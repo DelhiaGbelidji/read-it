@@ -6,13 +6,14 @@ import {
   styled,
   MenuItem,
   Menu,
-  CardMedia,
+  Box,
   Typography,
 } from '@mui/material';
 import {COLORS} from '../../utils/theme';
 import {Styled_IconButton} from '../buttons/IconButton.style';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import {SxProps} from '@mui/system';
+import Image from 'next/image';
 
 type Type_Props_Card = {
   imageUrl?: string;
@@ -25,7 +26,7 @@ type Type_Props_Card = {
 
 export const Styled_Card = styled(Card)(() => ({
   marginBottom: 16,
-  borderColor: COLORS.grey600,
+  borderColor: COLORS.neutral,
   borderRadius: '8px',
   position: 'relative',
 }));
@@ -58,12 +59,17 @@ const Rea_Card = ({
   return (
     <Styled_Card sx={{...sx}}>
       <CardActionArea onClick={onClick}>
-        <CardMedia
-          component='img'
-          image={imageUrl ? imageUrl : '/assets/default.png'}
-          alt={title}
-          sx={{height: 200}}
-        />
+        <Box sx={{ position: 'relative', height: 200 }}>
+          <Image
+            src={imageUrl || '/assets/default.png'}
+            alt={title || 'Image de couverture'}
+            fill
+            style={{
+              objectFit: 'cover',
+            }}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        </Box>
         {(title || description) && (
           <Styled_CardContent>
             {title && (
