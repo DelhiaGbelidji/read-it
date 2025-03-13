@@ -1,23 +1,20 @@
 import {Box, Container} from '@mui/material';
 import {Metadata} from 'next';
-import {getServerSession} from 'next-auth';
 import {Toaster} from 'react-hot-toast';
 
 import Footer from '@/components/footer/Footer';
-import PrivateAppBar from '@/components/header/PrivateAppBar';
-import {PublicAppBar} from '@/components/header/PublicAppBar';
+import DynamicAppBar from '@/components/header/DynamicAppBar';
 import Providers from '@/components/Providers';
 import ThemeRegistry from '@/utils/theme/ThemeRegistry';
 
-import {authOptions} from './api/auth/[...nextauth]/options';
 import ErrorBoundary from '../components/ErrorBoundary';
 import ThemeMetaTag from '../components/ThemeMetaTag';
 
 export const metadata: Metadata = {
-  title: 'READ IT - Your Project Management Solution',
+  title: 'READ IT - Your Self-Publishing Solution',
   description:
-    'Manage your projects efficiently with READ IT. Features include project tracking, collaboration tools, and more.',
-  keywords: 'project management, collaboration, task tracking',
+    'Manage your publishing projects efficiently with READ IT. Features include project tracking, collaboration tools, and more.',
+  keywords: 'self-publishing, publishing, project management, collaboration, task tracking',
   authors: [{name: 'READ IT Team'}],
   robots: 'index, follow',
 };
@@ -27,17 +24,7 @@ export const viewport = {
   initialScale: 1,
 };
 
-export default async function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const session = await getServerSession(authOptions);
-  const fullName =
-    session?.user?.firstname && session?.user?.lastname
-      ? `${session.user.firstname} ${session.user.lastname}`
-      : undefined;
-
+export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang='en'>
       <head>
@@ -66,11 +53,7 @@ export default async function RootLayout({
                     right: 0,
                     zIndex: 1000,
                   }}>
-                  {!session ? (
-                    <PublicAppBar />
-                  ) : (
-                    <PrivateAppBar name={fullName} />
-                  )}
+                  <DynamicAppBar />
                 </Box>
 
                 <Box
