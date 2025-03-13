@@ -1,14 +1,16 @@
 'use client';
 import {useState} from 'react';
-import {Box, Stack, Tab, Typography} from '@mui/material';
-import {TabContext} from '@mui/lab';
 
+import {TabContext} from '@mui/lab';
+import {Box, Stack, Tab, Typography} from '@mui/material';
+import {Session} from 'next-auth';
+
+import {Type_User} from '@/app/api/users/types';
 import {Styled_TabList, Styled_TabPanel} from '@/components/tabs/Tabs.style';
-import UpdateUserForm from './UpdateUserForm';
+
 import ChangePasswordForm from './ChangePasswordForm';
 import DeleteUserForm from './DeleteUserForm';
-import {Type_User} from '@/app/api/users/types';
-import {Session} from 'next-auth';
+import UpdateUserForm from './UpdateUserForm';
 
 export type Type_Props_AccountTabs = {
   session: Session;

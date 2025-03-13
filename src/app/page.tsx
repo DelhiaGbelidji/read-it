@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+
 import {
   Box,
   Container,
@@ -9,11 +10,13 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import Image from 'next/image';
+import {useRouter} from 'next/navigation';
+
 import {DefaultButton, ClearButton} from '@/components/buttons/Buttons';
-import BooksCarousel from '../components/landing/Carousel';
 import CustomSloganTypography from '@/components/landing/slogan';
 import {COLORS} from '@/utils/theme';
-import {useRouter} from 'next/navigation';
+
+import BooksCarousel from '../components/landing/Carousel';
 
 export default function Home() {
   const router = useRouter();

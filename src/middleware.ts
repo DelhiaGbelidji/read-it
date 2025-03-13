@@ -1,5 +1,6 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import {NextResponse} from 'next/server';
+
+import type {NextRequest} from 'next/server';
 
 export function middleware(_request: NextRequest) {
   const response = NextResponse.next();
@@ -13,26 +14,23 @@ export function middleware(_request: NextRequest) {
       "'self'",
       "'unsafe-inline'",
       "'unsafe-eval'",
-      ...(isDevelopment ? ['http://localhost:*'] : [])
+      ...(isDevelopment ? ['http://localhost:*'] : []),
     ],
     'style-src': [
       "'self'",
       "'unsafe-inline'",
       'https://fonts.googleapis.com',
-      ...(isDevelopment ? ['http://localhost:*'] : [])
+      ...(isDevelopment ? ['http://localhost:*'] : []),
     ],
     'font-src': [
       "'self'",
       'https://fonts.gstatic.com',
-      ...(isDevelopment ? ['http://localhost:*'] : [])
+      ...(isDevelopment ? ['http://localhost:*'] : []),
     ],
     'connect-src': [
       "'self'",
       'https://www.googleapis.com',
-      ...(isDevelopment ? [
-        'http://localhost:*',
-        'ws://localhost:*'
-      ] : [])
+      ...(isDevelopment ? ['http://localhost:*', 'ws://localhost:*'] : []),
     ],
     'img-src': [
       "'self'",
@@ -43,13 +41,13 @@ export function middleware(_request: NextRequest) {
       'https://books.google.com',
       'http://*.googleusercontent.com',
       'https://*.googleusercontent.com',
-      ...(isDevelopment ? ['http://localhost:*'] : [])
+      ...(isDevelopment ? ['http://localhost:*'] : []),
     ],
     'media-src': ["'self'"],
     'frame-src': ["'self'"],
     'base-uri': ["'self'"],
     'form-action': ["'self'"],
-    'frame-ancestors': ["'self'"]
+    'frame-ancestors': ["'self'"],
   };
 
   // Construction de la chaîne CSP
@@ -65,7 +63,7 @@ export function middleware(_request: NextRequest) {
     'X-XSS-Protection': '1; mode=block',
     'Referrer-Policy': 'strict-origin-when-cross-origin',
     'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
-    'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload'
+    'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload',
   };
 
   // Application des en-têtes de sécurité
@@ -79,7 +77,5 @@ export function middleware(_request: NextRequest) {
 // Configuration des chemins à gérer par le middleware
 // Ne pas appliquer le middleware aux ressources statiques et aux routes API
 export const config = {
-  matcher: [
-    '/((?!api/|_next/|favicon.ico).*)',
-  ],
+  matcher: ['/((?!api/|_next/|favicon.ico).*)'],
 };

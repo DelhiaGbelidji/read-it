@@ -1,15 +1,18 @@
 'use client';
 import React from 'react';
-import {Grid} from '@mui/material';
-import * as Yup from 'yup';
-import {DefaultButton} from '@/components/buttons/Buttons';
-import {Controller, useForm} from 'react-hook-form';
+
 import {yupResolver} from '@hookform/resolvers/yup';
-import {Type_Props_AccountTabs} from './AccountTabs';
-import {Type_UpdateUser} from '@/app/api/users/types';
+import {Grid} from '@mui/material';
+import {Controller, useForm} from 'react-hook-form';
+import * as Yup from 'yup';
+
 import {updateUser} from '@/app/api/users/route';
-import {notifyError, notifySuccess} from '@/utils/constants';
+import {Type_UpdateUser} from '@/app/api/users/types';
+import {DefaultButton} from '@/components/buttons/Buttons';
 import {Styled_TextField} from '@/components/inputText/TextField.style';
+import {notifyError, notifySuccess} from '@/utils/constants';
+
+import {Type_Props_AccountTabs} from './AccountTabs';
 
 type Type_UpdateUserData = {
   firstname?: string;

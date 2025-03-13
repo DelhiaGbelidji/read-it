@@ -7,8 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@emotion/cache": "^11.11.0",
@@ -43,11 +45,14 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-slick": "^0.23.13",
+    "@typescript-eslint/parser": "^8.26.1",
     "autoprefixer": "^10.4.17",
     "axios-mock-adapter": "^1.22.0",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.8.7",
+    "eslint-plugin-import": "^2.31.0",
     "jest-environment-jsdom": "^29.7.0",
     "prettier": "^3.2.4",
     "prisma": "^5.9.1",

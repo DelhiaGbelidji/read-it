@@ -1,5 +1,5 @@
-'use client'
-import { useTheme } from '@mui/material/styles';
+'use client';
+import {useTheme} from '@mui/material/styles';
 
 function useThemeToggle() {
   const theme = useTheme();
@@ -10,7 +10,7 @@ function useThemeToggle() {
     document.body.style.backgroundColor = isDarkMode ? '#fff' : '#000';
   };
 
-  return { isDarkMode, toggleTheme };
+  return {isDarkMode, toggleTheme};
 }
 
-export default useThemeToggle
+export default useThemeToggle;

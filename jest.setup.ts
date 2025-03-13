@@ -1,7 +1,9 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
-global.window.matchMedia = global.window.matchMedia || function (query: string) {
+global.window.matchMedia =
+  global.window.matchMedia ||
+  function (query: string) {
     return {
       matches: false,
       addListener: (listener: () => void) => {},
@@ -9,7 +11,7 @@ global.window.matchMedia = global.window.matchMedia || function (query: string) 
     };
   };
 
-  const mock = new MockAdapter(axios);
+const mock = new MockAdapter(axios);
 
 // Mock toutes les requêtes GET par défaut
 mock.onGet().reply(200, {

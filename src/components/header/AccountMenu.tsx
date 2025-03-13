@@ -1,15 +1,17 @@
 import * as React from 'react';
+import {ComponentProps} from 'react';
+
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import Logout from '@mui/icons-material/Logout';
+import {Link, Avatar as MuiAvatar, Stack, Typography} from '@mui/material';
+import Divider from '@mui/material/Divider';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import Divider from '@mui/material/Divider';
 import Tooltip from '@mui/material/Tooltip';
-import Logout from '@mui/icons-material/Logout';
 
-import {Link, Avatar as MuiAvatar, Stack, Typography} from '@mui/material';
-import {ComponentProps} from 'react';
 import {COLORS, stringToColor} from '@/utils/theme';
+
 import {Styled_IconButton} from '../buttons/IconButton.style';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 type Type_Props_AccountMenu = ComponentProps<typeof MuiAvatar> & {
   name: string;

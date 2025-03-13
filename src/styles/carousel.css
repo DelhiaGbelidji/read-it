@@ -4,6 +4,7 @@
   box-sizing: border-box;
   user-select: none;
   touch-action: pan-y;
+  margin-bottom: 32px;
 }
 
 .slick-list {
@@ -34,30 +35,15 @@
   display: block;
 }
 
-.slick-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1;
-  cursor: pointer;
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 50%;
-}
-
-.slick-prev {
-  left: 10px;
-}
-
+.slick-arrow,
+.slick-prev,
 .slick-next {
-  right: 10px;
+  display: none !important;
 }
 
 .slick-dots {
   position: absolute;
-  bottom: -25px;
+  bottom: -24px;
   display: flex !important;
   width: 100%;
   padding: 0;
@@ -65,12 +51,16 @@
   list-style: none;
   text-align: center;
   justify-content: center;
-  gap: 8px;
+  gap: 12px;
+  z-index: 1;
+  pointer-events: auto;
 }
 
 .slick-dots li {
   position: relative;
   display: inline-block;
+  width: 8px;
+  height: 8px;
   margin: 0;
   padding: 0;
   cursor: pointer;
@@ -80,17 +70,23 @@
   font-size: 0;
   line-height: 0;
   display: block;
-  width: 10px;
-  height: 10px;
-  padding: 5px;
+  width: 8px;
+  height: 8px;
+  padding: 0;
   cursor: pointer;
   color: transparent;
   border: 0;
   outline: none;
-  background: #ddd;
+  background: rgba(0, 0, 0, 0.2);
   border-radius: 50%;
+  transition: all 0.3s ease;
 }
 
-.slick-dots button {
-  background: #666;
+.slick-dots li.slick-active button {
+  background: rgba(0, 0, 0, 0.6);
+  transform: scale(1.25);
+}
+
+.slick-dots li button:hover {
+  background: rgba(0, 0, 0, 0.4);
 }

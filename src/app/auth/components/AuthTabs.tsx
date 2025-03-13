@@ -1,11 +1,13 @@
 'use client';
 import {useState} from 'react';
-import {Box, Stack, Tab, Typography} from '@mui/material';
+
 import {TabContext} from '@mui/lab';
+import {Box, Stack, Tab, Typography} from '@mui/material';
+
+import {Styled_TabList, Styled_TabPanel} from '@/components/tabs/Tabs.style';
 
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
-import {Styled_TabList, Styled_TabPanel} from '@/components/tabs/Tabs.style';
 
 const AuthTabs = () => {
   const [value, setValue] = useState('1');

@@ -1,13 +1,15 @@
 'use client';
-import {Box, Menu, MenuItem, Stack, Toolbar, Typography} from '@mui/material';
-import {Styled_AppBar} from './AppBar.style';
-import AccountMenu from './AccountMenu';
-import {ImageLink} from './PublicAppBar';
-import {useRouter} from 'next/navigation';
-import MenuIcon from '@mui/icons-material/Menu';
 import React from 'react';
-import {Styled_IconButton} from '../buttons/IconButton.style';
+
+import MenuIcon from '@mui/icons-material/Menu';
+import {Box, Menu, MenuItem, Stack, Toolbar, Typography} from '@mui/material';
+import {useRouter} from 'next/navigation';
+
+import AccountMenu from './AccountMenu';
+import {Styled_AppBar} from './AppBar.style';
+import {ImageLink} from './PublicAppBar';
 import {TextButton} from '../buttons/Buttons';
+import {Styled_IconButton} from '../buttons/IconButton.style';
 
 const PrivateAppBar = ({name}: {name?: string}) => {
   const router = useRouter();

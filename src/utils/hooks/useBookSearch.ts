@@ -1,6 +1,8 @@
+import {useEffect, useState, useCallback} from 'react';
+
 import axios from 'axios';
-import { useEffect, useState, useCallback } from 'react';
-import { Type_book } from '../types';
+
+import {Type_book} from '../types';
 
 type BookSearchResult = {
   bookData: Type_book[];
@@ -28,14 +30,14 @@ export default function useBookSearch(
       setError(null);
 
       const formattedQuery = encodeURIComponent(query);
-      const response = await axios.get<{ items?: Type_book[] }>(
+      const response = await axios.get<{items?: Type_book[]}>(
         `https://www.googleapis.com/books/v1/volumes?q=${formattedQuery}&key=${apiKey}&maxResults=10`,
         {
           timeout: 10000, // 10 seconds timeout
           headers: {
-            'Accept': 'application/json',
+            Accept: 'application/json',
           },
-        }
+        },
       );
 
       setBookData(response.data.items || []);
@@ -43,7 +45,9 @@ export default function useBookSearch(
       if (axios.isAxiosError(error)) {
         const status = error.response?.status;
         if (status === 403) {
-          setError('Accès refusé. Vérifiez votre clé API et les autorisations.');
+          setError(
+            'Accès refusé. Vérifiez votre clé API et les autorisations.',
+          );
         } else if (status === 429) {
           setError('Trop de requêtes. Veuillez réessayer plus tard.');
         } else if (error.code === 'ECONNABORTED') {
@@ -64,5 +68,5 @@ export default function useBookSearch(
     fetchBooks();
   }, [fetchBooks]);
 
-  return { bookData, isLoading, error };
+  return {bookData, isLoading, error};
 }

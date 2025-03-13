@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect } from 'react';
-import { theme } from '@/utils/theme';
+import {useEffect} from 'react';
+
+import {theme} from '@/utils/theme';
 
 export default function ThemeMetaTag() {
   useEffect(() => {

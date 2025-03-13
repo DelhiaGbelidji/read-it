@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {Typography, useTheme, useMediaQuery} from '@mui/material';
 import {Barrio} from 'next/font/google';
 const barrio = Barrio({

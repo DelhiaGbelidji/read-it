@@ -1,27 +1,27 @@
 import React, {useState} from 'react';
+
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import {
   Card,
   CardContent,
-  CardActionArea,
   styled,
   MenuItem,
   Menu,
   Box,
-  Typography,
+  Skeleton,
 } from '@mui/material';
-import {COLORS} from '../../utils/theme';
-import {Styled_IconButton} from '../buttons/IconButton.style';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import {SxProps} from '@mui/system';
 import Image from 'next/image';
+
+import {COLORS} from '../../utils/theme';
+import {Styled_IconButton} from '../buttons/IconButton.style';
 
 type Type_Props_Card = {
   imageUrl?: string;
   title?: string;
-  description?: string;
-  onClick?: () => void;
   actions?: {label: string; action: any}[];
   sx?: SxProps;
+  isLoading: boolean;
 };
 
 export const Styled_Card = styled(Card)(() => ({
@@ -31,20 +31,12 @@ export const Styled_Card = styled(Card)(() => ({
   position: 'relative',
 }));
 
-export const Styled_CardContent = styled(CardContent)(() => ({
-  height: '100%',
-  padding: '10px',
-  display: 'flex',
-  flexDirection: 'column',
-}));
-
 const Rea_Card = ({
   imageUrl,
   title,
-  description,
-  onClick,
   actions,
   sx,
+  isLoading,
 }: Type_Props_Card) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -56,35 +48,40 @@ const Rea_Card = ({
     setAnchorEl(null);
   };
 
+  if (isLoading) {
+    return (
+      <Styled_Card sx={{...sx}}>
+        <Box sx={{height: 200}}>
+          <Skeleton variant='rectangular' width='100%' height='100%' />
+        </Box>
+        <CardContent>
+          <Skeleton variant='text' width='80%' height={24} />
+        </CardContent>
+      </Styled_Card>
+    );
+  }
+
   return (
     <Styled_Card sx={{...sx}}>
-      <CardActionArea onClick={onClick}>
-        <Box sx={{ position: 'relative', height: 200 }}>
+      <Box>
+        <Box
+          sx={{
+            position: 'relative',
+            height: 200,
+            backgroundColor: COLORS.grey200,
+          }}>
           <Image
             src={imageUrl || '/assets/default.png'}
             alt={title || 'Image de couverture'}
             fill
             style={{
-              objectFit: 'cover',
+              objectFit: 'contain',
             }}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
           />
         </Box>
-        {(title || description) && (
-          <Styled_CardContent>
-            {title && (
-              <Typography variant='subtitle2' noWrap>
-                {title}
-              </Typography>
-            )}
-            {description && (
-              <Typography variant='caption' noWrap>
-                {description}
-              </Typography>
-            )}
-          </Styled_CardContent>
-        )}{' '}
-      </CardActionArea>
+        {title && <CardContent sx={{height: 80}}>{title}</CardContent>}
+      </Box>
       {actions && actions.length > 0 && (
         <>
           <Styled_IconButton
@@ -118,4 +115,5 @@ const Rea_Card = ({
     </Styled_Card>
   );
 };
+
 export default Rea_Card;

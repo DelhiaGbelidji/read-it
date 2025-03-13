@@ -1,16 +1,19 @@
 'use client';
 import {Dispatch, SetStateAction, useState} from 'react';
-import {Styled_IconButton} from '@/components/buttons/IconButton.style';
-import SearchBar from '@/components/searchbar/SearchBar';
-import {useMediaQuery, Container, Typography, Grid} from '@mui/material';
+
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import {Type_Project} from '../api/projects/types';
+import {useMediaQuery, Container, Typography, Grid} from '@mui/material';
+import {useRouter} from 'next/navigation';
+import {Session} from 'next-auth';
+
+import {Styled_IconButton} from '@/components/buttons/IconButton.style';
 import Rea_Card from '@/components/card/Card';
 import Modal from '@/components/modal/Modal';
+import SearchBar from '@/components/searchbar/SearchBar';
+
 import CreateProjectForm from './components/CreateProjectForm';
-import {Session} from 'next-auth';
 import UpdateProjectForm from './components/UpdateProjectForm';
-import {useRouter} from 'next/navigation';
+import {Type_Project} from '../api/projects/types';
 
 type Type_Props_PageProjectComponent = {
   projects: Type_Project[];

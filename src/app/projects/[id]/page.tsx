@@ -1,6 +1,8 @@
 import {GetServerSideProps} from 'next';
+
 import {getProjectById} from '@/app/api/projects/route';
 import {Type_Project} from '@/app/api/projects/types';
+
 import Manuscript from './components/Manuscript';
 
 type Type_Props_DashboardPage = {

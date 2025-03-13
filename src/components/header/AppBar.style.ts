@@ -1,8 +1,9 @@
-import { COLORS } from "@/utils/theme/";
-import { AppBar, styled } from "@mui/material";
+import {AppBar, styled} from '@mui/material';
 
-export const Styled_AppBar = styled(AppBar)(({ theme }) => ({
-    '&.MuiAppBar-root': {
-        backgroundColor: COLORS.lightGrey,
-    }
-  }));
+import {COLORS} from '@/utils/theme/';
+
+export const Styled_AppBar = styled(AppBar)(({theme}) => ({
+  '&.MuiAppBar-root': {
+    backgroundColor: COLORS.lightGrey,
+  },
+}));

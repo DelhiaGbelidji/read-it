@@ -1,9 +1,10 @@
 import {render, fireEvent} from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Page from '../page'; // Ajustez le chemin selon la structure de votre projet
-import * as nextNavigation from 'next/navigation';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
+import * as nextNavigation from 'next/navigation';
+
+import Page from '../page';
 
 // Mock pour Axios
 const mockAxios = new MockAdapter(axios);

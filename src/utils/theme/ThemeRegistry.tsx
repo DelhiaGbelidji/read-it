@@ -1,15 +1,17 @@
 'use client';
 
-import createCache from '@emotion/cache';
-import { useServerInsertedHTML } from 'next/navigation';
-import { CacheProvider } from '@emotion/react';
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import { theme } from './index';
-import { ReactNode } from 'react';
+import {ReactNode} from 'react';
 
-export default function ThemeRegistry({ children }: { children: ReactNode }) {
-  const options = { key: 'mui' };
+import createCache from '@emotion/cache';
+import {CacheProvider} from '@emotion/react';
+import CssBaseline from '@mui/material/CssBaseline';
+import {ThemeProvider} from '@mui/material/styles';
+import {useServerInsertedHTML} from 'next/navigation';
+
+import {theme} from './index';
+
+export default function ThemeRegistry({children}: {children: ReactNode}) {
+  const options = {key: 'mui'};
   const cache = createCache(options);
 
   useServerInsertedHTML(() => (

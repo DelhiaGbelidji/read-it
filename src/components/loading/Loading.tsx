@@ -1,5 +1,6 @@
-import {COLORS} from '@/utils/theme';
 import {Stack, CircularProgress, Typography} from '@mui/material';
+
+import {COLORS} from '@/utils/theme';
 
 const Loading = () => {
   return (

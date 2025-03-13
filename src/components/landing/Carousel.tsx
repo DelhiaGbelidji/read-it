@@ -1,14 +1,15 @@
-import React, {useRef, useCallback, useState} from 'react';
+import React, {useState} from 'react';
+
+import {Box, Container, Alert} from '@mui/material';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
+
 import '@/styles/carousel.css';
 import useBookSearch from '@/utils/hooks/useBookSearch';
-import Loading from '../loading/Loading';
+
 import BookSlide from './BookSlide';
-import {Box, Container, Typography, Alert, IconButton} from '@mui/material';
-import {COLORS} from '@/utils/theme';
-import {ChevronLeft, ChevronRight} from '@mui/icons-material';
-import {visuallyHidden} from '@mui/utils';
+
+import type {Settings} from 'react-slick';
 
 const DEFAULT_QUERIES = [
   'Octavia Butler',
@@ -18,85 +19,39 @@ const DEFAULT_QUERIES = [
 ];
 
 const BooksCarousel = () => {
-  const sliderRef = useRef<Slider>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API_KEY || '';
   const query = DEFAULT_QUERIES[0];
   const {bookData, isLoading, error} = useBookSearch(apiKey, query);
 
-  const next = useCallback(() => {
-    sliderRef.current?.slickNext();
-  }, []);
-
-  const previous = useCallback(() => {
-    sliderRef.current?.slickPrev();
-  }, []);
-
-  const CustomPrevArrow = useCallback(
-    () => (
-      <IconButton
-        onClick={previous}
-        sx={{
-          position: 'absolute',
-          left: '-40px',
-          top: '50%',
-          transform: 'translateY(-50%)',
-          zIndex: 1,
-          bgcolor: 'rgba(0, 0, 0, 0.3)',
-          color: 'white',
-          '&:hover': {bgcolor: 'rgba(0, 0, 0, 0.5)'},
-        }}
-        aria-label='Livre précédent'>
-        <ChevronLeft />
-      </IconButton>
-    ),
-    [previous],
-  );
-
-  const CustomNextArrow = useCallback(
-    () => (
-      <IconButton
-        onClick={next}
-        sx={{
-          position: 'absolute',
-          right: '-40px',
-          top: '50%',
-          transform: 'translateY(-50%)',
-          zIndex: 1,
-          bgcolor: 'rgba(0, 0, 0, 0.3)',
-          color: 'white',
-          '&:hover': {bgcolor: 'rgba(0, 0, 0, 0.5)'},
-        }}
-        aria-label='Livre suivant'>
-        <ChevronRight />
-      </IconButton>
-    ),
-    [next],
-  );
-
-  const settings = {
-    ref: sliderRef,
+  const settings: Settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 4000,
     pauseOnHover: true,
-    centerMode: true,
-    prevArrow: <CustomPrevArrow />,
-    nextArrow: <CustomNextArrow />,
-    beforeChange: (_: any, next: number) => setCurrentSlide(next),
+    centerMode: false,
+    arrows: false,
+    beforeChange: (_oldIndex: number, newIndex: number) =>
+      setCurrentSlide(newIndex),
     responsive: [
       {
-        breakpoint: 1400,
+        breakpoint: 1600,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 1200,
         settings: {
           slidesToShow: 3,
         },
       },
       {
-        breakpoint: 1024,
+        breakpoint: 900,
         settings: {
           slidesToShow: 2,
         },
@@ -105,6 +60,8 @@ const BooksCarousel = () => {
         breakpoint: 600,
         settings: {
           slidesToShow: 1,
+          centerMode: true,
+          centerPadding: '40px',
         },
       },
     ],
@@ -121,41 +78,79 @@ const BooksCarousel = () => {
   }
 
   return (
-    <Container sx={{mb: 16, px: {xs: 1, sm: 2, md: 4}}}>
-      <Box sx={{position: 'relative'}}>
-        <Typography component='h2' sx={visuallyHidden}>
-          Carousel de livres recommandés
-        </Typography>
-
-        {isLoading ? (
-          <Box sx={{display: 'flex', justifyContent: 'center', py: 4}}>
-            <Loading />
-          </Box>
-        ) : bookData.length > 0 ? (
-          <Box
-            role='region'
-            aria-label='Carousel de livres'
-            aria-roledescription='carousel'>
-            <Slider {...settings}>
-              {bookData.map((book, index) => (
-                <BookSlide
-                  key={`${book.id || index}`}
-                  book={book}
-                  isActive={index === currentSlide}
-                  index={index}
-                />
-              ))}
-            </Slider>
-          </Box>
-        ) : (
-          <Typography
-            variant='h6'
-            color={COLORS.neutral}
-            textAlign='center'
-            sx={{py: 4}}>
-            Aucun livre trouvé pour le moment.
-          </Typography>
-        )}
+    <Container
+      maxWidth={false}
+      sx={{
+        mt: {xs: 2, sm: 3, md: 4},
+        mb: {xs: 6, sm: 8, md: 10},
+        px: {xs: 1, sm: 2, md: 4},
+        overflow: 'hidden',
+      }}>
+      <Box
+        sx={{
+          position: 'relative',
+          '.slick-slider': {
+            mx: {xs: -1, sm: -2},
+          },
+          '.slick-list': {
+            px: {xs: 1, sm: 2},
+          },
+          '.slick-track': {
+            display: 'flex',
+            gap: 2,
+          },
+        }}>
+        <Box
+          role='region'
+          aria-label='Carousel de livres'
+          aria-roledescription='carousel'
+          sx={{
+            '& .slick-slide': {
+              opacity: 0.5,
+              transition: theme =>
+                theme.transitions.create(['opacity', 'transform'], {
+                  duration: theme.transitions.duration.shorter,
+                }),
+              '&:hover': {
+                transform: 'translateY(-4px)',
+              },
+            },
+            '& .slick-slide.slick-active': {
+              opacity: 1,
+            },
+          }}>
+          <Slider {...settings}>
+            {isLoading
+              ? Array.from(new Array(4)).map((_, index) => (
+                  <BookSlide
+                    isLoading={true}
+                    key={`skeleton-${index}`}
+                    book={{
+                      id: `skeleton-${index}`,
+                      volumeInfo: {
+                        title: '',
+                        description: '',
+                        imageLinks: {
+                          thumbnail: '',
+                          smallThumbnail: '',
+                        },
+                      },
+                    }}
+                    isActive={index === currentSlide}
+                    index={index}
+                  />
+                ))
+              : bookData.map((book, index) => (
+                  <BookSlide
+                    isLoading={false}
+                    key={`${book.id || index}`}
+                    book={book}
+                    isActive={index === currentSlide}
+                    index={index}
+                  />
+                ))}
+          </Slider>
+        </Box>
       </Box>
     </Container>
   );

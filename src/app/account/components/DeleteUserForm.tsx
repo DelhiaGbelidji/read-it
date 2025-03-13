@@ -1,13 +1,15 @@
 'use client';
-import {WarningButton} from '@/components/buttons/Buttons';
-import * as Yup from 'yup';
+import {yupResolver} from '@hookform/resolvers/yup';
 import {Checkbox, FormControlLabel, Grid, Typography} from '@mui/material';
 import {Controller, useForm} from 'react-hook-form';
-import {yupResolver} from '@hookform/resolvers/yup';
-import {Type_Props_AccountTabs} from './AccountTabs';
+import * as Yup from 'yup';
+
 import {deleteUser} from '@/app/api/users/route';
+import {WarningButton} from '@/components/buttons/Buttons';
 import {notifyError, notifySuccess} from '@/utils/constants';
 import {COLORS} from '@/utils/theme';
+
+import {Type_Props_AccountTabs} from './AccountTabs';
 
 type Type_DeleteUserData = {
   confirm_delete?: boolean;

@@ -1,9 +1,10 @@
-import {BACKEND_URL} from '@/utils/constants'
-import {Type_CreateManuscript} from './types'
+import {BACKEND_URL} from '@/utils/constants';
+
+import {Type_CreateManuscript} from './types';
 
 export const createManuscript = async (
   data: Type_CreateManuscript,
-  token: string
+  token: string,
 ) => {
   try {
     const res = await fetch(BACKEND_URL + '/manuscripts/create', {
@@ -17,15 +18,15 @@ export const createManuscript = async (
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-    })
+    });
 
     if (!res.ok) {
-      return {error: res.statusText}
+      return {error: res.statusText};
     }
 
-    const response = await res.json()
-    return {response}
+    const response = await res.json();
+    return {response};
   } catch (error) {
-    return {error: 'An error occurred.'}
+    return {error: 'An error occurred.'};
   }
-}
+};

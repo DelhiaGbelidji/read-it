@@ -1,12 +1,15 @@
 'use client';
+import {useState} from 'react';
+
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import {Grid, Typography, useMediaQuery} from '@mui/material';
+
 import {Type_Manuscript} from '@/app/api/manuscripts/types';
 import {Type_Project} from '@/app/api/projects/types';
-import {useState} from 'react';
-import CreateManuscriptForm from './CreateManuscript';
-import Modal from '@/components/modal/Modal';
-import {Grid, Typography, useMediaQuery} from '@mui/material';
 import {Styled_IconButton} from '@/components/buttons/IconButton.style';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+import Modal from '@/components/modal/Modal';
+
+import CreateManuscriptForm from './CreateManuscript';
 
 type Type_Props_Manuscript = {
   project: Type_Project;

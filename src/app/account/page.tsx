@@ -1,9 +1,11 @@
-import {getServerSession} from 'next-auth';
-import {authOptions} from '../api/auth/[...nextauth]/options';
 import {Box} from '@mui/material';
-import AccountTabs from './components/AccountTabs';
-import {BACKEND_URL} from '@/utils/constants';
 import {redirect} from 'next/navigation';
+import {getServerSession} from 'next-auth';
+
+import {BACKEND_URL} from '@/utils/constants';
+
+import AccountTabs from './components/AccountTabs';
+import {authOptions} from '../api/auth/[...nextauth]/options';
 
 const AccountPage = async () => {
   const session = await getServerSession(authOptions);

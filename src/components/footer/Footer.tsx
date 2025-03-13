@@ -1,5 +1,6 @@
 'use client';
 import {Box} from '@mui/material';
+
 import {COLORS} from '@/utils/theme';
 
 const Footer = () => {
@@ -12,6 +13,7 @@ const Footer = () => {
         width: '100%',
         height: '60px',
         backgroundColor: COLORS.lightGrey,
+        zIndex: 999,
       }}></Box>
   );
 };

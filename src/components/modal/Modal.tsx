@@ -1,9 +1,11 @@
 import React, {ReactNode} from 'react';
+
+import CloseIcon from '@mui/icons-material/Close';
+import {IconButton, styled, useMediaQuery} from '@mui/material';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import CloseIcon from '@mui/icons-material/Close';
-import {IconButton, styled, useMediaQuery} from '@mui/material';
+
 import {COLORS, theme} from '@/utils/theme';
 
 type Type_ModalProps = {

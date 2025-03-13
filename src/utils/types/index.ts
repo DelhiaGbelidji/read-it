@@ -1,2 +1,2 @@
-export * from './googleBooks.type'
-export * from './next-auth'
+export * from './googleBooks.type';
+export * from './next-auth';

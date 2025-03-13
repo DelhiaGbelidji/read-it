@@ -1,16 +1,19 @@
 'use client';
 import React, {useState} from 'react';
-import {Grid, InputAdornment, IconButton} from '@mui/material';
-import * as Yup from 'yup';
-import {DefaultButton} from '@/components/buttons/Buttons';
-import {Controller, useForm} from 'react-hook-form';
+
 import {yupResolver} from '@hookform/resolvers/yup';
 import {Visibility, VisibilityOff} from '@mui/icons-material';
-import {notifyError, notifySuccess, passwordRules} from '@/utils/constants';
+import {Grid, InputAdornment, IconButton} from '@mui/material';
+import {Controller, useForm} from 'react-hook-form';
+import * as Yup from 'yup';
+
 import {changeUserPassword} from '@/app/api/users/route';
 import {Type_ChangePassword} from '@/app/api/users/types';
-import {Type_Props_AccountTabs} from './AccountTabs';
+import {DefaultButton} from '@/components/buttons/Buttons';
 import {Styled_TextField} from '@/components/inputText/TextField.style';
+import {notifyError, notifySuccess, passwordRules} from '@/utils/constants';
+
+import {Type_Props_AccountTabs} from './AccountTabs';
 
 type Type_ChangePasswordData = {
   old_password?: string;

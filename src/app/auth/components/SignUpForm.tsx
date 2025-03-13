@@ -1,16 +1,17 @@
 import React, {useState} from 'react';
-import {useForm, Controller} from 'react-hook-form';
-import {Grid, InputAdornment, IconButton} from '@mui/material';
-import {Visibility, VisibilityOff} from '@mui/icons-material';
-import * as Yup from 'yup';
-import {yupResolver} from '@hookform/resolvers/yup';
 
-import {DefaultButton} from '@/components/buttons/Buttons';
+import {yupResolver} from '@hookform/resolvers/yup';
+import {Visibility, VisibilityOff} from '@mui/icons-material';
+import {Grid, InputAdornment, IconButton} from '@mui/material';
 import {useRouter} from 'next/navigation';
+import {useForm, Controller} from 'react-hook-form';
+import * as Yup from 'yup';
+
 import {registerUser} from '@/app/api/users/route';
-import {notifyError, passwordRules} from '@/utils/constants';
 import {Type_User} from '@/app/api/users/types';
+import {DefaultButton} from '@/components/buttons/Buttons';
 import {Styled_TextField} from '@/components/inputText/TextField.style';
+import {notifyError, passwordRules} from '@/utils/constants';
 
 export type Type_SignupData = {
   email: string;
